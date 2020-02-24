@@ -1,12 +1,31 @@
 package com.github.qqupp.scaladash
 
+import io.circe.{Encoder, Json}
+
+sealed  trait VariableSort
+
 object VariableSort {
 
-  val Disabled = 0
-  val AlphaAsc = 1
-  val AlphaDesc = 2
-  val NumericalAsc = 3
-  val NumericalDesc = 4
-  val AlphaCaseInsensitiveAsc = 5
-  val AlphaCaseInsensitiveDesc = 6
+  case object Disabled extends  VariableSort
+  case object AlphaAsc extends  VariableSort
+  case object AlphaDesc extends  VariableSort
+  case object NumericalAsc extends  VariableSort
+  case object NumericalDesc extends  VariableSort
+  case object AlphaCaseInsensitiveAsc extends  VariableSort
+  case object AlphaCaseInsensitiveDesc extends  VariableSort
+
+  implicit val jsonEncoder: Encoder[VariableSort] =
+    state =>
+      Json.fromInt(
+        state match {
+          case Disabled => 0
+          case AlphaAsc => 1
+          case AlphaDesc => 2
+          case NumericalAsc => 3
+          case NumericalDesc => 4
+          case AlphaCaseInsensitiveAsc => 5
+          case AlphaCaseInsensitiveDesc => 6
+
+        }
+      )
 }

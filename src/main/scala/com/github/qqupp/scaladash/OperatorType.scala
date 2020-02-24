@@ -1,8 +1,20 @@
 package com.github.qqupp.scaladash
 
+import io.circe.{Encoder, Json}
+
+sealed trait OperatorType
+
 object OperatorType {
 
-  val And = "and"
-  val Or = "or"
+  case object And extends OperatorType
+  case object Or extends OperatorType
 
+  implicit val jsonEncoder: Encoder[OperatorType] =
+    state =>
+      Json.fromString(
+        state match {
+          case And => "and"
+          case Or => "or"
+        }
+      )
 }
