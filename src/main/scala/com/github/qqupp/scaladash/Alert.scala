@@ -34,6 +34,14 @@ class Alert:
         return alert
 
  */
-class Alert {
+final case class Alert(name: String,
+                       frequency: Int,
+                       message: Option[String],
+                       noDataState: NoDataState,
+                       executionErrorState: ExecutionErrorState) {
 
+}
+
+object Alert {
+  def apply(name: String, frequency: Int): Alert = Alert(name, frequency, None, NoDataState.NoData, ExecutionErrorState.Alerting)
 }
