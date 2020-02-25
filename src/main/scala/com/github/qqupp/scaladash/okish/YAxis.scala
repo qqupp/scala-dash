@@ -1,6 +1,5 @@
-package com.github.qqupp.scaladash
+package com.github.qqupp.scaladash.okish
 
-import com.github.qqupp.scaladash.YAxisFormat.{Bits, BitsPerSecond, Bytes, Microseconds, Milliseconds, Nanoseconds, NoFormat, Percent, Seconds, Short}
 import io.circe.{Encoder, Json}
 
 sealed trait YAxis

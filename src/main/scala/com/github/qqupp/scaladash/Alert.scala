@@ -1,5 +1,7 @@
 package com.github.qqupp.scaladash
 
+import com.github.qqupp.scaladash.okish.{ExecutionErrorState, NoDataState}
+
 /*
 class Alert:
     def __init__(self, name, frequency, message=None, no_data_state=NoDataState.NoData, execution_error_state=ExecutionErrorState.Alerting):

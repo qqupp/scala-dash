@@ -1,5 +1,6 @@
 package com.github.qqupp.scaladash
 
+import com.github.qqupp.scaladash.okish.DatasourceType
 import io.circe.Encoder
 import io.circe.literal._
 

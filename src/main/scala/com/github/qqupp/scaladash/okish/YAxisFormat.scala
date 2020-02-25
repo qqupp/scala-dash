@@ -1,4 +1,4 @@
-package com.github.qqupp.scaladash
+package com.github.qqupp.scaladash.okish
 
 import io.circe.{Encoder, Json}
 
@@ -25,7 +25,7 @@ object YAxisFormat {
             case NoFormat => "none"
             case Short => "short"
             case Bytes => "bytes"
-            case Bits =>  "bits"
+            case Bits => "bits"
             case BitsPerSecond => "bps"
             case Seconds =>  "s"
             case Milliseconds => "ms"
