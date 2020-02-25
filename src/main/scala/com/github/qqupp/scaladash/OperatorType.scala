@@ -10,9 +10,9 @@ object OperatorType {
   case object Or extends OperatorType
 
   implicit val jsonEncoder: Encoder[OperatorType] =
-    state =>
+    operatorType =>
       Json.fromString(
-        state match {
+        operatorType match {
           case And => "and"
           case Or => "or"
         }

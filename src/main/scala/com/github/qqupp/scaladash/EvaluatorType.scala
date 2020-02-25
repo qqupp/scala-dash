@@ -12,9 +12,9 @@ object EvaluatorType {
   case object NoValue extends EvaluatorType
 
   implicit val jsonEncoder: Encoder[EvaluatorType] =
-    state =>
+    evaluatorType =>
       Json.fromString(
-        state match {
+        evaluatorType match {
           case GreaterThan => "gt"
           case LessThan => "lt"
           case Outside => "outside_range"

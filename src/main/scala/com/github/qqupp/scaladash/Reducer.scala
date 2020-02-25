@@ -15,9 +15,9 @@ object Reducer {
   case object Sum extends Reducer
 
   implicit val jsonEncoder: Encoder[Reducer] =
-    state =>
+    reducer =>
       Json.fromString(
-        state match {
+        reducer match {
           case Average => "avg"
           case Count => "count"
           case Last => "last"
