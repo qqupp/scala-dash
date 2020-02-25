@@ -1,5 +1,9 @@
 package com.github.qqupp.scaladash
 
+import com.github.qqupp.scaladash.FillStyle.Unfilled
+import com.github.qqupp.scaladash.StackStyle.Unstacked
+import com.github.qqupp.scaladash.YAxisFormat.NoFormat
+import com.github.qqupp.scaladash.YAxisMinimum.Auto
 import io.circe.Json
 import io.circe.literal._
 
@@ -105,7 +109,19 @@ class Panel:
 
 
  */
-final case class Panel(title: String, metrics: List[PrometheusMetric]) {
+final case class Panel(title: String,
+                       metrics: List[PrometheusMetric],
+                       yAxisFormat: YAxisFormat,
+                       filled: FillStyle,
+                       stacked: StackStyle,
+                       minimum: YAxisMinimum,
+                       aliasColors: List[AliasColor],
+                       span: Option[Span],
+                       maximum: WTF,
+                       datasource: Option[Datasource],
+                       lines: Boolean,
+                       bars: Boolean,
+                       points: Boolean) {
 
 
 
@@ -125,5 +141,21 @@ final case class Panel(title: String, metrics: List[PrometheusMetric]) {
 }
 
 object Panel {
-  def apply(title: String): Panel = Panel(title, List())
+
+  def apply(title: String): Panel =
+    Panel(
+      title = title,
+      metrics = List.empty,
+      yAxisFormat = NoFormat,
+      filled = Unfilled,
+      stacked = Unstacked,
+      minimum = Auto,
+      aliasColors = List.empty,
+      span = None,
+      maximum = "",
+      datasource = None,
+      lines = true,
+      bars = false,
+      points = false
+    )
 }

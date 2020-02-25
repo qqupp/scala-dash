@@ -10,11 +10,10 @@ object PrometheusMetricFormat {
   case object Table extends PrometheusMetricFormat
   case object TimeSeries extends PrometheusMetricFormat
 
-  implicit val jsonEncoder: Encoder[PrometheusMetricFormat] =
-    {
-      case Heatmap => Json.fromString("heatmap")
-      case Table => Json.fromString("table")
-      case TimeSeries => Json.fromString("time_series")
-    }
+  implicit val jsonEncoder: Encoder[PrometheusMetricFormat] = {
+    case Heatmap => Json.fromString("heatmap")
+    case Table => Json.fromString("table")
+    case TimeSeries => Json.fromString("time_series")
+  }
 
 }

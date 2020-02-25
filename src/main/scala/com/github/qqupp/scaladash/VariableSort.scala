@@ -15,9 +15,9 @@ object VariableSort {
   case object AlphaCaseInsensitiveDesc extends  VariableSort
 
   implicit val jsonEncoder: Encoder[VariableSort] =
-    state =>
+    variableSort =>
       Json.fromInt(
-        state match {
+        variableSort match {
           case Disabled => 0
           case AlphaAsc => 1
           case AlphaDesc => 2
