@@ -32,6 +32,10 @@ class Row:
         }
 
  */
-class Row {
+case class Row(height: String, title: Option[String], showTitle: Boolean, collapse: Boolean) {
 
+}
+
+object Row {
+  def apply: Row = Row(height = "250px", title = None, showTitle = false, collapse = false)
 }
