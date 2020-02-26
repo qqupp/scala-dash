@@ -29,7 +29,15 @@ class Datasource:
 final case class Datasource(name: String, datasourceType: DatasourceType, url: String, access: String, default: Boolean)
 
 object Datasource{
-  def apply(name: String, datasourceType: DatasourceType): Datasource = Datasource(name, datasourceType, "", "", false)
+
+  def apply(name: String, datasourceType: DatasourceType, url: String): Datasource =
+    Datasource(
+      name = name,
+      datasourceType = datasourceType,
+      url = url,
+      access = "proxy",
+      default = false
+    )
 
   implicit val jsonEncoder: Encoder[Datasource] =
     ds =>
