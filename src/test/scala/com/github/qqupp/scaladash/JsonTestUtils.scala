@@ -15,7 +15,10 @@ object JsonTestUtils {
         case Left(failure) =>
           MatchResult(
             false,
-            s"""containKeyValue: fail to decode json: $json when going down to key: "$key"""",
+            s"""|containKeyValue: fail to decode json when going down to key "$key":
+                | $json
+                | decode failed with message $failure
+              """.stripMargin,
             "Improve this A message"
           )
         case Right(downKeyJson) =>
