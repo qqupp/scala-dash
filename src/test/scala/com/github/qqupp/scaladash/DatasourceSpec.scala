@@ -1,16 +1,16 @@
 package com.github.qqupp.scaladash
 
+import com.github.qqupp.scaladash.Datasource.Graphite
 import com.github.qqupp.scaladash.okish.DatasourceType.Prometheus
 import org.scalatest.{FlatSpec, Matchers}
 import io.circe.literal._
 import io.circe.syntax._
 class DatasourceSpec extends FlatSpec with Matchers {
 
-
   behavior of "Datasource"
 
-  it should "Render json" in {
-    val datasource = Datasource("aName", Prometheus, "https://a.server/path")
+  it should "Render json with defaults" in {
+    val datasource = Datasource.prometheus("aName", "https://a.server/path")
     val expected =
       json"""{
       "name": "aName",
@@ -19,6 +19,20 @@ class DatasourceSpec extends FlatSpec with Matchers {
       "access": "proxy",
       "isDefault": false
     }"""
+
+    datasource.asJson shouldBe expected
+  }
+
+  it should "Render json" in {
+    val datasource: Datasource = Graphite("anotherName", "https://another.server/", "abc", true)
+    val expected =
+      json"""{
+            "name": "anotherName",
+            "type": "graphite",
+            "url": "https://another.server/",
+            "access": "abc",
+            "isDefault": true
+        }"""
 
     datasource.asJson shouldBe expected
   }

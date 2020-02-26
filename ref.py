@@ -78,15 +78,15 @@ class GrafanaDashboardTest(unittest.TestCase):
 #        expected = [{'refId': 'A', 'expr': 'tar_get'}]
 #        self.assertEqual(expected, panel.build(1)['targets'])
 
-    def test_datasource_renders_with_defaults(self):
-        expected = {
-            'name': 'aName',
-            'type': 'prometheus',
-            'url': 'https://a.server/path',
-            'access': 'proxy',
-            'isDefault': False
-        }
-        self.assertEqual(expected, bd.Datasource('aName', 'prometheus', 'https://a.server/path').build())
+#    def test_datasource_renders_with_defaults(self):
+#        expected = {
+#            'name': 'aName',
+#            'type': 'prometheus',
+#            'url': 'https://a.server/path',
+#            'access': 'proxy',
+#            'isDefault': False
+#        }
+#        self.assertEqual(expected, bd.Datasource('aName', 'prometheus', 'https://a.server/path').build())
 
     def test_datasource_renders(self):
         expected = {
