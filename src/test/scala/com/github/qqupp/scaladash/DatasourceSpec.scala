@@ -1,6 +1,7 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.Datasource.Graphite
+import com.github.qqupp.scaladash.okish.Datasource
+import com.github.qqupp.scaladash.okish.Datasource.Graphite
 import com.github.qqupp.scaladash.okish.DatasourceType.Prometheus
 import org.scalatest.{FlatSpec, Matchers}
 import io.circe.literal._

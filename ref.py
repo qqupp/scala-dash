@@ -88,15 +88,15 @@ class GrafanaDashboardTest(unittest.TestCase):
 #        }
 #        self.assertEqual(expected, bd.Datasource('aName', 'prometheus', 'https://a.server/path').build())
 
-    def test_datasource_renders(self):
-        expected = {
-            'name': 'anotherName',
-            'type': 'graphite',
-            'url': 'https://another.server/',
-            'access': 'abc',
-            'isDefault': True
-        }
-        self.assertEqual(expected, bd.Datasource('anotherName', 'graphite', 'https://another.server/', access='abc', default=True).build())
+#    def test_datasource_renders(self):
+#        expected = {
+#            'name': 'anotherName',
+#            'type': 'graphite',
+#            'url': 'https://another.server/',
+#            'access': 'abc',
+#            'isDefault': True
+#        }
+#        self.assertEqual(expected, bd.Datasource('anotherName', 'graphite', 'https://another.server/', access='abc', default=True).build())
 
     def test_panel_renders(self):
         yaxis = random.choice([bd.YAxisFormat.Bits, bd.YAxisFormat.BitsPerSecond, bd.YAxisFormat.Bytes])

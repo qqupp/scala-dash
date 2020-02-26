@@ -4,7 +4,7 @@ import com.github.qqupp.scaladash.okish.FillStyle.Unfilled
 import com.github.qqupp.scaladash.okish.StackStyle.Unstacked
 import com.github.qqupp.scaladash.okish.YAxisFormat.NoFormat
 import com.github.qqupp.scaladash.okish.YAxisMinimum.Auto
-import com.github.qqupp.scaladash.okish.{FillStyle, StackStyle, YAxisFormat, YAxisMinimum}
+import com.github.qqupp.scaladash.okish._
 import io.circe.{Json, JsonObject}
 import io.circe.literal._
 import com.github.qqupp.scaladash.utils.JsonUtils._
