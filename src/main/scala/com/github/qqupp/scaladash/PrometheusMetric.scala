@@ -38,6 +38,7 @@ class PrometheusMetric:
  */
 
 final case class PrometheusMetric(expr: String,
+                                  rightYAxisMetricName: Option[String],
                                   legendFormat: Option[String],
                                   format: Option[PrometheusMetricFormat],
                                   instant: Option[Boolean],
@@ -67,5 +68,5 @@ final case class PrometheusMetric(expr: String,
 }
 
 object PrometheusMetric {
-  def apply(expression: String): PrometheusMetric = PrometheusMetric(expression, None, None, None, None, None, false)
+  def apply(expression: String): PrometheusMetric = PrometheusMetric(expression, None, None, None, None, None, None, false)
 }

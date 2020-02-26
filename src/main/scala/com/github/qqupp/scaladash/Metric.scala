@@ -21,7 +21,7 @@ class Metric:
 
 
  */
-final case class Metric(target: String, right_y_axis_metric_name: Option[String], hide: Boolean) {
+final case class Metric(target: String, rightYAxisMetricName: Option[String], hide: Boolean) {
 
   def build(ref_id: String): Json = {
 
