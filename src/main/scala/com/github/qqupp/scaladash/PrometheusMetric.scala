@@ -55,7 +55,6 @@ final case class PrometheusMetric(expr: String,
       }"""
 
 
-
     metricJson
       .addOpt("legendFormat", legendFormat)
       .addOpt("format", format)

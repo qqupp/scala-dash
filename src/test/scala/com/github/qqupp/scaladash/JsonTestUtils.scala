@@ -13,12 +13,24 @@ object JsonTestUtils {
       val decodedDownKey: Result[Json] = json.hcursor.downField(key).as[Json]
       decodedDownKey match {
         case Left(failure) =>
-          MatchResult(false, s"""containKeyValue: fail to decode json: $json when going down to key: "$key"""", "Improve this D")
+          MatchResult(
+            false,
+            s"""containKeyValue: fail to decode json: $json when going down to key: "$key"""",
+            "Improve this A message"
+          )
         case Right(downKeyJson) =>
           if (downKeyJson == expectedJson)
-            MatchResult(true, "Improve this A", "Improve this B")
+            MatchResult(
+              true,
+              "Improve this B message",
+              "Improve this C message"
+            )
           else
-            MatchResult(false, s"$downKeyJson was not equal to $expectedJson", "Improve this C")
+            MatchResult(
+              false,
+              s"$downKeyJson was not equal to $expectedJson",
+              "Improve this D message"
+            )
       }
   }
 
