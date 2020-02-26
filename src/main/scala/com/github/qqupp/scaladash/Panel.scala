@@ -143,7 +143,7 @@ final case class Panel(title: String,
                                       }""")
       }
 
-    this.copy(metrics = newMetrics, metricsJson = newMetricsJson, seriesOverrides = newSeriesOverrides)
+    this.copy(metrics = newMetrics, metricsJson = newMetricsJson, seriesOverrides = newSeriesOverrides, availableRefIds = t)
   }
 
   def withMetrics(metrics: List[PrometheusMetric]): Panel =
