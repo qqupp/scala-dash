@@ -31,66 +31,6 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
       val title: String = "Test Panel"
       val span: Int = 22
 
-      val expected = json"""{
-        "title": $title,
-        "error": false,
-        "span": $span,
-        "editable": true,
-        "type": "graph",
-        "id": $panelId,
-        "datasource": null,
-        "renderer": "flot",
-        "x-axis": true,
-        "y-axis": true,
-        "y_formats": [
-          $yAxis,
-          $yAxis
-        ],
-        "grid": {
-          "leftMax": null,
-          "rightMax": null,
-          "leftMin": $minimum,
-          "rightMin": null,
-          "threshold1": null,
-          "threshold2": null,
-          "threshold1Color": "rgba(216, 200, 27, 0.27)",
-          "threshold2Color": "rgba(234, 112, 112, 0.22)"
-        },
-        "lines": true,
-        "fill": "filled",
-        "linewidth": 1,
-        "points": false,
-        "pointradius": 5,
-        "bars": false,
-        "stack": $stacked,
-        "percentage": false,
-        "legend": {
-          "show": true,
-          "values": false,
-          "min": false,
-          "max": false,
-          "current": false,
-          "total": false,
-          "avg": false
-        },
-        "nullPointMode": "connected",
-        "steppedLine": false,
-        "tooltip": {
-          "value_type": "cumulative",
-          "shared": false
-        },
-        "targets": [${metric1.build("A")}, ${metric2.build("B")}],
-        "aliasColors": {},
-        "seriesOverrides": [{
-          "alias": ${metric1.rightYAxisMetricName},
-          "yaxis": 2
-        }, {
-          "alias": ${metric2.rightYAxisMetricName},
-          "yaxis": 2
-        }],
-        "links": []
-      }"""
-
       val girdJson = json"""{
         "leftMax": null,
         "rightMax": null,
@@ -165,13 +105,6 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
       jsonPanel should containKeyValue("aliasColors", Json.arr()) // to verify list vs obj
       jsonPanel should containKeyValue("seriesOverrides", seriesOverridesJson(metric1.rightYAxisMetricName, metric2.rightYAxisMetricName))
       jsonPanel should containKeyValue("links", Json.arr())
-//      jsonPanel should containKeyValue()
-//      jsonPanel should containKeyValue()
-//      jsonPanel should containKeyValue()
-//      jsonPanel should containKeyValue()
-//      jsonPanel should containKeyValue()
-
-//      jsonPanel shouldBe expected
     }
   }
 }
