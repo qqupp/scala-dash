@@ -1,9 +1,9 @@
-package com.github.qqupp.scaladash
+package com.github.qqupp.scaladash.utils
 
 import io.circe.Decoder.Result
-import io.circe.syntax._
 import io.circe.{Encoder, Json}
 import org.scalatest.matchers.{MatchResult, Matcher}
+import io.circe.syntax._
 
 object JsonTestUtils {
 

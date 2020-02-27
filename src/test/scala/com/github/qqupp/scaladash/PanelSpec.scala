@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.JsonTestUtils._
+import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.Json
 import io.circe.literal._
 import org.scalatest.{FlatSpec, Matchers}
