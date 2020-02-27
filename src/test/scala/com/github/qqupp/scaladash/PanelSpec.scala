@@ -137,6 +137,14 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
     }
   }
 
+  it should "render with target refids" in {
+    forAll { (metric: Metric, metrics: List[Metric]) =>
+      val jsonPanel = Panel(title).withMetrics(metric :: metrics).build(panelId)
+
+      jsonPanel should containKeyValue("targets", (metric:: metrics).zipWithIndex.map{ case (m, i) => m.build((i + 65).toChar.toString)})
+    }
+  }
+
   val panelId: Int = 10
   val title: String = "Test Panel"
   val span: Int = 22
