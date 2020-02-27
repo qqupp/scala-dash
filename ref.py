@@ -98,79 +98,79 @@ class GrafanaDashboardTest(unittest.TestCase):
 #        }
 #        self.assertEqual(expected, bd.Datasource('anotherName', 'graphite', 'https://another.server/', access='abc', default=True).build())
 
-    def test_panel_renders(self):
-        yaxis = random.choice([bd.YAxisFormat.Bits, bd.YAxisFormat.BitsPerSecond, bd.YAxisFormat.Bytes])
-        filled = random.choice([[bd.FillStyle.Filled, bd.FillStyle.Unfilled]])
-        stacked = random.choice([[bd.StackStyle.Stacked, bd.StackStyle.Stacked]])
-        minimum = 5
-
-        metric1 = random_metric()
-        metric2 = random_metric()
-
-        expected = {
-            "title": self.title,
-            "error": False,
-            "span": self.span,
-            "editable": True,
-            "type": "graph",
-            "id": self.panelId,
-            "datasource": None,
-            "renderer": "flot",
-            "x-axis": True,
-            "y-axis": True,
-            "y_formats": [
-                yaxis,
-                yaxis
-            ],
-            "grid": {
-                "leftMax": None,
-                "rightMax": None,
-                "leftMin": minimum,
-                "rightMin": None,
-                "threshold1": None,
-                "threshold2": None,
-                "threshold1Color": "rgba(216, 200, 27, 0.27)",
-                "threshold2Color": "rgba(234, 112, 112, 0.22)"
-            },
-            "lines": True,
-            "fill": filled,
-            "linewidth": 1,
-            "points": False,
-            "pointradius": 5,
-            "bars": False,
-            "stack": stacked,
-            "percentage": False,
-            "legend": {
-                "show": True,
-                "values": False,
-                "min": False,
-                "max": False,
-                "current": False,
-                "total": False,
-                "avg": False
-            },
-            "nullPointMode": "connected",
-            "steppedLine": False,
-            "tooltip": {
-                "value_type": "cumulative",
-                "shared": False
-            },
-            "targets": [metric1.build('A'), metric2.build('B')],
-            "aliasColors": {},
-            "seriesOverrides": [{
-                "alias": metric1.right_y_axis_metric_name,
-                "yaxis": 2
-            }, {
-                "alias": metric2.right_y_axis_metric_name,
-                "yaxis": 2
-            }],
-            "links": []
-        }
-
-        self.assertEqual(expected, bd.Panel(self.title, yaxis, filled, stacked, minimum)
-                         .with_metric(metric1)
-                         .with_metric(metric2)
-                         .build(self.panelId, self.span))
+#    def test_panel_renders(self):
+#        yaxis = random.choice([bd.YAxisFormat.Bits, bd.YAxisFormat.BitsPerSecond, bd.YAxisFormat.Bytes])
+#        filled = random.choice([[bd.FillStyle.Filled, bd.FillStyle.Unfilled]])
+#        stacked = random.choice([[bd.StackStyle.Stacked, bd.StackStyle.Stacked]])
+#        minimum = 5
+#
+#        metric1 = random_metric()
+#        metric2 = random_metric()
+#
+#        expected = {
+#            "title": self.title,
+#            "error": False,
+#            "span": self.span,
+#            "editable": True,
+#            "type": "graph",
+#            "id": self.panelId,
+#            "datasource": None,
+#            "renderer": "flot",
+#            "x-axis": True,
+#            "y-axis": True,
+#            "y_formats": [
+#                yaxis,
+#                yaxis
+#            ],
+#            "grid": {
+#                "leftMax": None,
+#                "rightMax": None,
+#                "leftMin": minimum,
+#                "rightMin": None,
+#                "threshold1": None,
+#                "threshold2": None,
+#                "threshold1Color": "rgba(216, 200, 27, 0.27)",
+#                "threshold2Color": "rgba(234, 112, 112, 0.22)"
+#            },
+#            "lines": True,
+#            "fill": filled,
+#            "linewidth": 1,
+#            "points": False,
+#            "pointradius": 5,
+#            "bars": False,
+#            "stack": stacked,
+#            "percentage": False,
+#            "legend": {
+#                "show": True,
+#                "values": False,
+#                "min": False,
+#                "max": False,
+#                "current": False,
+#                "total": False,
+#                "avg": False
+#            },
+#            "nullPointMode": "connected",
+#            "steppedLine": False,
+#            "tooltip": {
+#                "value_type": "cumulative",
+#                "shared": False
+#            },
+#            "targets": [metric1.build('A'), metric2.build('B')],
+#            "aliasColors": {},
+#            "seriesOverrides": [{
+#                "alias": metric1.right_y_axis_metric_name,
+#                "yaxis": 2
+#            }, {
+#                "alias": metric2.right_y_axis_metric_name,
+#                "yaxis": 2
+#            }],
+#            "links": []
+#        }
+#
+#        self.assertEqual(expected, bd.Panel(self.title, yaxis, filled, stacked, minimum)
+#                         .with_metric(metric1)
+#                         .with_metric(metric2)
+#                         .build(self.panelId, self.span))
 
     def test_panel_renders_with_specific_maximum(self):
         yaxis = random.choice([bd.YAxisFormat.Bits, bd.YAxisFormat.BitsPerSecond, bd.YAxisFormat.Bytes])
@@ -195,42 +195,38 @@ class GrafanaDashboardTest(unittest.TestCase):
                          .with_metric(random_metric())
                          .build(self.panelId, self.span)['grid'])
 
-    def test_panel_renders_with_datasource(self):
-        expected = "a-datasource"
+#    def test_panel_renders_with_datasource(self):
+#        expected = "a-datasource"
+#
+#        actual = bd.Panel(self.title, datasource=expected).build(self.panelId, self.span)
+#
+#        self.assertEqual(expected, actual.get("datasource"))
 
-        actual = bd.Panel(self.title, datasource=expected).build(self.panelId, self.span)
 
-        self.assertEqual(expected, actual.get("datasource"))
+#    def test_panel_renders_without_lines(self):
+#        actual = bd.Panel(self.title, lines=False).build(self.panelId, self.span)
+#
+#        self.assertEqual(False, actual.get("lines"))
 
-    def test_panel_renders_with_lines_by_default(self):
-        actual = bd.Panel(self.title).build(self.panelId, self.span)
+#    def test_panel_renders_without_bars_by_default(self):
+#        actual = bd.Panel(self.title).build(self.panelId, self.span)
+#
+#        self.assertEqual(False, actual.get("bars"))
+#
+#    def test_panel_renders_with_bars(self):
+#        actual = bd.Panel(self.title, bars=True).build(self.panelId, self.span)
+#
+#        self.assertEqual(True, actual.get("bars"))
 
-        self.assertEqual(True, actual.get("lines"))
-
-    def test_panel_renders_without_lines(self):
-        actual = bd.Panel(self.title, lines=False).build(self.panelId, self.span)
-
-        self.assertEqual(False, actual.get("lines"))
-
-    def test_panel_renders_without_bars_by_default(self):
-        actual = bd.Panel(self.title).build(self.panelId, self.span)
-
-        self.assertEqual(False, actual.get("bars"))
-
-    def test_panel_renders_with_bars(self):
-        actual = bd.Panel(self.title, bars=True).build(self.panelId, self.span)
-
-        self.assertEqual(True, actual.get("bars"))
-
-    def test_panel_renders_without_points_by_default(self):
-        actual = bd.Panel(self.title).build(self.panelId, self.span)
-
-        self.assertEqual(False, actual.get("points"))
-
-    def test_panel_renders_with_points(self):
-        actual = bd.Panel(self.title, points=True).build(self.panelId, self.span)
-
-        self.assertEqual(True, actual.get("points"))
+#    def test_panel_renders_without_points_by_default(self):
+#        actual = bd.Panel(self.title).build(self.panelId, self.span)
+#
+#        self.assertEqual(False, actual.get("points"))
+#
+#    def test_panel_renders_with_points(self):
+#        actual = bd.Panel(self.title, points=True).build(self.panelId, self.span)
+#
+#        self.assertEqual(True, actual.get("points"))
 
     def test_panel_renders_with_alias_colors(self):
         expected = {

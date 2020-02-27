@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.okish.{FillStyle, StackStyle, YAxisFormat, YAxisMinimum}
+import com.github.qqupp.scaladash.okish.{Datasource, FillStyle, StackStyle, YAxisFormat, YAxisMinimum}
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.{Encoder, Json}
 import io.circe.literal._
@@ -27,9 +27,6 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
   it should "render json" in {
     forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, filled: FillStyle, stacked: StackStyle, minimum: YAxisMinimum) =>
 
-      val panelId: Int = 10
-      val title: String = "Test Panel"
-      val span: Int = 22
 
       val girdJson = json"""{
         "leftMax": null,
@@ -89,7 +86,6 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
       jsonPanel should containKeyValue("y-axis", true)
       jsonPanel should containKeyValue("y_formats", List(yAxis, yAxis))
       jsonPanel should containKeyValue("grid", girdJson)
-      jsonPanel should containKeyValue("lines", true)
       //jsonPanel should containKeyValue("fill", "filled") to verify
       jsonPanel should containKeyValue("linewidth", 1)
       jsonPanel should containKeyValue("points", false)
@@ -107,4 +103,42 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
       jsonPanel should containKeyValue("links", Json.arr())
     }
   }
+
+  it should "render with data source" in {
+    forAll { datasource: Datasource =>
+
+      val panelJson = Panel(title).copy(datasource = Some(datasource)).build(panelId)
+
+      panelJson should containKeyValue("datasource", datasource)
+    }
+  }
+
+  it should "render lines" in {
+    forAll { lines: Boolean =>
+      val jsonPanel = Panel(title).copy(lines = lines).build(panelId)
+
+      jsonPanel should containKeyValue("lines", lines)
+    }
+  }
+
+  it should "render bars" in {
+    forAll { bars: Boolean =>
+      val jsonPanel = Panel(title).copy(bars = bars).build(panelId)
+
+      jsonPanel should containKeyValue("bars", bars)
+    }
+  }
+
+  it should "render points" in {
+    forAll { points: Boolean =>
+      val jsonPanel = Panel(title).copy(points = points).build(panelId)
+
+      jsonPanel should containKeyValue("points", points)
+    }
+  }
+
+  val panelId: Int = 10
+  val title: String = "Test Panel"
+  val span: Int = 22
+
 }
