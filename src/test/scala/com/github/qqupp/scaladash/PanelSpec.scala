@@ -28,11 +28,12 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
       val panelId: Int = 10
       val title: String = "Test Panel"
+      val span: Int = 22
 
       val expected = json"""{
         "title": $title,
         "error": false,
-        "span": 20,
+        "span": $span,
         "editable": true,
         "type": "graph",
         "id": $panelId,
@@ -96,12 +97,28 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
           .copy(filled = filled)
           .copy(stacked = stacked)
           .copy(minimum = minimum)
+          .copy(span = Some(span))
 
       val jsonPanel = panel.build(panelId)
 
       jsonPanel should containKeyValue("title", title)
       jsonPanel should containKeyValue("error", false)
-      jsonPanel should containKeyValue("span", 20)
+      jsonPanel should containKeyValue("span", span)
+      jsonPanel should containKeyValue("editable", true)
+      jsonPanel should containKeyValue("type", "graph")
+      jsonPanel should containKeyValue("id", panelId)
+      jsonPanel should containKeyValue("datasource", Json.Null)
+      jsonPanel should containKeyValue("renderer", "flot")
+      jsonPanel should containKeyValue("x-axis", true)
+      jsonPanel should containKeyValue("y-axis", true)
+      jsonPanel should containKeyValue("y_formats", List(yAxis, yAxis))
+//      jsonPanel should containKeyValue()
+//      jsonPanel should containKeyValue()
+//      jsonPanel should containKeyValue()
+//      jsonPanel should containKeyValue()
+//      jsonPanel should containKeyValue()
+//      jsonPanel should containKeyValue()
+//      jsonPanel should containKeyValue()
 
 //      jsonPanel shouldBe expected
     }
