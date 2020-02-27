@@ -164,7 +164,7 @@ final case class Panel(title: String,
          "y-axis": true,
          "y_formats": ${List(yAxisFormat, yAxisFormat)},
          "grid": {
-                 "leftMax": $maximum,
+                 "leftMax": null,
                  "rightMax": null,
                  "leftMin": $minimum,
                  "rightMin": null,
