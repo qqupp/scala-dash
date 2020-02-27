@@ -14,7 +14,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
   it should "add a prometheus metric" in {
     val panel =
       Panel("test_panel")
-        .withMetric(PrometheusMetric("tar_get"))
+        .withMetric(Metric.prometheusMetric("tar_get"))
 
     val expected: Json = json"""[{"refId": "A", "expr": "tar_get"}]"""
 

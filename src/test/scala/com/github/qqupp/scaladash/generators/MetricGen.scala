@@ -1,6 +1,7 @@
 package com.github.qqupp.scaladash.generators
 
 import com.github.qqupp.scaladash.Metric
+import com.github.qqupp.scaladash.Metric.GenericMetric
 import org.scalacheck.{Arbitrary, Gen}
 
 trait MetricGen {
@@ -13,6 +14,6 @@ trait MetricGen {
      rightYAxisMetricName <- Gen.option(Gen.alphaNumStr)
      hide <- Gen.oneOf(false, true)
    } yield
-     Metric(target,  rightYAxisMetricName, hide)
+     GenericMetric(target,  rightYAxisMetricName, hide)
 
 }

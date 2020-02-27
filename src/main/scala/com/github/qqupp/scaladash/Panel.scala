@@ -112,7 +112,7 @@ class Panel:
 
  */
 final case class Panel(title: String,
-                       metrics: List[PrometheusMetric],
+                       metrics: List[Metric],
                        metricsJson: List[Json],
                        yAxisFormat: YAxisFormat,
                        filled: FillStyle,
@@ -130,7 +130,7 @@ final case class Panel(title: String,
                        alert: Option[Alert]
                       ) {
 
-  def withMetric(metric: PrometheusMetric): Panel = {
+  def withMetric(metric: Metric): Panel = {
     val (h :: t) = availableRefIds
     val newMetrics = metrics ++ List(metric)
     val newMetricsJson = metricsJson ++ List(metric.build(h.toString))
@@ -146,7 +146,7 @@ final case class Panel(title: String,
     this.copy(metrics = newMetrics, metricsJson = newMetricsJson, seriesOverrides = newSeriesOverrides, availableRefIds = t)
   }
 
-  def withMetrics(metrics: List[PrometheusMetric]): Panel =
+  def withMetrics(metrics: List[Metric]): Panel =
     metrics.foldLeft(this)((acc, m) => acc.withMetric(m))
 
   def build(panelId: Int, span: Int = 12): Json =
