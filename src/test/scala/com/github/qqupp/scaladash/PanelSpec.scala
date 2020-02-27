@@ -4,8 +4,10 @@ import com.github.qqupp.scaladash.JsonTestUtils._
 import io.circe.Json
 import io.circe.literal._
 import org.scalatest.{FlatSpec, Matchers}
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
+import generators._
 
-class PanelSpec extends FlatSpec with Matchers {
+class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
 
   behavior of "a Panel"
 
@@ -19,6 +21,10 @@ class PanelSpec extends FlatSpec with Matchers {
    panel.build(1) should containKeyValue("targets", expected)
   }
 
+  it should "add xlkjdslkfj" in {
+    forAll { (metric1: Metric, metric2: Metric) =>
 
 
+    }
+  }
 }
