@@ -14,7 +14,7 @@ object JsonTestUtils {
       decodedDownKey match {
         case Left(failure) =>
           MatchResult(
-            false,
+            matches = false,
             s"""|containKeyValue: fail to decode json when going down to key "$key":
                 | $json
                 | decode failed with message $failure
@@ -24,14 +24,16 @@ object JsonTestUtils {
         case Right(downKeyJson) =>
           if (downKeyJson == expectedJson)
             MatchResult(
-              true,
+              matches = true,
               "Improve this B message",
               "Improve this C message"
             )
           else
             MatchResult(
-              false,
-              s"$downKeyJson was not equal to $expectedJson",
+              matches = false,
+              s"""found $downKeyJson value when going donw to key "$key" but expected $expectedJson value
+                 | $json
+               """.stripMargin,
               "Improve this D message"
             )
       }
