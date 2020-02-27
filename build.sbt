@@ -8,7 +8,7 @@ ThisBuild / organizationName := "qqupp"
 lazy val root = (project in file("."))
   .settings(
     name := "scaladash",
-    libraryDependencies ++= circe ++ scalaCheck ++ scalaTest
+    libraryDependencies ++= circe ++ scalaCheck ++ scalaCheckMagnolia ++ scalaTest
   )
 
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
