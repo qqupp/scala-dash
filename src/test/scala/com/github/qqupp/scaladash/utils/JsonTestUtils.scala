@@ -31,7 +31,7 @@ object JsonTestUtils {
           else
             MatchResult(
               matches = false,
-              s"""found $downKeyJson value when going donw to key "$key" but expected $expectedJson value
+              s"""found $downKeyJson value when going down to key "$key" but expected $expectedJson value
                  | $json
                """.stripMargin,
               "Improve this D message"
