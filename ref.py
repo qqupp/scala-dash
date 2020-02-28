@@ -619,55 +619,55 @@ class GrafanaDashboardTest(unittest.TestCase):
 #                         .with_panel(panel2)
 #                         .build(1))
 
-    def test_row_respects_specific_panel_span(self):
-        def random_panel_with_span(span):
-            return bd.Panel(str(random.random()), str(random.random()), str(random.random()), str(random.random()),
-                            span=span) \
-                .with_metric(random_metric()) \
-                .with_metric(random_metric())
+#    def test_row_respects_specific_panel_span(self):
+#        def random_panel_with_span(span):
+#            return bd.Panel(str(random.random()), str(random.random()), str(random.random()), str(random.random()),
+#                            span=span) \
+#                .with_metric(random_metric()) \
+#                .with_metric(random_metric())
+#
+#        panel1 = random_panel_with_span(3)
+#        panel2 = random_panel()
+#        expected = {
+#            "title": "Row %d" % 1,
+#            "height": "250px",
+#            "editable": True,
+#            "collapse": False,
+#            "showTitle": False,
+#            "panels": [panel1.build(11, 3), panel2.build(12, 6)]
+#        }
+#        self.assertEqual(expected, bd.Row()
+#                         .with_panel(panel1)
+#                         .with_panel(panel2)
+#                         .build(1))
 
-        panel1 = random_panel_with_span(3)
-        panel2 = random_panel()
-        expected = {
-            "title": "Row %d" % 1,
-            "height": "250px",
-            "editable": True,
-            "collapse": False,
-            "showTitle": False,
-            "panels": [panel1.build(11, 3), panel2.build(12, 6)]
-        }
-        self.assertEqual(expected, bd.Row()
-                         .with_panel(panel1)
-                         .with_panel(panel2)
-                         .build(1))
+#    def test_row_can_be_named(self):
+#        panel1 = random_panel()
+#        panel2 = random_panel()
+#        expected = {
+#            "title": "Row of magical nameliness",
+#            "height": "250px",
+#            "editable": True,
+#            "collapse": False,
+#            "showTitle": False,
+#            "panels": [panel1.build(11, 6), panel2.build(12, 6)]
+#        }
+#        self.assertEqual(expected, bd.Row(title='Row of magical nameliness')
+#                         .with_panel(panel1)
+#                         .with_panel(panel2)
+#                         .build(1))
 
-    def test_row_can_be_named(self):
-        panel1 = random_panel()
-        panel2 = random_panel()
-        expected = {
-            "title": "Row of magical nameliness",
-            "height": "250px",
-            "editable": True,
-            "collapse": False,
-            "showTitle": False,
-            "panels": [panel1.build(11, 6), panel2.build(12, 6)]
-        }
-        self.assertEqual(expected, bd.Row(title='Row of magical nameliness')
-                         .with_panel(panel1)
-                         .with_panel(panel2)
-                         .build(1))
-
-    def test_row_height(self):
-        expected = {
-            "title": "Row %d" % 1,
-            "height": "123px",
-            "editable": True,
-            "collapse": False,
-            "showTitle": False,
-            "panels": []
-        }
-        self.assertEqual(expected, bd.Row(height="123px")
-                         .build(1))
+#    def test_row_height(self):
+#        expected = {
+#            "title": "Row %d" % 1,
+#            "height": "123px",
+#            "editable": True,
+#            "collapse": False,
+#            "showTitle": False,
+#            "panels": []
+#        }
+#        self.assertEqual(expected, bd.Row(height="123px")
+#                         .build(1))
 
     def test_dashboard_renders(self):
         row1 = random_row()
