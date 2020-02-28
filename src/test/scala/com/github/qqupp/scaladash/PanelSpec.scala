@@ -150,78 +150,10 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
   }
 
   it should "render with an alert" in {
-    forAll { (metric1G: GenericMetric, metric2G: GenericMetric) =>
+      val metric1 = GenericMetric("targ01", None, false)
+      val metric2 = GenericMetric("targ02", None, false)
 
-      val metric1 = metric1G.copy(hide = false)
-      val metric2 = metric2G.copy(hide = false)
-
-      val expectedJson = json"""{
-        "conditions":
-        [
-        {
-          "evaluator": {
-            "params": [0],
-            "type": "gt"
-          }
-          ,
-          "operator": {
-            "type": "and"
-          }
-          ,
-          "query": {
-            "datasourceId": 3,
-            "model": {
-            "refId": "A",
-            "target": ${metric1.target}
-          },
-            "params": ["A", "5m", "now"]
-          }
-          ,
-          "reducer": {
-            "params": [],
-            "type": "last"
-          }
-          ,
-          "type": "query"
-        }
-        ,
-        {
-          "evaluator": {
-            "params": [3],
-            "type": "lt"
-          }
-          ,
-          "operator": {
-            "type": "or"
-          }
-          ,
-          "query": {
-            "datasourceId": 1,
-            "model": {
-            "refId": "B",
-            "target": ${metric2.target}
-          },
-            "params": ["B", "5m", "now"]
-          }
-          ,
-          "reducer": {
-            "params": [],
-            "type": "last"
-          }
-          ,
-          "type": "query"
-        }
-        ],
-        "executionErrorState": "alerting",
-        "frequency": "55s",
-        "handler": 1,
-        "name": "a test alert",
-        "noDataState": "no_data",
-        "notifications": []
-      }"""
-
-
-      val expectedConditionAt0Json =
+      val expectedCondition1Json =
         json"""
               {
                        "evaluator": {
@@ -251,7 +183,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
               }
             """
 
-      val expectedConditionAt1Json =
+      val expectedCondition2Json =
         json"""
               {
                         "evaluator": {
@@ -298,10 +230,15 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
       val panelJson = panel.build(panelId, span)
 
-      panelJson should containValueInPath(root.alert.conditions.index(0), expectedConditionAt0Json)
-      panelJson should containValueInPath(root.alert.conditions.index(1), expectedConditionAt1Json)
-      //panelJson should containKeyValue("alert", expectedJson)
-    }
+      panelJson should containValueInPath(root.alert.conditions.index(0), expectedCondition1Json)
+      panelJson should containValueInPath(root.alert.conditions.index(1), expectedCondition2Json)
+      panelJson should containValueInPath(root.alert.executionErrorState, "alerting")
+      panelJson should containValueInPath(root.alert.frequency, "55s")
+      panelJson should containValueInPath(root.alert.handler, 1)
+      panelJson should containValueInPath(root.alert.name, "a test alert")
+      panelJson should containValueInPath(root.alert.noDataState,"no_data")
+      panelJson should containValueInPath(root.alert.notifications, Json.arr())
+
   }
 
   val panelId: Int = 10

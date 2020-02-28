@@ -124,7 +124,7 @@ final case class Panel(title: String,
                        lines: Boolean,
                        bars: Boolean,
                        points: Boolean,
-                       availableRefIds: List[Char],
+                       availableRefIds: List[String],
                        seriesOverrides: List[Json],
                        alert: Option[Alert]
                       ) {
@@ -133,9 +133,7 @@ final case class Panel(title: String,
     this.copy(alert = Some(alert))
 
   def withMetric(metric: Metric): Panel = {
-    //val (h :: t) = availableRefIds
     val newMetrics = metrics ++ List(metric)
-    //val newMetricsJson = metricsJson ++ List(metric.build(h.toString))
 
     val newSeriesOverrides =
       metric.rightYAxisMetricName.fold(seriesOverrides){ name =>
@@ -198,12 +196,12 @@ final case class Panel(title: String,
            "value_type": "cumulative",
            "shared": false
           },
-         "targets": ${ (availableRefIds zip metrics).map{ case (id, metric) => metric.build(id.toString) } },
+         "targets": ${ (availableRefIds zip metrics).map{ case (id, metric) => metric.build(id) } },
          "aliasColors": ${aliasColors},
          "seriesOverrides": $seriesOverrides,
          "links": []
   }"""
-    .addOpt("alert", alert.map(_.build((availableRefIds.map(_.toString) zip metrics))))
+    .addOpt("alert", alert.map(_.build((availableRefIds zip metrics))))
 
 }
 
@@ -224,7 +222,7 @@ object Panel {
       lines = true,
       bars = false,
       points = false,
-      availableRefIds = (65 to 91).map(_.toChar).toList,
+      availableRefIds = (65 to 91).map(_.toChar.toString).toList,
       seriesOverrides = List.empty,
       alert = None
     )

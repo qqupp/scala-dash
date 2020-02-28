@@ -40,11 +40,12 @@ class Alert:
 
  */
 final case class Alert(name: String,
-                       frequency: Int,
+                       frequencySeconds: Int,
                        message: Option[String],
                        noDataState: NoDataState,
                        executionErrorState: ExecutionErrorState,
-                       conditions: List[Condition]
+                       conditions: List[Condition],
+                       notifications: List[WTF]
                       ) {
 
   def withCondition(condition: Condition): Alert =
@@ -55,11 +56,11 @@ final case class Alert(name: String,
     val alertJson = json"""{
       "conditions": ${conditions.map(_.build(metrics))},
       "executionErrorState": $executionErrorState,
-      "frequency": ${frequency.toString + "ds"} ,
+      "frequency": ${frequencySeconds.toString + "s"} ,
       "handler": 1,
       "name": $name,
       "noDataState": $noDataState,
-      "notifications": null
+      "notifications": $notifications
     }"""
 
     alertJson.addOpt("message", message)
@@ -69,13 +70,14 @@ final case class Alert(name: String,
 
 object Alert {
 
-  def apply(name: String, frequency: Int): Alert =
+  def apply(name: String, frequencySeconds: Int): Alert =
     Alert(name = name,
-      frequency = frequency,
+      frequencySeconds = frequencySeconds,
       message = None,
       noDataState = NoDataState.NoData,
       executionErrorState = ExecutionErrorState.Alerting,
-      conditions = List.empty
+      conditions = List.empty,
+      notifications = List.empty
     )
 
 }
