@@ -502,74 +502,74 @@ class GrafanaDashboardTest(unittest.TestCase):
 #            .build(self.panelId, self.span)
 #
 #        self.assertEqual('keep_state', actual['alert']['executionErrorState'])
+#
+#    def test_singlestat_panel_renders(self):
+#        prefix = "some prefix"
+#        postfix = "some postfix"
+#        threshold_lower = 111
+#        threshold_mid = 222
+#        threshold_upper = 333
+#        metric1 = random_metric()
+#        metric2 = random_metric()
+#
+#        expected = {
+#            "title": self.title,
+#            "error": False,
+#            "span": self.span,
+#            "editable": True,
+#            "type": "singlestat",
+#            "id": self.panelId,
+#            "links": [],
+#            "maxDataPoints": 100,
+#            "interval": None,
+#            "targets": [metric1.build('A'), metric2.build('B')],
+#            "cacheTimeout": None,
+#            "format": "none",
+#            "prefix": prefix,
+#            "postfix": postfix,
+#            "valueName": "current",
+#            "prefixFontSize": "100%",
+#            "valueFontSize": "120%",
+#            "postfixFontSize": "100%",
+#            "thresholds": str(threshold_lower) + "," + str(threshold_mid) + "," + str(threshold_upper),
+#            "colorBackground": True,
+#            "colorValue": False,
+#            "colors": [
+#                "rgba(225, 40, 40, 0.59)",
+#                "rgba(245, 150, 40, 0.73)",
+#                "rgba(71, 212, 59, 0.4)"
+#            ],
+#            "sparkline": {
+#                "show": True,
+#                "full": False,
+#                "lineColor": "rgb(71, 248, 35)",
+#                "fillColor": "rgba(130, 189, 31, 0.18)"
+#            }
+#        }
+#
+#        single_stat_panel = bd.SingleStatPanel(self.title, prefix=prefix, postfix=postfix,
+#                                               thresholds=bd.Thresholds(threshold_lower, threshold_mid,
+#                                                                        threshold_upper),
+#                                               invert_threshold_order=False)
+#        actual = single_stat_panel \
+#            .with_metric(metric1) \
+#            .with_metric(metric2) \
+#            .build(self.panelId, self.span)
+#
+#        self.assertEqual(expected, actual)
 
-    def test_singlestat_panel_renders(self):
-        prefix = "some prefix"
-        postfix = "some postfix"
-        threshold_lower = 111
-        threshold_mid = 222
-        threshold_upper = 333
-        metric1 = random_metric()
-        metric2 = random_metric()
-
-        expected = {
-            "title": self.title,
-            "error": False,
-            "span": self.span,
-            "editable": True,
-            "type": "singlestat",
-            "id": self.panelId,
-            "links": [],
-            "maxDataPoints": 100,
-            "interval": None,
-            "targets": [metric1.build('A'), metric2.build('B')],
-            "cacheTimeout": None,
-            "format": "none",
-            "prefix": prefix,
-            "postfix": postfix,
-            "valueName": "current",
-            "prefixFontSize": "100%",
-            "valueFontSize": "120%",
-            "postfixFontSize": "100%",
-            "thresholds": str(threshold_lower) + "," + str(threshold_mid) + "," + str(threshold_upper),
-            "colorBackground": True,
-            "colorValue": False,
-            "colors": [
-                "rgba(225, 40, 40, 0.59)",
-                "rgba(245, 150, 40, 0.73)",
-                "rgba(71, 212, 59, 0.4)"
-            ],
-            "sparkline": {
-                "show": True,
-                "full": False,
-                "lineColor": "rgb(71, 248, 35)",
-                "fillColor": "rgba(130, 189, 31, 0.18)"
-            }
-        }
-
-        single_stat_panel = bd.SingleStatPanel(self.title, prefix=prefix, postfix=postfix,
-                                               thresholds=bd.Thresholds(threshold_lower, threshold_mid,
-                                                                        threshold_upper),
-                                               invert_threshold_order=False)
-        actual = single_stat_panel \
-            .with_metric(metric1) \
-            .with_metric(metric2) \
-            .build(self.panelId, self.span)
-
-        self.assertEqual(expected, actual)
-
-    def test_singlestat_panel_renders_with_inverted_thresholds(self):
-        single_stat_panel = bd.SingleStatPanel(self.title, invert_threshold_order=True)
-
-        expected = [
-            "rgba(71, 212, 59, 0.4)",
-            "rgba(245, 150, 40, 0.73)",
-            "rgba(225, 40, 40, 0.59)",
-        ]
-
-        actual = single_stat_panel.build(self.panelId, self.span)
-
-        self.assertEqual(actual.get("colors"), expected)
+#    def test_singlestat_panel_renders_with_inverted_thresholds(self):
+#        single_stat_panel = bd.SingleStatPanel(self.title, invert_threshold_order=True)
+#
+#        expected = [
+#            "rgba(71, 212, 59, 0.4)",
+#            "rgba(245, 150, 40, 0.73)",
+#            "rgba(225, 40, 40, 0.59)",
+#        ]
+#
+#        actual = single_stat_panel.build(self.panelId, self.span)
+#
+#        self.assertEqual(actual.get("colors"), expected)
 
     def test_row_can_be_collapsed(self):
         panel1 = random_panel()

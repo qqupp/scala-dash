@@ -77,6 +77,20 @@ class SingleStatPanelSpec extends FlatSpec with Matchers {
 
   }
 
+  it should "render with inverted threshold" in {
+    val panel = SingleStatPanel(title).copy(invertThresholdOrder = true)
+
+    val expectedJson =
+      json""" [
+               "rgba(71, 212, 59, 0.4)",
+               "rgba(245, 150, 40, 0.73)",
+               "rgba(225, 40, 40, 0.59)"
+              ]"""
+
+    panel.build(panelId, span) should containKeyValue("colors", expectedJson)
+
+  }
+
   private val metric1 = GenericMetric("targ01", None, false)
   private val metric2 = GenericMetric("targ02", None, false)
 
