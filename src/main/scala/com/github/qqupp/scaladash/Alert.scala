@@ -50,7 +50,7 @@ final case class Alert(name: String,
   def withCondition(condition: Condition): Alert =
     this.copy(conditions = conditions ++ List(condition))
 
-  def build(metrics: List[Metric]): Json = {
+  def build(metrics: List[(String, Metric)]): Json = {
 
     val alertJson = json"""{
       "conditions": ${conditions.map(_.build(metrics))},

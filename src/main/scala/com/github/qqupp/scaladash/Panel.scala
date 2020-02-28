@@ -203,7 +203,7 @@ final case class Panel(title: String,
          "seriesOverrides": $seriesOverrides,
          "links": []
   }"""
-    .addOpt("alert", alert.map(_.build(metrics)))
+    .addOpt("alert", alert.map(_.build((availableRefIds.map(_.toString) zip metrics))))
 
 }
 

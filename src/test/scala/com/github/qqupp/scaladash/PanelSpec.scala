@@ -150,7 +150,10 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
   }
 
   it should "render with an alert" in {
-    forAll { (metric1: GenericMetric, metric2: GenericMetric) =>
+    forAll { (metric1G: GenericMetric, metric2G: GenericMetric) =>
+
+      val metric1 = metric1G.copy(hide = false)
+      val metric2 = metric2G.copy(hide = false)
 
       val expectedJson = json"""{
         "conditions":
@@ -218,7 +221,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
       }"""
 
 
-      val expectedCondition1Json =
+      val expectedConditionAt0Json =
         json"""
               {
                        "evaluator": {
@@ -248,25 +251,56 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
               }
             """
 
+      val expectedConditionAt1Json =
+        json"""
+              {
+                        "evaluator": {
+                          "params": [3],
+                          "type": "lt"
+                        }
+                        ,
+                        "operator": {
+                          "type": "or"
+                        }
+                        ,
+                        "query": {
+                          "datasourceId": 1,
+                          "model": {
+                          "refId": "B",
+                          "target": ${metric2.target}
+                        },
+                          "params": ["B", "5m", "now"]
+                        }
+                        ,
+                        "reducer": {
+                          "params": [],
+                          "type": "last"
+                        }
+                        ,
+                        "type": "query"
+              }
+            """
+
       val panel = Panel(title)
         .withMetric(metric1)
         .withMetric(metric2)
         .withAlert(
           Alert("a test alert", 55)
             .withCondition(
-              Condition(metric1, EvaluatorType.GreaterThan, "0")
+              Condition(metric1, EvaluatorType.GreaterThan, 0)
                 .copy(datasource_id = 3)
             )
             .withCondition(
-              Condition(metric2, EvaluatorType.LessThan, "3")
+              Condition(metric2, EvaluatorType.LessThan, 3)
                 .copy(operator_type = OperatorType.Or)
             )
         )
 
       val panelJson = panel.build(panelId, span)
 
-      panelJson should containValueInPath(root.alert.conditions.index(0), expectedCondition1Json)
-      panelJson should containKeyValue("alert", expectedJson)
+      panelJson should containValueInPath(root.alert.conditions.index(0), expectedConditionAt0Json)
+      panelJson should containValueInPath(root.alert.conditions.index(1), expectedConditionAt1Json)
+      //panelJson should containKeyValue("alert", expectedJson)
     }
   }
 

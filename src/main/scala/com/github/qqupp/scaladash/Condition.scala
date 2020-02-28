@@ -42,9 +42,14 @@ class Condition:
 
 
  */
-final case class Condition(metric: Metric, evaluator_type: EvaluatorType, value: WTF, operator_type: OperatorType, reducer: Reducer, datasource_id: Int) {
-  def build(panel_metrics: List[Metric]): Json = {
-    return json"""{
+final case class Condition(metric: Metric, evaluator_type: EvaluatorType, value: Int, operator_type: OperatorType, reducer: Reducer, datasource_id: Int) {
+  def build(panel_metrics: List[(String, Metric)]): Json = {
+    val matchingMetric = panel_metrics.find{ case (_, candidateMetric)  => candidateMetric == metric}
+
+    val metricRefId = matchingMetric.fold("notFound"){ case (id, _) => id }
+    val metricJson = matchingMetric.fold(json"{}"){ case (id, metric) => metric.build(id)}
+
+    json"""{
       "evaluator": {
         "params": [$value],
         "type": $evaluator_type
@@ -56,11 +61,8 @@ final case class Condition(metric: Metric, evaluator_type: EvaluatorType, value:
       ,
       "query": {
         "datasourceId": $datasource_id,
-        "model": {
-        "refId": "matching_metric__refId]",
-        "target": "matching_metric__target"
-      },
-        "params": ["matching_metric__refOd", "5m", "now"]
+        "model": $metricJson,
+        "params": [${s"${metricRefId}"}, "5m", "now"]
       }
       ,
       "reducer": {
@@ -74,5 +76,5 @@ final case class Condition(metric: Metric, evaluator_type: EvaluatorType, value:
 }
 
 object Condition {
-  def apply(metric: Metric, evaluator_type: EvaluatorType, value: WTF): Condition = Condition(metric, evaluator_type, value, OperatorType.And, Reducer.Last, 1)
+  def apply(metric: Metric, evaluator_type: EvaluatorType, value: Int): Condition = Condition(metric, evaluator_type, value, OperatorType.And, Reducer.Last, 1)
 }
