@@ -42,25 +42,25 @@ class Condition:
 
 
  */
-final case class Condition(metric: Metric, evaluator_type: EvaluatorType, value: Int, operator_type: OperatorType, reducer: Reducer, datasource_id: Int) {
-  def build(panel_metrics: List[(String, Metric)]): Json = {
-    val matchingMetric = panel_metrics.find{ case (_, candidateMetric)  => candidateMetric == metric}
+final case class Condition(metric: Metric, evaluatorType: EvaluatorType, value: Int, operatorType: OperatorType, reducer: Reducer, datasourceId: Int) {
+  def build(toBuildMetrics: List[(String, Metric)]): Json = {
+    val matchingMetric = toBuildMetrics.find{ case (_, candidateMetric)  => candidateMetric == metric}
 
     val metricRefId = matchingMetric.fold("notFound"){ case (id, _) => id }
-    val metricJson = matchingMetric.fold(json"{}"){ case (id, metric) => metric.build(id)}
+    val metricJson = matchingMetric.fold(json"{}"){ case (id, metricf) => metric.build(id)}
 
     json"""{
       "evaluator": {
         "params": [$value],
-        "type": $evaluator_type
+        "type": $evaluatorType
       }
       ,
       "operator": {
-        "type": $operator_type
+        "type": $operatorType
       }
       ,
       "query": {
-        "datasourceId": $datasource_id,
+        "datasourceId": $datasourceId,
         "model": $metricJson,
         "params": [${s"${metricRefId}"}, "5m", "now"]
       }

@@ -220,11 +220,11 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
           Alert("a test alert", 55)
             .withCondition(
               Condition(metric1, EvaluatorType.GreaterThan, 0)
-                .copy(datasource_id = 3)
+                .copy(datasourceId = 3)
             )
             .withCondition(
               Condition(metric2, EvaluatorType.LessThan, 3)
-                .copy(operator_type = OperatorType.Or)
+                .copy(operatorType = OperatorType.Or)
             )
         )
 
