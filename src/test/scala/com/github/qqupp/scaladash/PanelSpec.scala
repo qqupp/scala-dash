@@ -282,7 +282,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
   }
 
-  it should "render alerts with notification by id" in {
+  it should "render alerts with notification by id and uid" in {
     val metric1 = GenericMetric("targ01", None, false)
     val metric2 = GenericMetric("targ02", None, false)
 
@@ -292,6 +292,9 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
              },
              {
                 "id": 2
+             },
+             {
+                "uid": "abc"
              }]
             """
 
@@ -303,9 +306,12 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
           .withCondition(Condition(metric1, EvaluatorType.GreaterThan, 5))
           .withNotification(Notification(1))
           .withNotification(Notification(2))
+          .withNotification(Notification("abc"))
       )
 
     val panelJson = panel.build(panelId, span)
+    panelJson should containValueInPath(root.alert.notifications, expectedJson)
+
 
   }
 

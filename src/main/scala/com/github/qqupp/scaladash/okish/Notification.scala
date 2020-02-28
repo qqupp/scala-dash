@@ -14,6 +14,17 @@ final case class Notification(id: Option[Int],
 
 object Notification {
 
+  def apply(uid: String): Notification =
+    Notification(
+      id = None,
+      uid = Some(uid),
+      name = None,
+      `type` = None,
+      default = None,
+      sendReminder = None,
+      settings = None
+    )
+
   def apply(id: Int): Notification =
     Notification(
       id = Some(id),
