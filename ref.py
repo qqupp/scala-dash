@@ -437,29 +437,29 @@ class GrafanaDashboardTest(unittest.TestCase):
 #
  #       self.assertEqual(expected, actual['alert']['notifications'])
 
-    def test_panel_renders_an_alert_with_a_notification_by_uid(self):
-        metric1 = random_metric()
-        metric2 = random_metric()
-
-        expected = [
-            {
-                'uid': 'abc'
-            },
-            {
-                'uid': 'def'
-            }
-        ]
-
-        actual = bd.Panel(self.title) \
-            .with_metric(metric1) \
-            .with_metric(metric2) \
-            .with_alert(bd.Alert('a test alert', 55)
-                        .with_condition(bd.Condition(metric1, bd.EvaluatorType.GreaterThan, 5))
-                        .with_notification(bd.Notification(uid = 'abc'))
-                        .with_notification(bd.Notification(uid = 'def'))) \
-            .build(self.panelId, self.span)
-
-        self.assertEqual(expected, actual['alert']['notifications'])
+#    def test_panel_renders_an_alert_with_a_notification_by_uid(self):
+#        metric1 = random_metric()
+#        metric2 = random_metric()
+#
+#        expected = [
+#            {
+#                'uid': 'abc'
+#            },
+#            {
+#                'uid': 'def'
+#            }
+#        ]
+#
+#        actual = bd.Panel(self.title) \
+#            .with_metric(metric1) \
+#            .with_metric(metric2) \
+#            .with_alert(bd.Alert('a test alert', 55)
+#                        .with_condition(bd.Condition(metric1, bd.EvaluatorType.GreaterThan, 5))
+#                        .with_notification(bd.Notification(uid = 'abc'))
+#                        .with_notification(bd.Notification(uid = 'def'))) \
+#            .build(self.panelId, self.span)
+#
+#        self.assertEqual(expected, actual['alert']['notifications'])
 
     def test_panel_renders_an_alert_with_a_message(self):
         metric1 = random_metric()

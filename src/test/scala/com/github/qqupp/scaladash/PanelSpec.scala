@@ -312,6 +312,22 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
     val panelJson = panel.build(panelId, span)
     panelJson should containValueInPath(root.alert.notifications, expectedJson)
 
+  }
+
+  it should "render alerts with a message" in {
+    val metric1 = GenericMetric("targ01", None, false)
+
+    val panel = Panel(title)
+      .withMetric(metric1)
+      .withAlert(
+        Alert("a test alert", 55)
+          .copy(message = Some("This is a test message"))
+          .withCondition(Condition(metric1, EvaluatorType.GreaterThan, 5))
+          .withNotification(Notification("abc"))
+      )
+
+    val panelJson = panel.build(panelId, span)
+    panelJson should containValueInPath(root.alert.message, "This is a test message")
 
   }
 
