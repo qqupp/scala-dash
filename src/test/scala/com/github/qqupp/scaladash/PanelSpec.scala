@@ -331,6 +331,24 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
   }
 
+  it should "render alerts with a specified no data state" in {
+    val metric1 = GenericMetric("targ01", None, false)
+
+    val panel = Panel(title)
+      .withMetric(metric1)
+      .withAlert(
+        Alert("a test alert", 55)
+          .copy(noDataState = NoDataState.Alerting)
+          .withCondition(Condition(metric1, EvaluatorType.GreaterThan, 5))
+          .withNotification(Notification("abc"))
+      )
+
+    val panelJson = panel.build(panelId, span)
+    panelJson should containValueInPath(root.alert.noDataState, "alerting")
+
+  }
+
+
   val panelId: Int = 10
   val title: String = "Test Panel"
   val span: Int = 22
