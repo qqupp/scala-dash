@@ -26,13 +26,11 @@ class Datasource:
 
  */
 
-sealed abstract class Datasource(
-                                  val datasourceType: String,
-                                  val datasourceName: String,
-                                  val datasourceUrl: String,
-                                  val datasourceAccess: String,
-                                  val isDefault: Boolean
-                                )
+sealed abstract class Datasource(val datasourceType: String,
+                                 val datasourceName: String,
+                                 val datasourceUrl: String,
+                                 val datasourceAccess: String,
+                                 val isDefault: Boolean)
 
 object Datasource{
 

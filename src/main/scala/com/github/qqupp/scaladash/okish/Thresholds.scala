@@ -7,6 +7,9 @@ final case class Thresholds(lower: Int, mid: Int, upper: Int)
 object Thresholds {
 
   implicit val jsonEncoder: Encoder[Thresholds] =
-    thresholds => Json.fromString(s"${thresholds.lower}, ${thresholds.mid}, ${thresholds.upper}")
+    thresholds =>
+      Json.fromString(
+        s"${thresholds.lower}, ${thresholds.mid}, ${thresholds.upper}"
+      )
 
 }

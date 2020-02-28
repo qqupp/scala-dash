@@ -17,7 +17,6 @@ object YAxisFormat {
   case object Nanoseconds extends YAxisFormat
   case object Percent extends YAxisFormat
 
-
   implicit val jsonEncoder: Encoder[YAxisFormat] =
       yAxisFormat =>
         Json.fromString(
