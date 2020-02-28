@@ -348,6 +348,23 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
   }
 
+  it should "render alerts with a specified execution error state" in {
+    val metric1 = GenericMetric("targ01", None, false)
+
+    val panel = Panel(title)
+      .withMetric(metric1)
+      .withAlert(
+        Alert("a test alert", 55)
+          .copy(executionErrorState = ExecutionErrorState.KeepState)
+          .withCondition(Condition(metric1, EvaluatorType.GreaterThan, 5))
+          .withNotification(Notification("abc"))
+      )
+
+    val panelJson = panel.build(panelId, span)
+    panelJson should containValueInPath(root.alert.executionErrorState, "keep_state")
+
+  }
+
 
   val panelId: Int = 10
   val title: String = "Test Panel"
