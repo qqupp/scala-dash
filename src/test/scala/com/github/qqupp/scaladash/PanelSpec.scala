@@ -1,14 +1,13 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.okish.{Datasource, FillStyle, StackStyle, YAxisFormat, YAxisMinimum}
+import com.github.qqupp.scaladash.okish._
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
-import io.circe.{Encoder, Json}
 import io.circe.literal._
+import io.circe.syntax._
+import io.circe.{Encoder, Json}
+import org.scalacheck.magnolia._
 import org.scalatest.{FlatSpec, Matchers}
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
-import org.scalacheck.Prop._
-import org.scalacheck.magnolia._
-import io.circe.syntax._
 
 class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
 
