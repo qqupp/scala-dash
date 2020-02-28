@@ -43,7 +43,7 @@ class Condition:
 
  */
 final case class Condition(metric: Metric, evaluator_type: EvaluatorType, value: WTF, operator_type: OperatorType, reducer: Reducer, datasource_id: Int) {
-  def build(panel_metrics: Panel): Json = {
+  def build(panel_metrics: List[Metric]): Json = {
     return json"""{
       "evaluator": {
         "params": [$value],

@@ -9,6 +9,7 @@ import io.circe.{Encoder, Json}
 import org.scalacheck.magnolia._
 import org.scalatest.{FlatSpec, Matchers}
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
+import io.circe.optics.JsonPath._
 
 class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
 
@@ -216,6 +217,37 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
         "notifications": []
       }"""
 
+
+      val expectedCondition1Json =
+        json"""
+              {
+                       "evaluator": {
+                         "params": [0],
+                         "type": "gt"
+                       }
+                       ,
+                       "operator": {
+                         "type": "and"
+                       }
+                       ,
+                       "query": {
+                         "datasourceId": 3,
+                         "model": {
+                         "refId": "A",
+                         "target": ${metric1.target}
+                       },
+                         "params": ["A", "5m", "now"]
+                       }
+                       ,
+                       "reducer": {
+                         "params": [],
+                         "type": "last"
+                       }
+                       ,
+                       "type": "query"
+              }
+            """
+
       val panel = Panel(title)
         .withMetric(metric1)
         .withMetric(metric2)
@@ -233,6 +265,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
       val panelJson = panel.build(panelId, span)
 
+      panelJson should containValueInPath(root.alert.conditions.index(0), expectedCondition1Json)
       panelJson should containKeyValue("alert", expectedJson)
     }
   }

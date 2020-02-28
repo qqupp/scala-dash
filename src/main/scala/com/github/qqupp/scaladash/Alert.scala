@@ -47,12 +47,13 @@ final case class Alert(name: String,
                        conditions: List[Condition]
                       ) {
 
-  def withCondition(condition: Condition): Alert = this
+  def withCondition(condition: Condition): Alert =
+    this.copy(conditions = conditions ++ List(condition))
 
   def build(metrics: List[Metric]): Json = {
 
     val alertJson = json"""{
-      "conditions": "",
+      "conditions": ${conditions.map(_.build(metrics))},
       "executionErrorState": $executionErrorState,
       "frequency": ${frequency.toString + "ds"} ,
       "handler": 1,
