@@ -1,5 +1,8 @@
 package com.github.qqupp.scaladash
 
+import io.circe.Json
+import io.circe.literal._
+import utils.JsonUtils._
 /*
 
 class Notification:
@@ -39,7 +42,23 @@ class Notification:
 
 
  */
-class Notification {
+final case class Notification(notification_id: Option[String] = None,
+                              uid: Option[String] = None,
+                              name: Option[String] = None,
+                              `type`: Option[String] = None,
+                              default: Option[String] = None,
+                              send_reminder: Option[String] = None,
+                              settings: Option[String] = None) {
 
+  def build(): Json = {
+    json"""{}"""
+      .addOpt("id", notification_id)
+      .addOpt("uid", uid)
+      .addOpt("name", name)
+      .addOpt("type", `type`)
+      .addOpt("isDefault", default)
+      .addOpt("sendReminder", send_reminder)
+      .addOpt("settings", settings)
+  }
 
 }
