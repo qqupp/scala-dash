@@ -571,53 +571,53 @@ class GrafanaDashboardTest(unittest.TestCase):
 #
 #        self.assertEqual(actual.get("colors"), expected)
 
-    def test_row_can_be_collapsed(self):
-        panel1 = random_panel()
-        panel2 = random_panel()
-        expected = {
-            "title": "Row %d" % 1,
-            "height": "250px",
-            "editable": True,
-            "collapse": True,
-            "showTitle": False,
-            "panels": [panel1.build(11, 6), panel2.build(12, 6)]
-        }
-        self.assertEqual(expected, bd.Row(collapse=True)
-                         .with_panel(panel1)
-                         .with_panel(panel2)
-                         .build(1))
+#    def test_row_can_be_collapsed(self):
+#        panel1 = random_panel()
+#        panel2 = random_panel()
+#        expected = {
+#            "title": "Row %d" % 1,
+#            "height": "250px",
+#            "editable": True,
+#            "collapse": True,
+#            "showTitle": False,
+#            "panels": [panel1.build(11, 6), panel2.build(12, 6)]
+#        }
+#        self.assertEqual(expected, bd.Row(collapse=True)
+#                         .with_panel(panel1)
+#                         .with_panel(panel2)
+#                         .build(1))
 
-    def test_row_title_can_be_shown(self):
-        panel1 = random_panel()
-        panel2 = random_panel()
-        expected = {
-            "title": "Row %d" % 1,
-            "height": "250px",
-            "editable": True,
-            "collapse": False,
-            "showTitle": True,
-            "panels": [panel1.build(11, 6), panel2.build(12, 6)]
-        }
-        self.assertEqual(expected, bd.Row(show_title=True)
-                         .with_panel(panel1)
-                         .with_panel(panel2)
-                         .build(1))
+#    def test_row_title_can_be_shown(self):
+#        panel1 = random_panel()
+#        panel2 = random_panel()
+#        expected = {
+#            "title": "Row %d" % 1,
+#            "height": "250px",
+#            "editable": True,
+#            "collapse": False,
+#            "showTitle": True,
+#            "panels": [panel1.build(11, 6), panel2.build(12, 6)]
+#        }
+#        self.assertEqual(expected, bd.Row(show_title=True)
+#                         .with_panel(panel1)
+#                         .with_panel(panel2)
+#                         .build(1))
 
-    def test_row_splits_panels_evenly(self):
-        panel1 = random_panel()
-        panel2 = random_panel()
-        expected = {
-            "title": "Row %d" % 1,
-            "height": "250px",
-            "editable": True,
-            "collapse": False,
-            "showTitle": False,
-            "panels": [panel1.build(11, 6), panel2.build(12, 6)]
-        }
-        self.assertEqual(expected, bd.Row()
-                         .with_panel(panel1)
-                         .with_panel(panel2)
-                         .build(1))
+#    def test_row_splits_panels_evenly(self):
+#        panel1 = random_panel()
+#        panel2 = random_panel()
+#        expected = {
+#            "title": "Row %d" % 1,
+#            "height": "250px",
+#            "editable": True,
+#            "collapse": False,
+#            "showTitle": False,
+#            "panels": [panel1.build(11, 6), panel2.build(12, 6)]
+#        }
+#        self.assertEqual(expected, bd.Row()
+#                         .with_panel(panel1)
+#                         .with_panel(panel2)
+#                         .build(1))
 
     def test_row_respects_specific_panel_span(self):
         def random_panel_with_span(span):
