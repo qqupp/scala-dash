@@ -7,7 +7,7 @@ import com.github.qqupp.scaladash.utils.JsonUtils._
 
 sealed trait Metric {
   def rightYAxisMetricName: Option[String]
-  def build(ref_id: String): Json
+  def build(refId: String): Json
 }
 
 object  Metric {
@@ -21,11 +21,11 @@ object  Metric {
                                     intervalFactor: Option[Int],
                                     hide: Boolean) extends Metric {
 
-    def build(ref_id: String): Json = {
+    def build(refId: String): Json = {
 
       val metricJson =
         json"""{
-        "refId": $ref_id,
+        "refId": $refId,
         "expr": $expr
       }"""
 
@@ -44,11 +44,11 @@ object  Metric {
 
   final case class GenericMetric(target: String, rightYAxisMetricName: Option[String], hide: Boolean) extends Metric {
 
-    def build(ref_id: String): Json = {
+    def build(refId: String): Json = {
 
       val metricJson =
         json"""{
-        "refId": $ref_id,
+        "refId": $refId,
         "target": $target
       }"""
 
