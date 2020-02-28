@@ -1,6 +1,9 @@
 package com.github.qqupp.scaladash
 
 import com.github.qqupp.scaladash.okish.{ExecutionErrorState, NoDataState}
+import io.circe.Json
+import io.circe.literal._
+import com.github.qqupp.scaladash.utils.JsonUtils._
 
 /*
 class Alert:
@@ -40,11 +43,38 @@ final case class Alert(name: String,
                        frequency: Int,
                        message: Option[String],
                        noDataState: NoDataState,
-                       executionErrorState: ExecutionErrorState) {
-  def withCondition(condition: Condition): Alert = ???
+                       executionErrorState: ExecutionErrorState,
+                       conditions: List[Condition]
+                      ) {
+
+  def withCondition(condition: Condition): Alert = this
+
+  def build(metrics: List[Metric]): Json = {
+
+    val alertJson = json"""{
+      "conditions": "",
+      "executionErrorState": $executionErrorState,
+      "frequency": ${frequency.toString + "ds"} ,
+      "handler": 1,
+      "name": $name,
+      "noDataState": $noDataState,
+      "notifications": null
+    }"""
+
+    alertJson.addOpt("message", message)
+  }
 
 }
 
 object Alert {
-  def apply(name: String, frequency: Int): Alert = Alert(name, frequency, None, NoDataState.NoData, ExecutionErrorState.Alerting)
+
+  def apply(name: String, frequency: Int): Alert =
+    Alert(name = name,
+      frequency = frequency,
+      message = None,
+      noDataState = NoDataState.NoData,
+      executionErrorState = ExecutionErrorState.Alerting,
+      conditions = List.empty
+    )
+
 }

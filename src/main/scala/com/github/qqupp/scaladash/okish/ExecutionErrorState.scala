@@ -3,6 +3,7 @@ package com.github.qqupp.scaladash.okish
 import io.circe.{Encoder, Json}
 
 sealed  trait ExecutionErrorState
+
 object ExecutionErrorState {
 
   case object Alerting extends ExecutionErrorState

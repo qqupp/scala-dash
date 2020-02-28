@@ -8,6 +8,7 @@ import com.github.qqupp.scaladash.okish._
 import io.circe.Json
 import io.circe.literal._
 
+import com.github.qqupp.scaladash.utils.JsonUtils._
 /*
 
 class Panel:
@@ -129,7 +130,8 @@ final case class Panel(title: String,
                        alert: Option[Alert]
                       ) {
 
-  def withAlert(alert: Alert): Panel = ???
+  def withAlert(alert: Alert): Panel =
+    this.copy(alert = Some(alert))
 
   def withMetric(metric: Metric): Panel = {
     val (h :: t) = availableRefIds
@@ -202,6 +204,7 @@ final case class Panel(title: String,
          "seriesOverrides": $seriesOverrides,
          "links": []
   }"""
+    .addOpt("alert", alert.map(_.build(metrics)))
 
 }
 

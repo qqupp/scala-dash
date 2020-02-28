@@ -1,8 +1,9 @@
-package com.github.qqupp.scaladash
+package com.github.qqupp.scaladash.okish
 
 import io.circe.Json
 import io.circe.literal._
-import utils.JsonUtils._
+import com.github.qqupp.scaladash.utils.JsonUtils._
+
 /*
 
 class Notification:
