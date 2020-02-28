@@ -70,8 +70,9 @@ final case class SingleStatPanel(title: String,
                                  thresholds: Thresholds,
                                  invertThresholdOrder: Boolean,
                                  metrics: List[Metric],
-                                 availableRefIds: List[String]
-                                ) {
+                                 availableRefIds: List[String],
+                                 span: Option[Int],
+                                ) extends Panel {
 
   def withMetric(metric: Metric): SingleStatPanel = {
     val newMetrics = metrics ++ List(metric)
@@ -82,7 +83,7 @@ final case class SingleStatPanel(title: String,
     metrics.foldLeft(this)((acc, m) => acc.withMetric(m))
 
 
-  def build(panelId: Int, span: Int): Json = {
+  def build(panelId: Int, spans: Int): Json = {
     val colors = List("rgba(225, 40, 40, 0.59)", "rgba(245, 150, 40, 0.73)", "rgba(71, 212, 59, 0.4)")
     val colorsJson = if (invertThresholdOrder) colors.reverse else colors
     val targetJson = (availableRefIds zip metrics).map { case (id, metric) => metric.build(id) }
@@ -90,7 +91,7 @@ final case class SingleStatPanel(title: String,
     json"""{
              "title": $title,
              "error": false,
-             "span": $span,
+             "span": ${span.getOrElse(spans)},
              "editable": true,
              "type": "singlestat",
              "id": $panelId,
@@ -131,6 +132,7 @@ object SingleStatPanel {
       thresholds = Thresholds(0, 50, 200),
       invertThresholdOrder = false,
       availableRefIds = (65 to 91).map(_.toChar.toString).toList,
-      metrics = List.empty
+      metrics = List.empty,
+      span = None
     )
 }

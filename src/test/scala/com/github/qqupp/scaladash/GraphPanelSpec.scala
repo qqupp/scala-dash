@@ -11,13 +11,13 @@ import org.scalatest.{FlatSpec, Matchers}
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 import io.circe.optics.JsonPath._
 
-class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
+class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
 
   behavior of "a Panel"
 
   it should "add a prometheus metric" in {
     val panel =
-      Panel("test_panel")
+      GraphPanel("test_panel")
         .withMetric(Metric.prometheusMetric("tar_get"))
 
     val expected: Json = json"""[{"refId": "A", "expr": "tar_get"}]"""
@@ -67,7 +67,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
 
       val panel =
-        Panel(title)
+        GraphPanel(title)
           .withMetrics(List(metric1, metric2))
           .copy(yAxisFormat = yAxis)
           .copy(filled = filled)
@@ -110,7 +110,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
   it should "render with data source" in {
     forAll { datasource: Datasource =>
 
-      val panelJson = Panel(title).copy(datasource = Some(datasource)).build(panelId)
+      val panelJson = GraphPanel(title).copy(datasource = Some(datasource)).build(panelId)
 
       panelJson should containKeyValue("datasource", datasource)
     }
@@ -118,7 +118,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
   it should "render lines" in {
     forAll { lines: Boolean =>
-      val jsonPanel = Panel(title).copy(lines = lines).build(panelId)
+      val jsonPanel = GraphPanel(title).copy(lines = lines).build(panelId)
 
       jsonPanel should containKeyValue("lines", lines)
     }
@@ -126,7 +126,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
   it should "render bars" in {
     forAll { bars: Boolean =>
-      val jsonPanel = Panel(title).copy(bars = bars).build(panelId)
+      val jsonPanel = GraphPanel(title).copy(bars = bars).build(panelId)
 
       jsonPanel should containKeyValue("bars", bars)
     }
@@ -134,7 +134,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
   it should "render points" in {
     forAll { points: Boolean =>
-      val jsonPanel = Panel(title).copy(points = points).build(panelId)
+      val jsonPanel = GraphPanel(title).copy(points = points).build(panelId)
 
       jsonPanel should containKeyValue("points", points)
     }
@@ -142,7 +142,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
   it should "render with target refids" in {
     forAll { (metric: Metric, metrics: List[Metric]) =>
-      val jsonPanel = Panel(title).withMetrics(metric :: metrics).build(panelId)
+      val jsonPanel = GraphPanel(title).withMetrics(metric :: metrics).build(panelId)
 
       jsonPanel should containKeyValue("targets", (metric :: metrics).zipWithIndex.map { case (m, i) => m.build((i + 65).toChar.toString) })
     }
@@ -212,7 +212,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
               }
             """
 
-      val panel = Panel(title)
+      val panel = GraphPanel(title)
         .withMetric(metric1)
         .withMetric(metric2)
         .withAlert(
@@ -259,7 +259,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
              }
             """
 
-    val panel = Panel(title)
+    val panel = GraphPanel(title)
       .withMetric(metric1)
       .withMetric(metric2)
       .withAlert(
@@ -298,7 +298,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
              }]
             """
 
-    val panel = Panel(title)
+    val panel = GraphPanel(title)
       .withMetric(metric1)
       .withMetric(metric2)
       .withAlert(
@@ -317,7 +317,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
   it should "render alerts with a message" in {
     val metric1 = GenericMetric("targ01", None, false)
 
-    val panel = Panel(title)
+    val panel = GraphPanel(title)
       .withMetric(metric1)
       .withAlert(
         Alert("a test alert", 55)
@@ -334,7 +334,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
   it should "render alerts with a specified no data state" in {
     val metric1 = GenericMetric("targ01", None, false)
 
-    val panel = Panel(title)
+    val panel = GraphPanel(title)
       .withMetric(metric1)
       .withAlert(
         Alert("a test alert", 55)
@@ -351,7 +351,7 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
   it should "render alerts with a specified execution error state" in {
     val metric1 = GenericMetric("targ01", None, false)
 
-    val panel = Panel(title)
+    val panel = GraphPanel(title)
       .withMetric(metric1)
       .withAlert(
         Alert("a test alert", 55)

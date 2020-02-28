@@ -77,7 +77,7 @@ class RowSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks
   private val metric3 = GenericMetric("targ03", None, false)
   private val metric4 = GenericMetric("targ04", None, false)
 
-  private val panel1 = Panel("testPanel1").withMetrics(List(metric1, metric2))
-  private val panel2 = Panel("testPanel2").withMetrics(List(metric3, metric4))
+  private val panel1 = SingleStatPanel("testPanel1").withMetrics(List(metric1, metric2))
+  private val panel2 = GraphPanel("testPanel2").withMetrics(List(metric3, metric4))
 
 }
