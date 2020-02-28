@@ -129,6 +129,8 @@ final case class Panel(title: String,
                        alert: Option[Alert]
                       ) {
 
+  def withAlert(alert: Alert): Panel = ???
+
   def withMetric(metric: Metric): Panel = {
     val (h :: t) = availableRefIds
     val newMetrics = metrics ++ List(metric)

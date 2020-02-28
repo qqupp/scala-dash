@@ -3,6 +3,7 @@ package com.github.qqupp.scaladash.okish
 import io.circe.{Encoder, Json}
 
 sealed trait EvaluatorType
+
 object EvaluatorType {
 
   case object GreaterThan extends EvaluatorType

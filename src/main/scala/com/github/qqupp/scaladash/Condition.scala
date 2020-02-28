@@ -1,5 +1,8 @@
 package com.github.qqupp.scaladash
 
+import com.github.qqupp.scaladash.okish.{EvaluatorType, OperatorType, Reducer}
+import io.circe.Json
+import io.circe.literal._
 /*
 
 class Condition:
@@ -39,6 +42,37 @@ class Condition:
 
 
  */
-class Condition {
+final case class Condition(metric: Metric, evaluator_type: EvaluatorType, value: WTF, operator_type: OperatorType, reducer: Reducer, datasource_id: Int) {
+  def build(panel_metrics: Panel): Json = {
+    return json"""{
+      "evaluator": {
+        "params": [$value],
+        "type": $evaluator_type
+      }
+      ,
+      "operator": {
+        "type": $operator_type
+      }
+      ,
+      "query": {
+        "datasourceId": $datasource_id,
+        "model": {
+        "refId": "matching_metric__refId]",
+        "target": "matching_metric__target"
+      },
+        "params": ["matching_metric__refOd", "5m", "now"]
+      }
+      ,
+      "reducer": {
+        "params": [],
+        "type": $reducer
+      }
+      ,
+      "type": "query"
+    }"""
+  }
+}
 
+object Condition {
+  def apply(metric: Metric, evaluator_type: EvaluatorType, value: WTF): Condition = Condition(metric, evaluator_type, value, OperatorType.And, Reducer.Last, 1)
 }

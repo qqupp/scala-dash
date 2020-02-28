@@ -1,5 +1,6 @@
 package com.github.qqupp.scaladash
 
+import com.github.qqupp.scaladash.Metric.GenericMetric
 import com.github.qqupp.scaladash.okish._
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.literal._
@@ -20,14 +21,15 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
     val expected: Json = json"""[{"refId": "A", "expr": "tar_get"}]"""
 
-   panel.build(1) should containKeyValue("targets", expected)
+    panel.build(1) should containKeyValue("targets", expected)
   }
 
   it should "render json" in {
     forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, filled: FillStyle, stacked: StackStyle, minimum: YAxisMinimum) =>
 
 
-      val girdJson = json"""{
+      val girdJson =
+        json"""{
         "leftMax": null,
         "rightMax": null,
         "leftMin": $minimum,
@@ -38,7 +40,8 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
         "threshold2Color": "rgba(234, 112, 112, 0.22)"
         }"""
 
-      val legendJson = json"""{
+      val legendJson =
+        json"""{
         "show": true,
         "values": false,
         "min": false,
@@ -48,14 +51,15 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
         "avg": false
       }"""
 
-      val tooltipJson = json"""{
+      val tooltipJson =
+        json"""{
           "value_type": "cumulative",
           "shared": false
         }"""
 
-      def seriesOverridesJson[T: Encoder](ts: Option[T] * ): Json =
+      def seriesOverridesJson[T: Encoder](ts: Option[T]*): Json =
         ts.collect { case Some(t) =>
-            json"""{
+          json"""{
                   "alias": ${t},
                   "yaxis": 2
                   }"""
@@ -140,7 +144,96 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
     forAll { (metric: Metric, metrics: List[Metric]) =>
       val jsonPanel = Panel(title).withMetrics(metric :: metrics).build(panelId)
 
-      jsonPanel should containKeyValue("targets", (metric:: metrics).zipWithIndex.map{ case (m, i) => m.build((i + 65).toChar.toString)})
+      jsonPanel should containKeyValue("targets", (metric :: metrics).zipWithIndex.map { case (m, i) => m.build((i + 65).toChar.toString) })
+    }
+  }
+
+  it should "render with an alert" in {
+    forAll { (metric1: GenericMetric, metric2: GenericMetric) =>
+
+      val expectedJson = json"""{
+        "conditions":
+        [
+        {
+          "evaluator": {
+            "params": [0],
+            "type": "gt"
+          }
+          ,
+          "operator": {
+            "type": "and"
+          }
+          ,
+          "query": {
+            "datasourceId": 3,
+            "model": {
+            "refId": "A",
+            "target": ${metric1.target}
+          },
+            "params": ["A", "5m", "now"]
+          }
+          ,
+          "reducer": {
+            "params": [],
+            "type": "last"
+          }
+          ,
+          "type": "query"
+        }
+        ,
+        {
+          "evaluator": {
+            "params": [3],
+            "type": "lt"
+          }
+          ,
+          "operator": {
+            "type": "or"
+          }
+          ,
+          "query": {
+            "datasourceId": 1,
+            "model": {
+            "refId": "B",
+            "target": ${metric2.target}
+          },
+            "params": ["B", "5m", "now"]
+          }
+          ,
+          "reducer": {
+            "params": [],
+            "type": "last"
+          }
+          ,
+          "type": "query"
+        }
+        ],
+        "executionErrorState": "alerting",
+        "frequency": "55s",
+        "handler": 1,
+        "name": "a test alert",
+        "noDataState": "no_data",
+        "notifications": []
+      }"""
+
+      val panel = Panel(title)
+        .withMetric(metric1)
+        .withMetric(metric2)
+        .withAlert(
+          Alert("a test alert", 55)
+            .withCondition(
+              Condition(metric1, EvaluatorType.GreaterThan, "0")
+                .copy(datasource_id = 3)
+            )
+            .withCondition(
+              Condition(metric2, EvaluatorType.LessThan, "3")
+                .copy(operator_type = OperatorType.Or)
+            )
+        )
+
+      val panelJson = panel.build(panelId, span)
+
+      panelJson should containKeyValue("alert", expectedJson)
     }
   }
 

@@ -41,6 +41,7 @@ final case class Alert(name: String,
                        message: Option[String],
                        noDataState: NoDataState,
                        executionErrorState: ExecutionErrorState) {
+  def withCondition(condition: Condition): Alert = ???
 
 }
 
