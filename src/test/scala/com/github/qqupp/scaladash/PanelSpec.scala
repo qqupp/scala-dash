@@ -241,6 +241,48 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
   }
 
+  it should "render with an alert with reducers" in {
+    val metric1 = GenericMetric("targ01", None, false)
+    val metric2 = GenericMetric("targ02", None, false)
+
+    val expectedReducer1Json =
+      json"""{
+                "params": [],
+                "type": "avg"
+             }
+            """
+
+
+    val expectedReducer2Json =
+      json"""{
+                "params": [],
+                "type": "min"
+             }
+            """
+
+    val panel = Panel(title)
+      .withMetric(metric1)
+      .withMetric(metric2)
+      .withAlert(
+        Alert("a test alert", 55)
+          .withCondition(
+            Condition(metric1, EvaluatorType.GreaterThan, 0)
+              .copy(reducer = Reducer.Average)
+          )
+          .withCondition(
+            Condition(metric2, EvaluatorType.LessThan, 3)
+              .copy(operatorType = OperatorType.Or)
+              .copy(reducer = Reducer.Min)
+          )
+      )
+
+    val panelJson = panel.build(panelId, span)
+
+    panelJson should containValueInPath(root.alert.conditions.index(0).reducer, expectedReducer1Json)
+    panelJson should containValueInPath(root.alert.conditions.index(1).reducer, expectedReducer2Json)
+
+  }
+
   val panelId: Int = 10
   val title: String = "Test Panel"
   val span: Int = 22
