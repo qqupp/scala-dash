@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.okish.{EvaluatorType, OperatorType, Reducer}
+import com.github.qqupp.scaladash.okish.{EvaluatorType, Notification, OperatorType, Reducer}
 import io.circe.Json
 import io.circe.literal._
 /*
@@ -43,6 +43,7 @@ class Condition:
 
  */
 final case class Condition(metric: Metric, evaluatorType: EvaluatorType, value: Int, operatorType: OperatorType, reducer: Reducer, datasourceId: Int) {
+
   def build(toBuildMetrics: List[(String, Metric)]): Json = {
     val matchingMetric = toBuildMetrics.find{ case (_, candidateMetric)  => candidateMetric == metric}
 

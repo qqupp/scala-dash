@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.okish.{ExecutionErrorState, NoDataState}
+import com.github.qqupp.scaladash.okish.{ExecutionErrorState, NoDataState, Notification}
 import io.circe.Json
 import io.circe.literal._
 import com.github.qqupp.scaladash.utils.JsonUtils._
@@ -45,8 +45,11 @@ final case class Alert(name: String,
                        noDataState: NoDataState,
                        executionErrorState: ExecutionErrorState,
                        conditions: List[Condition],
-                       notifications: List[WTF]
+                       notifications: List[Notification]
                       ) {
+  def withNotification(notification: Notification): Alert =
+    copy(notifications = notifications ++ List(notification))
+
 
   def withCondition(condition: Condition): Alert =
     this.copy(conditions = conditions ++ List(condition))

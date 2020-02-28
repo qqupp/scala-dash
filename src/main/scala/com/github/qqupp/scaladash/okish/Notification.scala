@@ -1,65 +1,38 @@
 package com.github.qqupp.scaladash.okish
 
-import io.circe.Json
-import io.circe.literal._
 import com.github.qqupp.scaladash.utils.JsonUtils._
+import io.circe.Encoder
+import io.circe.literal._
 
-/*
+final case class Notification(id: Option[Int],
+                              uid: Option[String],
+                              name: Option[String],
+                              `type`: Option[String],
+                              default: Option[String],
+                              sendReminder: Option[String],
+                              settings: Option[String])
 
-class Notification:
-    def __init__(self,
-                 notification_id=None,
-                 uid=None,
-                 name=None,
-                 type = None,
-                 default=None,
-                 send_reminder=None,
-                 settings=None):
-        self.notification_id = notification_id
-        self.uid = uid
-        self.name = name
-        self.type = type
-        self.default = default
-        self.send_reminder = send_reminder
-        self.settings = settings
+object Notification {
 
-    def build(self):
-        result = {}
-        if self.notification_id is not None:
-            result["id"] = self.notification_id
-        if self.uid is not None:
-            result["uid"] = self.uid
-        if self.name is not None:
-            result["name"] = self.name
-        if self.type is not None:
-            result["type"] = self.type
-        if self.default is not None:
-            result["isDefault"] = self.default
-        if self.send_reminder is not None:
-            result["sendReminder"] = self.send_reminder
-        if self.settings is not None:
-            result["settings"] = self.settings
-        return result
+  def apply(id: Int): Notification =
+    Notification(
+      id = Some(id),
+      uid = None,
+      name = None,
+      `type` = None,
+      default = None,
+      sendReminder = None,
+      settings = None
+    )
 
-
- */
-final case class Notification(notification_id: Option[String] = None,
-                              uid: Option[String] = None,
-                              name: Option[String] = None,
-                              `type`: Option[String] = None,
-                              default: Option[String] = None,
-                              send_reminder: Option[String] = None,
-                              settings: Option[String] = None) {
-
-  def build(): Json = {
-    json"""{}"""
-      .addOpt("id", notification_id)
-      .addOpt("uid", uid)
-      .addOpt("name", name)
-      .addOpt("type", `type`)
-      .addOpt("isDefault", default)
-      .addOpt("sendReminder", send_reminder)
-      .addOpt("settings", settings)
-  }
+  implicit val jsonEncoder: Encoder[Notification] =
+    notification =>
+      json"""{}"""
+        .addOpt("id", notification.id)
+        .addOpt("uid", notification.uid)
+        .addOpt("name", notification.name)
+        .addOpt("type", notification.`type`)
+        .addOpt("isDefault", notification.default)
+        .addOpt("sendReminder", notification.sendReminder)
 
 }

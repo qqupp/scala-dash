@@ -28,7 +28,6 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
   it should "render json" in {
     forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, filled: FillStyle, stacked: StackStyle, minimum: YAxisMinimum) =>
 
-
       val girdJson =
         json"""{
         "leftMax": null,
@@ -280,6 +279,33 @@ class PanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChec
 
     panelJson should containValueInPath(root.alert.conditions.index(0).reducer, expectedReducer1Json)
     panelJson should containValueInPath(root.alert.conditions.index(1).reducer, expectedReducer2Json)
+
+  }
+
+  it should "render alerts with notification by id" in {
+    val metric1 = GenericMetric("targ01", None, false)
+    val metric2 = GenericMetric("targ02", None, false)
+
+    val expectedJson =
+      json"""[{
+                "id": 1
+             },
+             {
+                "id": 2
+             }]
+            """
+
+    val panel = Panel(title)
+      .withMetric(metric1)
+      .withMetric(metric2)
+      .withAlert(
+        Alert("a test alert", 55)
+          .withCondition(Condition(metric1, EvaluatorType.GreaterThan, 5))
+          .withNotification(Notification(1))
+          .withNotification(Notification(2))
+      )
+
+    val panelJson = panel.build(panelId, span)
 
   }
 
