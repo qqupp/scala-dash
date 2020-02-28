@@ -113,7 +113,6 @@ class Panel:
  */
 final case class Panel(title: String,
                        metrics: List[Metric],
-                       metricsJson: List[Json],
                        yAxisFormat: YAxisFormat,
                        filled: FillStyle,
                        stacked: StackStyle,
@@ -134,9 +133,9 @@ final case class Panel(title: String,
     this.copy(alert = Some(alert))
 
   def withMetric(metric: Metric): Panel = {
-    val (h :: t) = availableRefIds
+    //val (h :: t) = availableRefIds
     val newMetrics = metrics ++ List(metric)
-    val newMetricsJson = metricsJson ++ List(metric.build(h.toString))
+    //val newMetricsJson = metricsJson ++ List(metric.build(h.toString))
 
     val newSeriesOverrides =
       metric.rightYAxisMetricName.fold(seriesOverrides){ name =>
@@ -146,7 +145,7 @@ final case class Panel(title: String,
                                       }""")
       }
 
-    this.copy(metrics = newMetrics, metricsJson = newMetricsJson, seriesOverrides = newSeriesOverrides, availableRefIds = t)
+    this.copy(metrics = newMetrics, seriesOverrides = newSeriesOverrides)
   }
 
   def withMetrics(metrics: List[Metric]): Panel =
@@ -199,7 +198,7 @@ final case class Panel(title: String,
            "value_type": "cumulative",
            "shared": false
           },
-         "targets": $metricsJson,
+         "targets": ${ (availableRefIds zip metrics).map{ case (id, metric) => metric.build(id.toString) } },
          "aliasColors": ${aliasColors},
          "seriesOverrides": $seriesOverrides,
          "links": []
@@ -214,7 +213,6 @@ object Panel {
     Panel(
       title = title,
       metrics = List.empty,
-      metricsJson = List.empty,
       yAxisFormat = NoFormat,
       filled = Unfilled,
       stacked = Unstacked,
