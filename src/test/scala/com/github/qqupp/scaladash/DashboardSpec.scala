@@ -81,7 +81,6 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
     val expectedNavTime =
       json"""["3h", "12h", "7d"]"""
 
-
     dashboardJson should containValueInPath(root.nav.index(0).time_options, expectedNavTime)
 
   }

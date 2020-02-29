@@ -750,14 +750,14 @@ class GrafanaDashboardTest(unittest.TestCase):
 #
 #        self.assertEqual(expected, actual["time"])
 
-    def test_dashboard_with_customised_nav_time_options(self):
-        expected = ["1h", "12h", "7d"]
-
-        actual = bd.Dashboard(self.title) \
-            .with_nav_time_options(["1h", "12h", "7d"]) \
-            .build()
-
-        self.assertEqual(expected, actual["nav"][0]["time_options"])
+#    def test_dashboard_with_customised_nav_time_options(self):
+#        expected = ["1h", "12h", "7d"]
+#
+#        actual = bd.Dashboard(self.title) \
+#            .with_nav_time_options(["1h", "12h", "7d"]) \
+#            .build()
+#
+#        self.assertEqual(expected, actual["nav"][0]["time_options"])
 
     def test_dashboard_with_customised_nav_refresh_intervals(self):
         expected = ["1m", "1h", "1d"]
