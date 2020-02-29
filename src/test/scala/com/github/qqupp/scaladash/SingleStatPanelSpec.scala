@@ -1,7 +1,7 @@
 package com.github.qqupp.scaladash
 
 import com.github.qqupp.scaladash.Metric.GenericMetric
-import com.github.qqupp.scaladash.okish._
+import com.github.qqupp.scaladash._
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.Json
 import io.circe.literal._

@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.okish.{ExecutionErrorState, NoDataState, Notification}
+import com.github.qqupp.scaladash.Notification
 import com.github.qqupp.scaladash.utils.JsonUtils._
 import io.circe.Json
 import io.circe.literal._

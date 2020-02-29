@@ -1,8 +1,8 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.okish.VariableRefresh.OnDashboardLoad
-import com.github.qqupp.scaladash.okish.VariableSort.Disabled
-import com.github.qqupp.scaladash.okish.{VariableRefresh, VariableSort}
+import com.github.qqupp.scaladash.VariableRefresh.OnDashboardLoad
+import com.github.qqupp.scaladash.VariableSort.Disabled
+import com.github.qqupp.scaladash.VariableSort
 import io.circe.{Encoder, Json}
 import io.circe.literal._
 import io.circe.generic.auto._

@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.okish.{EvaluatorType, OperatorType, Reducer}
+import com.github.qqupp.scaladash.Reducer
 import io.circe.Json
 import io.circe.literal._
 

@@ -1,4 +1,4 @@
-package com.github.qqupp.scaladash.okish
+package com.github.qqupp.scaladash
 
 import com.github.qqupp.scaladash.utils.JsonUtils._
 import io.circe.Encoder

@@ -3,7 +3,7 @@ package com.github.qqupp.scaladash
 import com.github.qqupp.scaladash.Duration.{Days, Hours, Minutes}
 import com.github.qqupp.scaladash.Variable.{CustomVariable, QueryVariable}
 import com.github.qqupp.scaladash.generators.dataArbitraries._
-import com.github.qqupp.scaladash.okish.{VariableRefresh, VariableSort}
+import com.github.qqupp.scaladash.VariableSort
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.Json
 import io.circe.literal._

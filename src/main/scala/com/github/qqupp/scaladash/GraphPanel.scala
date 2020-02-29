@@ -1,10 +1,10 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.okish.FillStyle.Unfilled
-import com.github.qqupp.scaladash.okish.StackStyle.Unstacked
-import com.github.qqupp.scaladash.okish.YAxisFormat.NoFormat
-import com.github.qqupp.scaladash.okish.YAxisMinimum.Auto
-import com.github.qqupp.scaladash.okish._
+import com.github.qqupp.scaladash.FillStyle.Unfilled
+import com.github.qqupp.scaladash.StackStyle.Unstacked
+import com.github.qqupp.scaladash.YAxisFormat.NoFormat
+import com.github.qqupp.scaladash.YAxisMinimum.Auto
+import com.github.qqupp.scaladash._
 import io.circe.Json
 import io.circe.literal._
 

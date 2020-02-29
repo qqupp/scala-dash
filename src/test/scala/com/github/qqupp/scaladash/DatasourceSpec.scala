@@ -1,7 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.okish.Datasource
-import com.github.qqupp.scaladash.okish.Datasource.Graphite
+import com.github.qqupp.scaladash.Datasource.Graphite
 import io.circe.literal._
 import io.circe.syntax._
 import org.scalatest.{FlatSpec, Matchers}
