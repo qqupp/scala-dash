@@ -8,14 +8,14 @@ sealed trait TimeRange
 
 object TimeRange {
 
-  final case class RelativeLast(value: TimeUnit) extends TimeRange
-  final case class RelativeFromTo(from: TimeUnit, to: TimeUnit) extends TimeRange
+  final case class RelativeLast(value: Duration) extends TimeRange
+  final case class RelativeFromTo(from: Duration, to: Duration) extends TimeRange
 
   implicit val jsonEncoder: Encoder[TimeRange] = {
     case RelativeLast(v) =>
-      TimeRangeJson(s"now-${v.value}${v.unit}", "now").asJson
+      TimeRangeJson(s"now-${v.show}", "now").asJson
     case RelativeFromTo(f, t) =>
-      TimeRangeJson(s"now-${f.value}${f.unit}", s"now-${t.value}${t.unit}").asJson
+      TimeRangeJson(s"now-${f.show}", s"now-${t.show}").asJson
   }
 
   private case class TimeRangeJson(from: String, to: String)

@@ -738,17 +738,17 @@ class GrafanaDashboardTest(unittest.TestCase):
 #
 #        self.assertEqual(expected, actual)
 
-    def test_dashboard_with_customised_time_range(self):
-        expected = {
-            "from": "now-2d",
-            "to": "now-1h"
-        }
-
-        actual = bd.Dashboard(self.title) \
-            .with_time_range("now-2d", "now-1h") \
-            .build()
-
-        self.assertEqual(expected, actual["time"])
+#    def test_dashboard_with_customised_time_range(self):
+#        expected = {
+#            "from": "now-2d",
+#            "to": "now-1h"
+#        }
+#
+#        actual = bd.Dashboard(self.title) \
+#            .with_time_range("now-2d", "now-1h") \
+#            .build()
+#
+#        self.assertEqual(expected, actual["time"])
 
     def test_dashboard_with_customised_nav_time_options(self):
         expected = ["1h", "12h", "7d"]

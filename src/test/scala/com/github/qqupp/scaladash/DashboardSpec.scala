@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.TimeUnit.{Days, Hours}
+import com.github.qqupp.scaladash.Duration.{Days, Hours}
 import com.github.qqupp.scaladash.generators.dataArbitraries._
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.Json
@@ -8,7 +8,6 @@ import io.circe.literal._
 import io.circe.optics.JsonPath._
 import org.scalatest.{FlatSpec, Matchers}
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
-import io.circe.generic.auto._
 
 class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropertyChecks {
 
@@ -67,10 +66,26 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
         "to": "now-1h"
       }"""
 
-
     dashboardJson should containKeyValue("time", expectedTimeRangeJson)
 
   }
+
+
+  it should "render with custom navigation time" in {
+    val dashboard =
+      Dashboard(title)
+        .withNavTimeOptions(List(Hours(3), Hours(12), Days(7)))
+
+    val dashboardJson = dashboard.build
+
+    val expectedNavTime =
+      json"""["3h", "12h", "7d"]"""
+
+
+    dashboardJson should containValueInPath(root.nav.index(0).time_options, expectedNavTime)
+
+  }
+
 
   private val title = "Test Dashboard"
 
