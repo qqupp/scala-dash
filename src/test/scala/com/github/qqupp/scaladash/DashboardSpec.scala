@@ -1,31 +1,12 @@
 package com.github.qqupp.scaladash
 
-import org.scalatest.{FunSuite, Matchers}
-import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
-import com.github.qqupp.scaladash.Metric.GenericMetric
-import com.github.qqupp.scaladash.okish._
-import com.github.qqupp.scaladash.utils.JsonTestUtils._
-import io.circe.literal._
-import io.circe.syntax._
-import io.circe.{Encoder, Json}
-import org.scalacheck.magnolia._
-import org.scalatest.{FlatSpec, Matchers}
-import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
-import io.circe.optics.JsonPath._
-import com.github.qqupp.scaladash.Metric.GenericMetric
-import com.github.qqupp.scaladash.okish._
-import com.github.qqupp.scaladash.utils.JsonTestUtils._
-import io.circe.literal._
-import io.circe.syntax._
-import io.circe.{Encoder, Json}
-import org.scalacheck.magnolia._
-import org.scalatest.{FlatSpec, Matchers}
-import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
-import io.circe.optics.JsonPath._
-import org.scalacheck.{Arbitrary, Gen}
-import org.scalacheck.magnolia._
-import org.scalacheck.Prop._
 import com.github.qqupp.scaladash.generators.dataArbitraries._
+import com.github.qqupp.scaladash.utils.JsonTestUtils._
+import io.circe.Json
+import io.circe.literal._
+import io.circe.optics.JsonPath._
+import org.scalatest.{FlatSpec, Matchers}
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 
 class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropertyChecks {
 

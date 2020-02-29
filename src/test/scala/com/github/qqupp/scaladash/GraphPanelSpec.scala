@@ -4,12 +4,12 @@ import com.github.qqupp.scaladash.Metric.GenericMetric
 import com.github.qqupp.scaladash.okish._
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.literal._
+import io.circe.optics.JsonPath._
 import io.circe.syntax._
 import io.circe.{Encoder, Json}
 import org.scalacheck.magnolia._
 import org.scalatest.{FlatSpec, Matchers}
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
-import io.circe.optics.JsonPath._
 
 class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
 
