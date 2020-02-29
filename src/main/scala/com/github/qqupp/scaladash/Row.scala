@@ -28,7 +28,6 @@ final case class Row(height: String, title: Option[String], showTitle: Boolean, 
         "showTitle": $showTitle,
         "panels": $panelsJson
       }"""
-
   }
 
 }

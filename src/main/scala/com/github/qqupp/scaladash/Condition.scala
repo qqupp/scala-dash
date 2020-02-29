@@ -39,5 +39,15 @@ final case class Condition(metric: Metric, evaluatorType: EvaluatorType, value: 
 }
 
 object Condition {
-  def apply(metric: Metric, evaluator_type: EvaluatorType, value: Int): Condition = Condition(metric, evaluator_type, value, OperatorType.And, Reducer.Last, 1)
+
+  def apply(metric: Metric, evaluatorType: EvaluatorType, value: Int): Condition =
+    Condition(
+      metric = metric,
+      evaluatorType = evaluatorType,
+      value = value,
+      operatorType = OperatorType.And,
+      reducer = Reducer.Last,
+      datasourceId = 1
+    )
+
 }

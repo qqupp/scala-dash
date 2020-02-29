@@ -7,6 +7,7 @@ import io.circe.literal._
 import io.circe.optics.JsonPath._
 import org.scalatest.{FlatSpec, Matchers}
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
+import io.circe.generic.auto._
 
 class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropertyChecks {
 
@@ -50,6 +51,24 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
                }""")
 
     }
+  }
+
+  it should "render with custom time range" in {
+    val dashboard =
+      Dashboard(title)
+       .withTimeRange(TimeRange("now-2d", "now-1h"))
+
+    val dashboardJson = dashboard.build
+
+    val expectedTimeRangeJson =
+      json"""{
+        "from": "now-2d",
+        "to": "now-1h"
+      }"""
+
+
+    dashboardJson should containKeyValue("time", expectedTimeRangeJson)
+
   }
 
   private val title = "Test Dashboard"
