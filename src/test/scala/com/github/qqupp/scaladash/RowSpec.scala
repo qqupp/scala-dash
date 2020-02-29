@@ -1,6 +1,8 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.Metric.GenericMetric
+import com.github.qqupp.scaladash.model.Row
+import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
+import com.github.qqupp.scaladash.model.panel.{GraphPanel, SingleStatPanel}
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.Json
 import org.scalatest.{FlatSpec, Matchers}

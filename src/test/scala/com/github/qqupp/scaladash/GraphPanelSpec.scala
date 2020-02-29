@@ -1,7 +1,10 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.Metric.GenericMetric
-import com.github.qqupp.scaladash._
+import com.github.qqupp.scaladash.model.alert.{Alert, Condition, EvaluatorType, ExecutionErrorState, NoDataState, Notification, OperatorType, Reducer}
+import com.github.qqupp.scaladash.model.metric.Metric
+import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
+import com.github.qqupp.scaladash.model.panel.{FillStyle, GraphPanel, StackStyle, YAxisFormat, YAxisMinimum}
+import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.literal._
 import io.circe.optics.JsonPath._

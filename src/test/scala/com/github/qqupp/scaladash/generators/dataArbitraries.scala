@@ -1,9 +1,11 @@
 package com.github.qqupp.scaladash.generators
 
-import com.github.qqupp.scaladash.Metric.{GenericMetric, PrometheusMetric}
-import com.github.qqupp.scaladash.{GraphPanel, Metric, Panel, Row, SingleStatPanel}
-import org.scalacheck.{Arbitrary, Gen}
+import com.github.qqupp.scaladash.model.Row
+import com.github.qqupp.scaladash.model.metric.Metric
+import com.github.qqupp.scaladash.model.metric.Metric.{GenericMetric, PrometheusMetric}
+import com.github.qqupp.scaladash.model.panel.{GraphPanel, Panel, SingleStatPanel}
 import org.scalacheck.magnolia._
+import org.scalacheck.{Arbitrary, Gen}
 
 object dataArbitraries {
 

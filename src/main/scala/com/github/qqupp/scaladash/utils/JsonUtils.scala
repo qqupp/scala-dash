@@ -3,7 +3,6 @@ package com.github.qqupp.scaladash.utils
 import io.circe.{Encoder, Json, JsonObject}
 import io.circe.syntax._
 
-
 object JsonUtils {
 
   implicit class JsonOps(json: Json) {

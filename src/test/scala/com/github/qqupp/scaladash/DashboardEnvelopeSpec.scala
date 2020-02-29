@@ -1,5 +1,6 @@
 package com.github.qqupp.scaladash
 
+import com.github.qqupp.scaladash.model.{Dashboard, DashboardEnvelope}
 import org.scalatest.{FlatSpec, Matchers}
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 

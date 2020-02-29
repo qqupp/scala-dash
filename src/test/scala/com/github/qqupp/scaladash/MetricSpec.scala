@@ -1,6 +1,7 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.Metric.PrometheusMetric
+import com.github.qqupp.scaladash.model.metric.{Metric, PrometheusMetricFormat}
+import com.github.qqupp.scaladash.model.metric.Metric.PrometheusMetric
 import io.circe._
 import io.circe.literal._
 import org.scalatest.{FlatSpec, Matchers}
