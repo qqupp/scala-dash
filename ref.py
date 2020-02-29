@@ -768,81 +768,81 @@ class GrafanaDashboardTest(unittest.TestCase):
 #
 #        self.assertEqual(expected, actual["nav"][0]["refresh_intervals"])
 
-    def test_dashboard_with_custom_variable(self):
-        expected = [
-            {
-                "allValue": None,
-                "current": {
-                    "tags": [],
-                    "text": "default-value",
-                    "value": "default-value"
-                },
-                "hide": 0,
-                "includeAll": False,
-                "label": "A Var",
-                "multi": False,
-                "name": "a-var",
-                "options": [
-                    {
-                        "selected": True,
-                        "text": "default-value",
-                        "value": "default-value"
-                    },
-                    {
-                        "selected": False,
-                        "text": "value2",
-                        "value": "value2"
-                    },
-                    {
-                        "selected": False,
-                        "text": "value3",
-                        "value": "value3"
-                    }
-                ],
-                "query": "default-value,value2,value3",
-                "skipUrlSync": False,
-                "type": "custom"
-            }
-        ]
+#    def test_dashboard_with_custom_variable(self):
+#        expected = [
+#            {
+#                "allValue": None,
+#                "current": {
+#                    "tags": [],
+#                    "text": "default-value",
+#                    "value": "default-value"
+#                },
+#                "hide": 0,
+#                "includeAll": False,
+#                "label": "A Var",
+#                "multi": False,
+#                "name": "a-var",
+#                "options": [
+#                    {
+#                        "selected": True,
+#                        "text": "default-value",
+#                        "value": "default-value"
+#                    },
+#                    {
+#                        "selected": False,
+#                        "text": "value2",
+#                        "value": "value2"
+#                    },
+#                    {
+#                        "selected": False,
+#                        "text": "value3",
+#                        "value": "value3"
+#                    }
+#                ],
+#                "query": "default-value,value2,value3",
+#                "skipUrlSync": False,
+#                "type": "custom"
+#            }
+#        ]
 
-        actual = bd.Dashboard(self.title) \
-            .with_variable(bd.CustomVariable('a-var', 'A Var', 'default-value', 'value2', 'value3')) \
-            .build()
+ #       actual = bd.Dashboard(self.title) \
+ #           .with_variable(bd.CustomVariable('a-var', 'A Var', 'default-value', 'value2', 'value3')) \
+ #           .build()
+#
+ #       self.assertEqual(expected, actual["templating"]["list"])
 
-        self.assertEqual(expected, actual["templating"]["list"])
-
-    def test_dashboard_with_query_variable(self):
-        expected = [
-            {
-                "allValue": None,
-                "datasource": "aDataSource",
-                "definition": "stats.app.value.*",
-                "hide": 0,
-                "includeAll": True,
-                "label": "A Var",
-                "multi": False,
-                "name": "a-var",
-                "query": "stats.app.value.*",
-                "refresh": 2,
-                "regex": "(?!boo).*",
-                "skipUrlSync": False,
-                "sort": 4,
-                "tagValuesQuery": "",
-                "tags": [],
-                "tagsQuery": "",
-                "type": "query",
-                "useTags": False
-            }
-        ]
-
-        actual = bd.Dashboard(self.title) \
-            .with_variable(bd.QueryVariable('a-var', 'A Var', 'aDataSource', 'stats.app.value.*',
-                           include_all=True, sort=bd.VariableSort.NumericalDesc,
-                           refresh=bd.VariableRefresh.OnTimeRangeChange,
-                           regex="(?!boo).*")) \
-            .build()
-
-        self.assertEqual(expected, actual["templating"]["list"])
+ #   def test_dashboard_with_query_variable(self):
+ #       expected = [
+ #           {
+ #               "allValue": None,
+ #               "datasource": "aDataSource",
+ #               "definition": "stats.app.value.*",
+ #               "hide": 0,
+ #               "includeAll": True,
+ #               "label": "A Var",
+ #               "multi": False,
+ #               "name": "a-var",
+ #               "query": "stats.app.value.*",
+ #               "refresh": 2,
+ #               "regex": "(?!boo).*",
+ #               "skipUrlSync": False,
+ #               "sort": 4,
+ #               "tagValuesQuery": "",
+ #               "tags": [],
+ #               "tagsQuery": "",
+ #               "type": "query",
+ #               "useTags": False
+ #           }
+ #       ]
+#
+ #       actual = bd.Dashboard(self.title) \
+ #           .with_variable(bd.QueryVariable('a-var', 'A Var', 'aDataSource', 'stats.app.value.*',
+ #                          include_all=True, sort=bd.VariableSort.NumericalDesc,
+ #                          refresh=bd.VariableRefresh.OnTimeRangeChange,
+ #                          regex="(?!boo).*")) \
+ #           .build()
+#
+ #       self.assertEqual(expected, actual["templating"]["list"])
 
     def test_dashboard_write_request_renders(self):
         dashboard = bd.Dashboard(self.title)

@@ -1,11 +1,14 @@
 package com.github.qqupp.scaladash
 
 import com.github.qqupp.scaladash.Duration.{Days, Hours, Minutes}
+import com.github.qqupp.scaladash.Variable.{CustomVariable, QueryVariable}
 import com.github.qqupp.scaladash.generators.dataArbitraries._
+import com.github.qqupp.scaladash.okish.{VariableRefresh, VariableSort}
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.Json
 import io.circe.literal._
 import io.circe.optics.JsonPath._
+import org.scalacheck.Prop.True
 import org.scalatest.{FlatSpec, Matchers}
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 
@@ -142,6 +145,52 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
                  "type": "custom"
                }
             ]"""
+
+    dashboardJson should containValueInPath(root.templating.list, expectedJson)
+
+  }
+
+  it should "render with custom query variable" in {
+    val dashboard =
+      Dashboard(title)
+        .withVariable(
+          QueryVariable(
+            name = "a-var",
+            label = "A Var",
+            datasource ="aDataSource",
+            query = "stats.app.value.*",
+            sort = VariableSort.NumericalDesc,
+            refresh = VariableRefresh.OnTimeRangeChange,
+            regex = "(?!boo).*",
+            includeAll = true,
+            multi = false
+          ))
+
+    val dashboardJson = dashboard.build
+
+    val expectedJson =
+    json"""[
+             {
+               "allValue": null,
+               "datasource": "aDataSource",
+               "definition": "stats.app.value.*",
+               "hide": 0,
+               "includeAll": true,
+               "label": "A Var",
+               "multi": false,
+               "name": "a-var",
+               "query": "stats.app.value.*",
+               "refresh": 2,
+               "regex": "(?!boo).*",
+               "skipUrlSync": false,
+               "sort": 4,
+               "tagValuesQuery": "",
+               "tags": [],
+               "tagsQuery": "",
+               "type": "query",
+               "useTags": false
+             }
+           ]"""
 
     dashboardJson should containValueInPath(root.templating.list, expectedJson)
 
