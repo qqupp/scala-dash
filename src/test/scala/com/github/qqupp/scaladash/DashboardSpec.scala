@@ -1,5 +1,6 @@
 package com.github.qqupp.scaladash
 
+import com.github.qqupp.scaladash.TimeUnit.{Days, Hours}
 import com.github.qqupp.scaladash.generators.dataArbitraries._
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.Json
@@ -56,7 +57,7 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
   it should "render with custom time range" in {
     val dashboard =
       Dashboard(title)
-       .withTimeRange(TimeRange("now-2d", "now-1h"))
+       .withTimeRange(TimeRange.RelativeFromTo(2, Days, 1, Hours))
 
     val dashboardJson = dashboard.build
 

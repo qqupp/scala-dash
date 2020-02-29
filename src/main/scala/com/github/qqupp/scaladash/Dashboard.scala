@@ -1,5 +1,6 @@
 package com.github.qqupp.scaladash
 
+import com.github.qqupp.scaladash.TimeUnit.Minutes
 import io.circe.Json
 import io.circe.literal._
 import io.circe.generic.auto._
@@ -145,7 +146,7 @@ object Dashboard {
       title = title,
       rows = List.empty,
       variables = List.empty,
-      timeRange = TimeRange("now-15m", "now")
+      timeRange = TimeRange.RelativeLast(15 , Minutes)
     )
 
 }
