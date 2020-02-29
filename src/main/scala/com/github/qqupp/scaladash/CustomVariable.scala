@@ -1,54 +1,43 @@
 package com.github.qqupp.scaladash
 
 import io.circe.{Encoder, Json}
+import io.circe.literal._
+import io.circe.generic.auto._
 
-/*
 
-class CustomVariable:
-    def __init__(self, name, label, default_value, *other_values):
-        self.name = name
-        self.label = label
-        self.default_value = default_value
-        self.other_values = other_values
-
-    def _as_option(self, value, selected=False):
-        return {
-                "selected": selected,
-                "text": value,
-                "value": value
-            }
-
-    def build(self):
-        options = [self._as_option(self.default_value, selected=True)] + \
-            [self._as_option(value) for value in self.other_values]
-
-        return {
-            "allValue": None,
-            "current": {
-                "tags": [],
-                "text": self.default_value,
-                "value": self.default_value
-            },
-            "hide": 0,
-            "includeAll": False,
-            "label": self.label,
-            "multi": False,
-            "name": self.name,
-            "options": options,
-            "query": ",".join([self.default_value] + list(self.other_values)),
-            "skipUrlSync": False,
-            "type": "custom"
-      }
-
- */
-case class CustomVariable() {
-
-}
+final case class CustomVariable(name: String, label: String, defaultValue: String, otherValues: List[String])
 
 object CustomVariable {
+
+  private case class OptionJson(text: String, value: String, selected: Boolean)
+
   implicit val jsonEncoder: Encoder[CustomVariable] =
-    customVariable =>
-      Json.fromString("")
+    cv => {
+      val options: List[OptionJson] =
+        OptionJson(cv.defaultValue, cv.defaultValue, true) ::
+        cv.otherValues.map( s => OptionJson(s, s, false))
+
+      val query: String = (cv.defaultValue :: cv.otherValues).mkString(",")
+
+      json"""{
+               "allValue": null,
+               "current": {
+                 "tags": [],
+                 "text": ${cv.defaultValue},
+                 "value": ${cv.defaultValue}
+               },
+               "hide": 0,
+               "includeAll": false,
+               "label": ${cv.label},
+               "multi": false,
+               "name": ${cv.name},
+               "options": $options,
+               "query": $query,
+               "skipUrlSync": false,
+               "type": "custom"
+              }"""
+  }
+
 }
 
 

@@ -99,6 +99,54 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
 
   }
 
+  it should "render with custom variable" in {
+    val dashboard =
+      Dashboard(title)
+        .withVariable(CustomVariable("a-var", "A Var", "default-value", List("value2", "value3")))
+
+    val dashboardJson = dashboard.build
+
+    val expectedJson =
+      json"""[
+               {
+                 "allValue": null,
+                 "current": {
+                   "tags": [],
+                   "text": "default-value",
+                   "value": "default-value"
+                 },
+                 "hide": 0,
+                 "includeAll": false,
+                 "label": "A Var",
+                 "multi": false,
+                 "name": "a-var",
+                 "options": [
+                 {
+                   "selected": true,
+                   "text": "default-value",
+                   "value": "default-value"
+                 },
+                 {
+                   "selected": false,
+                   "text": "value2",
+                   "value": "value2"
+                 },
+                 {
+                   "selected": false,
+                   "text": "value3",
+                   "value": "value3"
+                 }
+                 ],
+                 "query": "default-value,value2,value3",
+                 "skipUrlSync": false,
+                 "type": "custom"
+               }
+            ]"""
+
+    dashboardJson should containValueInPath(root.templating.list, expectedJson)
+
+  }
+
   private val title = "Test Dashboard"
 
   private val navJson: Json =

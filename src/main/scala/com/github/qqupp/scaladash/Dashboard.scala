@@ -81,7 +81,16 @@ class Dashboard:
 
 
  */
-final case class Dashboard(title: String, rows: List[Row], variables: List[CustomVariable], timeRange: TimeRange, timeOptions: List[Duration], refreshIntervals: List[Duration]) {
+final case class Dashboard(title: String,
+                           rows: List[Row],
+                           variables: List[CustomVariable],
+                           timeRange: TimeRange,
+                           timeOptions: List[Duration],
+                           refreshIntervals: List[Duration]) {
+
+  def withVariable(variable: CustomVariable): Dashboard =
+    copy(variables = variables ++ List(variable))
+
   def withNavRefreshIntervals(values: List[Duration]): Dashboard =
     copy(refreshIntervals = values)
 
