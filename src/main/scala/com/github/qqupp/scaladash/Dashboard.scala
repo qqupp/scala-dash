@@ -1,5 +1,7 @@
 package com.github.qqupp.scaladash
 
+import io.circe.Json
+import io.circe.literal._
 /*
 
 class Dashboard:
@@ -77,6 +79,73 @@ class Dashboard:
 
 
  */
-class Dashboard {
+final case class Dashboard(title: String, rows: List[Row], variables: List[CustomVariable]) {
+  def withRow(row: Row): Dashboard =
+    copy( rows = rows ++ List(row))
+
+  def withRows(addRows: List[Row]): Dashboard =
+    addRows.foldLeft(this)((acc, r) => acc.withRow(r))
+
+  private val timeOptions = List("5m", "15m", "1h", "6h", "12h", "24h", "2d", "7d", "30d")
+
+  private val refreshIntervals = List("5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d")
+
+  private val timeJson =
+    json"""{
+             "from": "now-15m",
+             "to": "now"
+    }"""
+
+  def build: Json = {
+    val rowsJson = rows.zipWithIndex.map{ case (r, idx) => r.build(idx + 1) }
+
+    val templatingJson = variables
+
+    json"""{
+                      "title": $title,
+                      "originalTitle": $title,
+                      "tags": [],
+                      "style": "dark",
+                      "timezone": "browser",
+                      "editable": true,
+                      "hideControls": false,
+                      "sharedCrosshair": false,
+                      "rows": $rowsJson,
+                      "nav": [
+                          {
+                              "type": "timepicker",
+                              "enable": true,
+                              "status": "Stable",
+                              "time_options": $timeOptions,
+                              "refresh_intervals": $refreshIntervals,
+                              "now": true,
+                              "collapse": false,
+                              "notice": false
+                          }
+                      ],
+                      "time": $timeJson,
+                      "templating": {
+                          "list": $templatingJson
+                      },
+                      "annotations": {
+                          "list": [],
+                          "enable": false
+                      },
+                      "refresh": "10s",
+                      "version": 6,
+                      "hideAllLegends": false
+          }"""
+  }
+
+}
+
+object Dashboard {
+
+  def apply(title: String): Dashboard =
+    Dashboard(
+      title = title,
+      rows = List.empty,
+      variables = List.empty
+    )
 
 }

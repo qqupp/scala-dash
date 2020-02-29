@@ -1,5 +1,7 @@
 package com.github.qqupp.scaladash
 
+import io.circe.{Encoder, Json}
+
 /*
 
 class CustomVariable:
@@ -39,6 +41,14 @@ class CustomVariable:
       }
 
  */
-class CustomVariable {
+case class CustomVariable() {
 
 }
+
+object CustomVariable {
+  implicit val jsonEncoder: Encoder[CustomVariable] =
+    customVariable =>
+      Json.fromString("")
+}
+
+
