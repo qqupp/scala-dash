@@ -163,7 +163,7 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
             refresh = VariableRefresh.OnTimeRangeChange,
             regex = "(?!boo).*",
             includeAll = true,
-            multi = false
+            multi = true
           ))
 
     val dashboardJson = dashboard.build
@@ -177,7 +177,7 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
                "hide": 0,
                "includeAll": true,
                "label": "A Var",
-               "multi": false,
+               "multi": true,
                "name": "a-var",
                "query": "stats.app.value.*",
                "refresh": 2,

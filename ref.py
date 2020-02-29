@@ -843,14 +843,14 @@ class GrafanaDashboardTest(unittest.TestCase):
  #           .build()
 #
  #       self.assertEqual(expected, actual["templating"]["list"])
-
-    def test_dashboard_write_request_renders(self):
-        dashboard = bd.Dashboard(self.title)
-        actual = bd.DashboardWriteRequest(dashboard) \
-            .build()
-
-        self.assertEqual(dashboard.build(), actual["dashboard"])
-        self.assertEqual(True, actual["overwrite"])
+#
+#    def test_dashboard_write_request_renders(self):
+#        dashboard = bd.Dashboard(self.title)
+#        actual = bd.DashboardWriteRequest(dashboard) \
+#            .build()
+#
+#        self.assertEqual(dashboard.build(), actual["dashboard"])
+#        self.assertEqual(True, actual["overwrite"])
 
     def test_notification_for_creation(self):
         expected = {

@@ -1,20 +1,14 @@
 package com.github.qqupp.scaladash
-/*
 
-# This wraps the dashboard json to make it suitable for POSTing to /api/dashboards/db -- see http://docs.grafana.org/reference/http_api/
-class DashboardWriteRequest:
-    def __init__(self, dashboard, overwrite=True):
-        self.dashboard = dashboard
-        self.overwrite = overwrite
+import io.circe.Json
+import io.circe.generic.auto._
+import io.circe.syntax._
 
-    def build(self):
-        return {
-            "dashboard": self.dashboard.build(),
-            "overwrite": self.overwrite
-        }
+final case class DashboardEnvelope(dashboard: Json, overwrite: Boolean)
 
- */
+object DashboardEnvelope {
 
-class DashboardWriteRequest {
+  def jsonFor(dashboard: Dashboard, overwrite: Boolean = true): Json =
+    DashboardEnvelope(dashboard.build, overwrite).asJson
 
 }
