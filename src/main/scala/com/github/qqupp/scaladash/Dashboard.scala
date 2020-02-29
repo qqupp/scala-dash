@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.Duration.{Days, Hours, Minutes}
+import com.github.qqupp.scaladash.Duration.{Days, Hours, Minutes, Seconds}
 import io.circe.Json
 import io.circe.literal._
 import io.circe.generic.auto._
@@ -81,9 +81,12 @@ class Dashboard:
 
 
  */
-final case class Dashboard(title: String, rows: List[Row], variables: List[CustomVariable], timeRange: TimeRange, timeOptions: List[Duration]) {
-  def withNavTimeOptions(value: List[Duration]): Dashboard =
-    copy(timeOptions = value)
+final case class Dashboard(title: String, rows: List[Row], variables: List[CustomVariable], timeRange: TimeRange, timeOptions: List[Duration], refreshIntervals: List[Duration]) {
+  def withNavRefreshIntervals(values: List[Duration]): Dashboard =
+    copy(refreshIntervals = values)
+
+  def withNavTimeOptions(values: List[Duration]): Dashboard =
+    copy(timeOptions = values)
 
   def withTimeRange(range: TimeRange): Dashboard =
     copy(timeRange = range)
@@ -93,8 +96,6 @@ final case class Dashboard(title: String, rows: List[Row], variables: List[Custo
 
   def withRows(addRows: List[Row]): Dashboard =
     addRows.foldLeft(this)((acc, r) => acc.withRow(r))
-
-  private val refreshIntervals = List("5s", "10s", "30s", "1m", "5m", "15m", "30m", "1h", "2h", "1d")
 
   def build: Json = {
     val rowsJson = rows.zipWithIndex.map{ case (r, idx) => r.build(idx + 1) }
@@ -147,8 +148,8 @@ object Dashboard {
       rows = List.empty,
       variables = List.empty,
       timeRange = TimeRange.RelativeLast(Minutes(15)),
-      timeOptions =  List(Minutes(5), Minutes(15), Hours(1), Hours(6), Hours(12), Hours(24), Days(2), Days(7), Days(30))
-
+      timeOptions =  List(Minutes(5), Minutes(15), Hours(1), Hours(6), Hours(12), Hours(24), Days(2), Days(7), Days(30)),
+      refreshIntervals = List(Seconds(5), Seconds(10), Seconds(30), Minutes(1), Minutes(5), Minutes(15), Minutes(30), Hours(1), Hours(2), Days(1))
   )
 
 }

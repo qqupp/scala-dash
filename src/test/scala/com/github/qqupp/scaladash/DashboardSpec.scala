@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.Duration.{Days, Hours}
+import com.github.qqupp.scaladash.Duration.{Days, Hours, Minutes}
 import com.github.qqupp.scaladash.generators.dataArbitraries._
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.Json
@@ -85,6 +85,19 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
 
   }
 
+  it should "render with custom refresh intervals" in {
+    val dashboard =
+      Dashboard(title)
+        .withNavRefreshIntervals(List(Minutes(1), Hours(1), Days(1)))
+
+    val dashboardJson = dashboard.build
+
+    val expectedNavIntervals =
+      json"""["1m", "1h", "1d"]"""
+
+    dashboardJson should containValueInPath(root.nav.index(0).refresh_intervals, expectedNavIntervals)
+
+  }
 
   private val title = "Test Dashboard"
 
