@@ -146,7 +146,7 @@ object Dashboard {
       title = title,
       rows = List.empty,
       variables = List.empty,
-      timeRange = TimeRange.RelativeLast(15 , Minutes)
+      timeRange = TimeRange.RelativeLast(Minutes(15))
     )
 
 }

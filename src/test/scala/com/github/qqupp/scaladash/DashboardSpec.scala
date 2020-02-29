@@ -57,7 +57,7 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
   it should "render with custom time range" in {
     val dashboard =
       Dashboard(title)
-       .withTimeRange(TimeRange.RelativeFromTo(2, Days, 1, Hours))
+       .withTimeRange(TimeRange.RelativeFromTo(Days(2), Hours(1)))
 
     val dashboardJson = dashboard.build
 

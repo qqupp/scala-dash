@@ -1,13 +1,13 @@
 package com.github.qqupp.scaladash
 
-sealed abstract class TimeUnit(val value: String)
+sealed abstract class TimeUnit(val value: Int, val unit: String)
 
 object TimeUnit {
 
-  case object Seconds extends TimeUnit( "s" )
-  case object Minutes extends TimeUnit( "m" )
-  case object Hours extends TimeUnit( "h" )
-  case object Days extends TimeUnit( "d" )
-  case object Weeks extends TimeUnit( "w" )
+  final case class Seconds(v: Int) extends TimeUnit(v, "s")
+  final case class Minutes(v: Int) extends TimeUnit(v, "m")
+  final case class Hours(v: Int) extends TimeUnit(v, "h")
+  final case class Days(v: Int) extends TimeUnit(v, "d")
+  final case class Weeks(v: Int) extends TimeUnit(v, "w")
 
 }
