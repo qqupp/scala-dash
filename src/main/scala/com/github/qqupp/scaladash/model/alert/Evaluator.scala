@@ -1,8 +1,7 @@
 package com.github.qqupp.scaladash.model.alert
 
 import io.circe.{Encoder, Json}
-import io.circe.syntax._
-import io.circe.generic.auto._
+import io.circe.literal._
 
 sealed trait Evaluator {
   def asJson: Json
@@ -11,21 +10,21 @@ sealed trait Evaluator {
 object Evaluator {
 
   final case class GreaterThan[T : Encoder](x: T) extends Evaluator {
-    override def asJson: Json = EvaluatorJson(List(x), "gt").asJson
+    def asJson: Json = toJson(List(x), "gt")
   }
   final case class LessThan[T : Encoder](x: T) extends Evaluator {
-    override def asJson: Json = EvaluatorJson(List(x), "lt").asJson
+    def asJson: Json = toJson(List(x), "lt")
   }
   final case class Outside[T: Encoder](low: T, high: T) extends Evaluator {
-    override def asJson: Json = EvaluatorJson(List(low, high), "outside_range").asJson
+    def asJson: Json = toJson(List(low, high), "outside_range")
   }
   final case class Within[T: Encoder](low: T, high: T) extends Evaluator {
-    override def asJson: Json = EvaluatorJson(List(low, high), "within_range").asJson
+    def asJson: Json = toJson(List(low, high), "within_range")
   }
   final case object NoValue extends Evaluator {
-    override def asJson: Json = EvaluatorJson[Int](List(), "no_value").asJson
+    def asJson: Json = toJson[Int](List(), "no_value")
   }
 
-  private case class EvaluatorJson[T](params: List[T], `type`: String)
-
+  private def toJson[T : Encoder](params: List[T], tp: String): Json =
+    json"""{ "params": $params, "type": ${tp} }"""
 }
