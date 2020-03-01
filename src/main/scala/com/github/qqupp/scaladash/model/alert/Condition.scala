@@ -1,10 +1,10 @@
 package com.github.qqupp.scaladash.model.alert
 
 import com.github.qqupp.scaladash.model.metric.Metric
-import io.circe.{Encoder, Json}
+import io.circe.Json
 import io.circe.literal._
 
-final case class Condition(metric: Metric, evaluator: Evaluator, operatorType: OperatorType, reducer: Reducer, datasourceId: Int) {
+final case class Condition(metric: Metric, evaluator: Evaluator, reducer: Reducer, operatorType: OperatorType, datasourceId: Int) {
 
   def build(toBuildMetrics: List[(String, Metric)]): Json = {
     val matchingMetric = toBuildMetrics.find{ case (_, candidateMetric)  => candidateMetric == metric}
@@ -13,7 +13,7 @@ final case class Condition(metric: Metric, evaluator: Evaluator, operatorType: O
     val metricJson = matchingMetric.fold(json"{}"){ case (id, metricf) => metric.build(id)}
 
     json"""{
-      "evaluator": $evaluator
+      "evaluator": ${evaluator.asJson}
       ,
       "operator": {
         "type": $operatorType

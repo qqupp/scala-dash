@@ -1,22 +1,31 @@
 package com.github.qqupp.scaladash.model.alert
 
-import io.circe.Encoder
-import io.circe.literal._
+import io.circe.{Encoder, Json}
+import io.circe.syntax._
+import io.circe.generic.auto._
 
-sealed abstract class Evaluator(val params: List[Int], val `type`: String)
+sealed trait Evaluator {
+  def asJson: Json
+}
 
 object Evaluator {
 
-  final case class GreaterThan(x: Int) extends Evaluator(List(x), "gt")
-  final case class LessThan(x: Int) extends Evaluator(List(x), "lt")
-  final case class Outside(low: Int, high: Int) extends Evaluator(List(low, high), "outside_range")
-  final case class Within(low: Int, high: Int) extends Evaluator(List(low, high), "within_range")
-  final case object NoValue extends Evaluator(List(), "no_value")
+  final case class GreaterThan[T : Encoder](x: T) extends Evaluator {
+    override def asJson: Json = EvaluatorJson(List(x), "gt").asJson
+  }
+  final case class LessThan[T : Encoder](x: T) extends Evaluator {
+    override def asJson: Json = EvaluatorJson(List(x), "lt").asJson
+  }
+  final case class Outside[T: Encoder](low: T, high: T) extends Evaluator {
+    override def asJson: Json = EvaluatorJson(List(low, high), "outside_range").asJson
+  }
+  final case class Within[T: Encoder](low: T, high: T) extends Evaluator {
+    override def asJson: Json = EvaluatorJson(List(low, high), "within_range").asJson
+  }
+  final case object NoValue extends Evaluator {
+    override def asJson: Json = EvaluatorJson[Int](List(), "no_value").asJson
+  }
 
-  implicit val jsonEncoder: Encoder[Evaluator] =
-    evaluator =>
-      json"""{
-              "params": ${evaluator.params},
-              "type": ${evaluator.`type`}
-            }"""
+  private case class EvaluatorJson[T](params: List[T], `type`: String)
+
 }
