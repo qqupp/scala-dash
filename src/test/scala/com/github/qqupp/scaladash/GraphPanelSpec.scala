@@ -1,9 +1,10 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.model.alert.{Alert, Condition, EvaluatorType, ExecutionErrorState, NoDataState, Notification, OperatorType, Reducer}
+import com.github.qqupp.scaladash.model.alert.Evaluator.{GreaterThan, LessThan}
+import com.github.qqupp.scaladash.model.alert._
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
-import com.github.qqupp.scaladash.model.panel.{FillStyle, GraphPanel, StackStyle, YAxisFormat, YAxisMinimum}
+import com.github.qqupp.scaladash.model.panel._
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.literal._
@@ -221,11 +222,11 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
         .withAlert(
           Alert("a test alert", 55)
             .withCondition(
-              Condition(metric1, EvaluatorType.GreaterThan, 0)
+              Condition(metric1, GreaterThan(0))
                 .copy(datasourceId = 3)
             )
             .withCondition(
-              Condition(metric2, EvaluatorType.LessThan, 3)
+              Condition(metric2, LessThan(3))
                 .copy(operatorType = OperatorType.Or)
             )
         )
@@ -268,11 +269,11 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       .withAlert(
         Alert("a test alert", 55)
           .withCondition(
-            Condition(metric1, EvaluatorType.GreaterThan, 0)
+            Condition(metric1, GreaterThan(0))
               .copy(reducer = Reducer.Average)
           )
           .withCondition(
-            Condition(metric2, EvaluatorType.LessThan, 3)
+            Condition(metric2, LessThan(3))
               .copy(operatorType = OperatorType.Or)
               .copy(reducer = Reducer.Min)
           )
@@ -306,7 +307,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       .withMetric(metric2)
       .withAlert(
         Alert("a test alert", 55)
-          .withCondition(Condition(metric1, EvaluatorType.GreaterThan, 5))
+          .withCondition(Condition(metric1, GreaterThan(5)))
           .withNotification(Notification(1))
           .withNotification(Notification(2))
           .withNotification(Notification("abc"))
@@ -325,7 +326,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       .withAlert(
         Alert("a test alert", 55)
           .copy(message = Some("This is a test message"))
-          .withCondition(Condition(metric1, EvaluatorType.GreaterThan, 5))
+          .withCondition(Condition(metric1, GreaterThan(5)))
           .withNotification(Notification("abc"))
       )
 
@@ -342,7 +343,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       .withAlert(
         Alert("a test alert", 55)
           .copy(noDataState = NoDataState.Alerting)
-          .withCondition(Condition(metric1, EvaluatorType.GreaterThan, 5))
+          .withCondition(Condition(metric1, GreaterThan(5)))
           .withNotification(Notification("abc"))
       )
 
@@ -359,7 +360,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       .withAlert(
         Alert("a test alert", 55)
           .copy(executionErrorState = ExecutionErrorState.KeepState)
-          .withCondition(Condition(metric1, EvaluatorType.GreaterThan, 5))
+          .withCondition(Condition(metric1, GreaterThan(5)))
           .withNotification(Notification("abc"))
       )
 
