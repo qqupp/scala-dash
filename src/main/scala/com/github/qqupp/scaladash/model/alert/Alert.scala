@@ -1,5 +1,6 @@
 package com.github.qqupp.scaladash.model.alert
 
+import com.github.qqupp.scaladash.model.alert.OperatorType._
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.utils.JsonUtils._
 import io.circe.Json
@@ -17,8 +18,15 @@ final case class Alert(name: String,
   def withNotification(notification: Notification): Alert =
     copy(notifications = notifications ++ List(notification))
 
+  // multiple conditions are evaluated foldLeft ((A op B) op C)
   def withCondition(condition: Condition): Alert =
     this.copy(conditions = conditions ++ List(condition))
+
+  def andCondition(condition: Condition): Alert = opCondition(condition, And)
+  def orCondition(condition: Condition): Alert = opCondition(condition, Or)
+
+  private def opCondition(condition: Condition, opT: OperatorType): Alert =
+    withCondition(condition.copy(operatorType = opT))
 
   def build(metrics: List[(String, Metric)]): Json = {
 

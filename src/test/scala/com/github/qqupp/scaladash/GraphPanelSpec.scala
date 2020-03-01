@@ -225,9 +225,8 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
               Condition(metric1, GreaterThan(0))
                 .copy(datasourceId = 3)
             )
-            .withCondition(
+            .orCondition(
               Condition(metric2, LessThan(2.5))
-                .copy(operatorType = OperatorType.Or)
             )
         )
 
