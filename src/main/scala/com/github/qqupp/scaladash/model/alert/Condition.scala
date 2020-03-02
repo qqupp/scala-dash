@@ -1,10 +1,12 @@
 package com.github.qqupp.scaladash.model.alert
 
 import com.github.qqupp.scaladash.model.metric.Metric
+import com.github.qqupp.scaladash.model.time.Duration
+import com.github.qqupp.scaladash.model.time.Duration.Minutes
 import io.circe.Json
 import io.circe.literal._
 
-final case class Condition(metric: Metric, evaluator: Evaluator, reducer: Reducer, operatorType: OperatorType, datasourceId: Int) {
+final case class Condition(reducer: Reducer, metric: Metric, evaluator: Evaluator, duration: Duration,  operatorType: OperatorType, datasourceId: Int) {
 
   def build(toBuildMetrics: List[(String, Metric)]): Json = {
     val matchingMetric = toBuildMetrics.find{ case (_, candidateMetric)  => candidateMetric == metric}
@@ -22,7 +24,7 @@ final case class Condition(metric: Metric, evaluator: Evaluator, reducer: Reduce
       "query": {
         "datasourceId": $datasourceId,
         "model": $metricJson,
-        "params": [${s"${metricRefId}"}, "5m", "now"]
+        "params": [${s"${metricRefId}"}, $duration, "now"]
       }
       ,
       "reducer": {
@@ -41,6 +43,7 @@ object Condition {
     Condition(
       metric = metric,
       evaluator = evaluator,
+      duration = Minutes(5),
       operatorType = OperatorType.And,
       reducer = Reducer.Last,
       datasourceId = 1
