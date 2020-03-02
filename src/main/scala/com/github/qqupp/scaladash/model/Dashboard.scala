@@ -11,7 +11,8 @@ final case class Dashboard(title: String,
                            variables: List[Variable],
                            timeRange: TimeRange,
                            timeOptions: List[Duration],
-                           refreshIntervals: List[Duration]) {
+                           refreshIntervals: List[Duration],
+                           tags: List[String]) {
 
   def withVariable(variable: Variable): Dashboard =
     copy(variables = variables ++ List(variable))
@@ -39,7 +40,7 @@ final case class Dashboard(title: String,
     json"""{
                       "title": $title,
                       "originalTitle": $title,
-                      "tags": [],
+                      "tags": $tags,
                       "style": "dark",
                       "timezone": "browser",
                       "editable": true,
@@ -83,7 +84,8 @@ object Dashboard {
       variables = List.empty,
       timeRange = TimeRange.RelativeLast(Minutes(15)),
       timeOptions =  List(Minutes(5), Minutes(15), Hours(1), Hours(6), Hours(12), Hours(24), Days(2), Days(7), Days(30)),
-      refreshIntervals = List(Seconds(5), Seconds(10), Seconds(30), Minutes(1), Minutes(5), Minutes(15), Minutes(30), Hours(1), Hours(2), Days(1))
+      refreshIntervals = List(Seconds(5), Seconds(10), Seconds(30), Minutes(1), Minutes(5), Minutes(15), Minutes(30), Hours(1), Hours(2), Days(1)),
+      tags = List()
   )
 
 }

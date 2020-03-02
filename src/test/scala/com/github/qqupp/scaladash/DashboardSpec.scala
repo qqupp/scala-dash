@@ -103,6 +103,20 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
 
   }
 
+
+  it should "render with custom tags" in {
+    val dashboard =
+      Dashboard(title).copy(tags = List("myTag1", "myTag2"))
+    val dashboardJson = dashboard.build
+
+    val expectedTags =
+      json"""["myTag1", "myTag2"]"""
+
+    dashboardJson should containValueInPath(root.tags, expectedTags)
+
+  }
+
+
   it should "render with custom variable" in {
     val dashboard =
       Dashboard(title)
