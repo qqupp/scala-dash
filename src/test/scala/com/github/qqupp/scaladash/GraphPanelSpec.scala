@@ -190,7 +190,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
         json"""
               {
                         "evaluator": {
-                          "params": [2.5],
+                          "params": [2.54321],
                           "type": "lt"
                         }
                         ,
@@ -226,7 +226,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
                 .copy(datasourceId = 3)
             )
             .orCondition(
-              Condition(metric2, LessThan(2.5))
+              Condition(metric2, LessThan(2.54321))
             )
         )
 

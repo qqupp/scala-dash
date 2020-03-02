@@ -13,7 +13,7 @@ final case class Condition(metric: Metric, evaluator: Evaluator, reducer: Reduce
     val metricJson = matchingMetric.fold(json"{}"){ case (id, metricf) => metric.build(id)}
 
     json"""{
-      "evaluator": ${evaluator.asJson}
+      "evaluator": ${evaluator}
       ,
       "operator": {
         "type": $operatorType
