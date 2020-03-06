@@ -5,6 +5,7 @@ import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.utils.JsonUtils._
 import io.circe.Json
 import io.circe.literal._
+import io.circe.syntax._
 
 final case class Alert(name: String,
                        frequencySeconds: Int,
@@ -30,10 +31,14 @@ final case class Alert(name: String,
 
   def build(metrics: List[(String, Metric)]): Json = {
 
+    val conditionsJ: Json = conditions.map(_.build(metrics)).asJson
+    val executionErrorStateJ: Json = executionErrorState.asJson
+    val frequencySecondsJ: Json = Json.fromString(frequencySeconds.toString + "s")
+
     val alertJson = json"""{
-      "conditions": ${conditions.map(_.build(metrics))},
-      "executionErrorState": $executionErrorState,
-      "frequency": ${frequencySeconds.toString + "s"} ,
+      "conditions": $conditionsJ,
+      "executionErrorState": $executionErrorStateJ,
+      "frequency": $frequencySecondsJ ,
       "handler": 1,
       "name": $name,
       "noDataState": $noDataState,

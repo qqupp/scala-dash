@@ -10,6 +10,7 @@ import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonUtils._
 import io.circe.Json
 import io.circe.literal._
+import io.circe.syntax._
 
 final case class GraphPanel(title: String,
                             metrics: List[Metric],
@@ -49,8 +50,10 @@ final case class GraphPanel(title: String,
   def withMetrics(metrics: List[Metric]): GraphPanel =
     metrics.foldLeft(this)((acc, m) => acc.withMetric(m))
 
-  def build(panelId: Int, span: Int = 12): Json =
-    json"""
+  def build(panelId: Int, span: Int = 12): Json = {
+    val targetsJ: Json = (availableRefIds zip metrics).map{ case (id, metric) => metric.build(id) }.asJson
+
+      json"""
        {
          "title": $title,
          "error": false,
@@ -96,13 +99,14 @@ final case class GraphPanel(title: String,
            "value_type": "cumulative",
            "shared": false
           },
-         "targets": ${ (availableRefIds zip metrics).map{ case (id, metric) => metric.build(id) } },
+         "targets": $targetsJ ,
          "aliasColors": ${aliasColors},
          "seriesOverrides": $seriesOverrides,
          "links": []
   }"""
-    .addOpt("alert", alert.map(_.build((availableRefIds zip metrics))))
+      .addOpt("alert", alert.map(_.build((availableRefIds zip metrics))))
 
+  }
 }
 
 object GraphPanel {
