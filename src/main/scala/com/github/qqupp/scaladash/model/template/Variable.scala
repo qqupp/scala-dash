@@ -6,7 +6,10 @@ import io.circe.Encoder
 import io.circe.literal._
 
 
-sealed trait Variable
+sealed trait Variable { self =>
+  def name: String
+  def variable: String = "$" + self.name
+}
 
 object Variable {
 

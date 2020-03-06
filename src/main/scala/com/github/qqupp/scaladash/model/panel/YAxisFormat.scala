@@ -16,6 +16,7 @@ object YAxisFormat {
   case object Microseconds extends YAxisFormat
   case object Nanoseconds extends YAxisFormat
   case object Percent extends YAxisFormat
+  case object RequestsPerSecond extends YAxisFormat
 
   implicit val jsonEncoder: Encoder[YAxisFormat] =
       yAxisFormat =>
@@ -31,6 +32,7 @@ object YAxisFormat {
             case Microseconds => "µs"
             case Nanoseconds => "ns"
             case Percent =>  "percent"
+            case RequestsPerSecond => "reqps"
           }
         )
 
