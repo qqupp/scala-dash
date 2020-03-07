@@ -2,38 +2,24 @@ package com.github.qqupp.scaladash.model.panel
 
 import io.circe.{Encoder, Json}
 
-sealed trait YAxisFormat
+sealed class YAxisFormat(val value: String)
 
 object YAxisFormat {
 
-  case object NoFormat extends YAxisFormat
-  case object Short extends YAxisFormat
-  case object Bytes extends YAxisFormat
-  case object Bits extends YAxisFormat
-  case object BitsPerSecond extends YAxisFormat
-  case object Seconds extends YAxisFormat
-  case object Milliseconds extends YAxisFormat
-  case object Microseconds extends YAxisFormat
-  case object Nanoseconds extends YAxisFormat
-  case object Percent extends YAxisFormat
-  case object RequestsPerSecond extends YAxisFormat
+  case object NoFormat extends YAxisFormat( "none")
+  case object Short extends YAxisFormat( "short")
+  case object Bytes extends YAxisFormat( "bytes")
+  case object Bits extends YAxisFormat( "bits")
+  case object BitsPerSecond extends YAxisFormat( "bps")
+  case object Seconds extends YAxisFormat(  "s")
+  case object Milliseconds extends YAxisFormat( "ms")
+  case object Microseconds extends YAxisFormat( "µs")
+  case object Nanoseconds extends YAxisFormat( "ns")
+  case object Percent extends YAxisFormat(  "percent")
+  case object RequestsPerSecond extends YAxisFormat( "reqps")
 
   implicit val jsonEncoder: Encoder[YAxisFormat] =
       yAxisFormat =>
-        Json.fromString(
-          yAxisFormat match {
-            case NoFormat => "none"
-            case Short => "short"
-            case Bytes => "bytes"
-            case Bits => "bits"
-            case BitsPerSecond => "bps"
-            case Seconds =>  "s"
-            case Milliseconds => "ms"
-            case Microseconds => "µs"
-            case Nanoseconds => "ns"
-            case Percent =>  "percent"
-            case RequestsPerSecond => "reqps"
-          }
-        )
+        Json.fromString(yAxisFormat.value)
 
 }
