@@ -4,7 +4,7 @@ import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.model.panel.FillStyle.Unfilled
 import com.github.qqupp.scaladash.model.panel.StackStyle.Unstacked
-import com.github.qqupp.scaladash.model.panel.YAxisFormat.NoFormat
+import com.github.qqupp.scaladash.model.panel.YAxisFormat.Misc.NoFormat
 import com.github.qqupp.scaladash.model.panel.YAxisMinimum.Auto
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonUtils._
