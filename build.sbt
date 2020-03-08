@@ -12,6 +12,7 @@ lazy val root = (project in file("."))
     libraryDependencies ++= circe ++ scalaCheck ++ scalaCheckMagnolia ++ scalaTest,
     EndToEndTestSettings
   )
+  .enablePlugins(DockerComposePlugin)
 
 lazy val EndToEndTest = config("e2e").extend(Test)
 val EndToEndTestSettings =
