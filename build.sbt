@@ -6,9 +6,20 @@ ThisBuild / organization     := "com.github"
 ThisBuild / organizationName := "qqupp"
 
 lazy val root = (project in file("."))
+  .configs(EndToEndTest)
   .settings(
     name := "scaladash",
-    libraryDependencies ++= circe ++ scalaCheck ++ scalaCheckMagnolia ++ scalaTest
+    libraryDependencies ++= circe ++ scalaCheck ++ scalaCheckMagnolia ++ scalaTest,
+    EndToEndTestSettings
   )
+
+lazy val EndToEndTest = config("e2e").extend(Test)
+val EndToEndTestSettings =
+  inConfig(EndToEndTest)(Defaults.testSettings) ++ Seq(
+    EndToEndTest / fork := true,
+    EndToEndTest / parallelExecution := false,
+    libraryDependencies ++= sttp
+  )
+
 
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.

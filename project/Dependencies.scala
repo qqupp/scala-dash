@@ -8,6 +8,8 @@ object Dependencies {
 
   lazy val scalaCheckMagnolia = Seq("com.github.chocpanda" %% "scalacheck-magnolia" % "0.3.1" % "test")
   
+  lazy val sttp = Seq("com.softwaremill.sttp.client" %% "core" % "2.0.3" % "e2e")
+  
   val circeVersion = "0.13.0"
 
   lazy val circe = Seq(
