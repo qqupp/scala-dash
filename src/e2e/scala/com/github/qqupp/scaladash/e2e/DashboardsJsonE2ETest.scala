@@ -1,18 +1,14 @@
 package com.github.qqupp.scaladash.e2e
 
-import com.github.qqupp.scaladash.e2e.generators.MetricGen
-import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.model.panel._
-import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.model.{Dashboard, DashboardEnvelope, Row}
 import io.circe.Json
-import org.scalacheck.Arbitrary
+import org.scalacheck.magnolia._
 import org.scalatest.{FlatSpec, Matchers}
 import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 import sttp.client._
 import sttp.model.StatusCode
-import org.scalacheck.magnolia._
 
 
 class DashboardsJsonE2ETest extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
@@ -30,9 +26,10 @@ class DashboardsJsonE2ETest extends FlatSpec with Matchers with ScalaCheckDriven
 
   }
 
-  implicit lazy val mgen = Arbitrary(MetricGen.allValues)
   "A GraphPanel with Metric" should "be json compatible with grafana" in {
     forAll{ metric: List[Metric]=>
+
+      metric.foreach(println(_))
       val dashboard = Dashboard("GraphPanelMetricRNDTest").withRow(Row().withPanel(GraphPanel("TestPanel").withMetrics(metric)))
       val json = DashboardEnvelope.jsonFor(dashboard)
 
@@ -43,36 +40,10 @@ class DashboardsJsonE2ETest extends FlatSpec with Matchers with ScalaCheckDriven
   }
 
 
+
   "A GraphPanel" should "be json compatible with grafana" in {
-    final case class TestGraphPanel(title: String,
-                                    metrics: List[Metric],
-                                    yAxisFormat: YAxisFormat,
-                                    filled: FillStyle,
-                                    stacked: StackStyle,
-                                    minimum: YAxisMinimum,
-                                    span: Option[Int],
-                                    maximum: String,
-                                    lines: Boolean,
-                                    bars: Boolean,
-                                    points: Boolean
-    )
-
-
-    forAll{ panel: TestGraphPanel =>
-      val graphPanel =
-        GraphPanel(panel.title)
-          .copy(
-            metrics = panel.metrics,
-            yAxisFormat = panel.yAxisFormat,
-            filled = panel.filled,
-            stacked = panel.stacked,
-            minimum = panel.minimum,
-            span = panel.span,
-            lines = panel.lines,
-            bars = panel.bars,
-            points = panel.points
-          )
-      val dashboard = Dashboard("GraphPanelRNDTest").withRow(Row().withPanel(graphPanel))
+    forAll{ panel: GraphPanel =>
+      val dashboard = Dashboard("GraphPanelRNDTest").withRow(Row().withPanel(removeAlertsFrom(panel)))
       val json = DashboardEnvelope.jsonFor(dashboard)
 
       val response = postJsonToLocalGrafana(json)
@@ -93,4 +64,7 @@ class DashboardsJsonE2ETest extends FlatSpec with Matchers with ScalaCheckDriven
     implicit val backend = HttpURLConnectionBackend()
     request.send()
   }
+
+  private def removeAlertsFrom(panel: GraphPanel): Panel = panel.copy(alert = None)
+
 }
