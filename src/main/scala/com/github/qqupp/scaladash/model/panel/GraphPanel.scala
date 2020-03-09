@@ -14,6 +14,7 @@ import io.circe.syntax._
 
 final case class GraphPanel(title: String,
                             metrics: List[Metric],
+                            drawModes: DrawModes,
                             yAxisFormat: YAxisFormat,
                             filled: FillStyle,
                             stacked: StackStyle,
@@ -22,9 +23,6 @@ final case class GraphPanel(title: String,
                             span: Option[Int],
                             maximum: String,
                             datasource: Option[Datasource],
-                            lines: Boolean,
-                            bars: Boolean,
-                            points: Boolean,
                             alert: Option[Alert]
                       ) extends Panel {
 
@@ -70,12 +68,9 @@ final case class GraphPanel(title: String,
                  "threshold1Color": "rgba(216, 200, 27, 0.27)",
                  "threshold2Color": "rgba(234, 112, 112, 0.22)"
                  },
-         "lines": $lines,
          "fill": $filled,
          "linewidth": 1,
-         "points": $points,
          "pointradius": 5,
-         "bars": $bars,
          "stack": $stacked,
          "percentage": false,
          "legend": {
@@ -97,7 +92,7 @@ final case class GraphPanel(title: String,
          "aliasColors": ${aliasColors},
          "seriesOverrides": $seriesOverrides,
          "links": []
-  }"""
+  }""".deepMerge(drawModes.asJson)
       .addOpt("alert", alert.map(_.build((availableRefIds zip metrics))))
 
   }
@@ -109,6 +104,7 @@ object GraphPanel {
     GraphPanel(
       title = title,
       metrics = List.empty,
+      drawModes = DrawModes(),
       yAxisFormat = NoFormat,
       filled = Unfilled,
       stacked = Unstacked,
@@ -117,9 +113,6 @@ object GraphPanel {
       span = None,
       maximum = "",
       datasource = None,
-      lines = true,
-      bars = false,
-      points = false,
       alert = None
     )
 }

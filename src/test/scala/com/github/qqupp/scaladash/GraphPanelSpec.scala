@@ -111,27 +111,14 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
     }
   }
 
-  it should "render lines" in {
-    forAll { lines: Boolean =>
-      val jsonPanel = GraphPanel(title).copy(lines = lines).build(panelId)
 
-      jsonPanel should containKeyValue("lines", lines)
-    }
-  }
+  it should "render bars, lines, and points" in {
+    forAll { drawModes: DrawModes =>
+      val jsonPanel = GraphPanel(title).copy(drawModes = drawModes).build(panelId)
 
-  it should "render bars" in {
-    forAll { bars: Boolean =>
-      val jsonPanel = GraphPanel(title).copy(bars = bars).build(panelId)
-
-      jsonPanel should containKeyValue("bars", bars)
-    }
-  }
-
-  it should "render points" in {
-    forAll { points: Boolean =>
-      val jsonPanel = GraphPanel(title).copy(points = points).build(panelId)
-
-      jsonPanel should containKeyValue("points", points)
+      jsonPanel should containKeyValue("bars", drawModes.bars.value)
+      jsonPanel should containKeyValue("lines", drawModes.lines.value)
+      jsonPanel should containKeyValue("points", drawModes.points.value)
     }
   }
 
