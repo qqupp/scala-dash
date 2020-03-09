@@ -1,5 +1,6 @@
 package com.github.qqupp.scaladash.e2e
 
+import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.model.panel._
 import com.github.qqupp.scaladash.model.{Dashboard, DashboardEnvelope, Row}
@@ -28,8 +29,6 @@ class DashboardsJsonE2ETest extends FlatSpec with Matchers with ScalaCheckDriven
 
   "A GraphPanel with Metric" should "be json compatible with grafana" in {
     forAll{ metric: List[Metric]=>
-
-      metric.foreach(println(_))
       val dashboard = Dashboard("GraphPanelMetricRNDTest").withRow(Row().withPanel(GraphPanel("TestPanel").withMetrics(metric)))
       val json = DashboardEnvelope.jsonFor(dashboard)
 
@@ -38,8 +37,6 @@ class DashboardsJsonE2ETest extends FlatSpec with Matchers with ScalaCheckDriven
       response.code shouldBe StatusCode.Ok
     }
   }
-
-
 
   "A GraphPanel" should "be json compatible with grafana" in {
     forAll{ panel: GraphPanel =>
@@ -51,8 +48,6 @@ class DashboardsJsonE2ETest extends FlatSpec with Matchers with ScalaCheckDriven
       response.code shouldBe StatusCode.Ok
     }
   }
-
-
 
   private def postJsonToLocalGrafana(json: Json): Identity[Response[Either[String, String]]] = {
     val request =
