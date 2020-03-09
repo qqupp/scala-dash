@@ -9,7 +9,7 @@ lazy val root = (project in file("."))
   .configs(EndToEndTest)
   .settings(
     name := "scaladash",
-    libraryDependencies ++= circe ++ scalaCheck ++ scalaCheckMagnolia ++ scalaTest,
+    libraryDependencies ++= circe ++ scalaCheck ++ scalaCheckMagnolia ++ scalaTest ++ diffson,
     EndToEndTestSettings
   )
   .enablePlugins(DockerComposePlugin)
