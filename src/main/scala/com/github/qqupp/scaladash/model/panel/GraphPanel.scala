@@ -25,10 +25,12 @@ final case class GraphPanel(title: String,
                             lines: Boolean,
                             bars: Boolean,
                             points: Boolean,
-                            availableRefIds: List[String],
-                            seriesOverrides: List[Json],
                             alert: Option[Alert]
                       ) extends Panel {
+
+  private val availableRefIds = (65 to 91).map(_.toChar.toString).toList
+  private val seriesOverrides: List[Json] = List()
+
 
   def withAlert(alert: Alert): GraphPanel =
     this.copy(alert = Some(alert))
@@ -36,15 +38,7 @@ final case class GraphPanel(title: String,
   def withMetric(metric: Metric): GraphPanel = {
     val newMetrics = metrics ++ List(metric)
 
-    val newSeriesOverrides =
-      metric.rightYAxisMetricName.fold(seriesOverrides){ name =>
-        seriesOverrides ++ List(json"""{
-                                         "alias": $name,
-                                         "yaxis": 2
-                                      }""")
-      }
-
-    this.copy(metrics = newMetrics, seriesOverrides = newSeriesOverrides)
+    this.copy(metrics = newMetrics)
   }
 
   def withMetrics(metrics: List[Metric]): GraphPanel =
@@ -126,8 +120,6 @@ object GraphPanel {
       lines = true,
       bars = false,
       points = false,
-      availableRefIds = (65 to 91).map(_.toChar.toString).toList,
-      seriesOverrides = List.empty,
       alert = None
     )
 }
