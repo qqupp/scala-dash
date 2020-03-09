@@ -68,9 +68,6 @@ final case class GraphPanel(title: String,
                  "threshold1Color": "rgba(216, 200, 27, 0.27)",
                  "threshold2Color": "rgba(234, 112, 112, 0.22)"
                  },
-         "fill": $filled,
-         "linewidth": 1,
-         "pointradius": 5,
          "stack": $stacked,
          "percentage": false,
          "legend": {
@@ -83,7 +80,6 @@ final case class GraphPanel(title: String,
             "avg": false
          },
          "nullPointMode": "connected",
-         "steppedLine": false,
          "tooltip": {
            "value_type": "cumulative",
            "shared": false

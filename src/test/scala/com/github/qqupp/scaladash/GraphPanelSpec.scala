@@ -88,7 +88,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       //jsonPanel should containKeyValue("fill", "filled") to verify
       jsonPanel should containKeyValue("linewidth", 1)
       jsonPanel should containKeyValue("points", false)
-      jsonPanel should containKeyValue("pointradius", 5)
+      //jsonPanel should containKeyValue("pointradius", 5)
       jsonPanel should containKeyValue("bars", false)
       jsonPanel should containKeyValue("stack", stacked)
       jsonPanel should containKeyValue("percentage", false)
