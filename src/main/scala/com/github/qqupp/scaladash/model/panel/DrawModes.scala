@@ -19,12 +19,12 @@ object DrawModes {
   case object NoLines extends LinesMode
   final case class Lines(width: Int, fill: FillLine, staircase: Boolean) extends LinesMode
 
-  sealed abstract class FillLine(fill: Int, fillGradient: Int)
+  sealed abstract class FillLine(val fill: Int, val fillGradient: Int)
   case object NoFill extends FillLine(0, 0)
-  final case class Fil(fill: Int, fillGradient: Int)
+  final case class Fill(override val fill: Int, override val fillGradient: Int) extends FillLine(fill, fillGradient)
 
   sealed trait PointsMode
   case object NoPoints extends PointsMode
-  final case class Points(raidus: Double) extends PointsMode
+  final case class Points(radius: Double) extends PointsMode
 
 }
