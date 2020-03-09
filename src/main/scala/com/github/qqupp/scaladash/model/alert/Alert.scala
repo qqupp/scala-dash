@@ -52,10 +52,10 @@ final case class Alert(name: String,
 
 object Alert {
 
-  def apply(name: String, frequencySeconds: Int): Alert =
+  def apply(name: String, message: String = "", frequencySeconds: Int = 30): Alert =
     Alert(name = name,
       frequencySeconds = frequencySeconds,
-      message = None,
+      message = if (message.isEmpty) None else Some(message),
       noDataState = NoDataState.NoData,
       executionErrorState = ExecutionErrorState.Alerting,
       conditions = List.empty,

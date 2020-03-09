@@ -220,7 +220,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
         .withMetric(metric1)
         .withMetric(metric2)
         .withAlert(
-          Alert("a test alert", 55)
+          Alert("a test alert", "", 55)
             .withCondition(
               Condition(metric1, GreaterThan(0))
                 .copy(datasourceId = 3)
@@ -266,7 +266,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       .withMetric(metric1)
       .withMetric(metric2)
       .withAlert(
-        Alert("a test alert", 55)
+        Alert("a test alert", "", 55)
           .withCondition(
             Condition(metric1, GreaterThan(0))
               .copy(reducer = Reducer.Average)
@@ -305,7 +305,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       .withMetric(metric1)
       .withMetric(metric2)
       .withAlert(
-        Alert("a test alert", 55)
+        Alert("a test alert", "", 55)
           .withCondition(Condition(metric1, GreaterThan(5)))
           .withNotification(Notification(1))
           .withNotification(Notification(2))
@@ -323,8 +323,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
     val panel = GraphPanel(title)
       .withMetric(metric1)
       .withAlert(
-        Alert("a test alert", 55)
-          .copy(message = Some("This is a test message"))
+        Alert("a test alert","This is a test message",  55)
           .withCondition(Condition(metric1, GreaterThan(5)))
           .withNotification(Notification("abc"))
       )
@@ -340,7 +339,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
     val panel = GraphPanel(title)
       .withMetric(metric1)
       .withAlert(
-        Alert("a test alert", 55)
+        Alert("a test alert", "", 55)
           .copy(noDataState = NoDataState.Alerting)
           .withCondition(Condition(metric1, GreaterThan(5)))
           .withNotification(Notification("abc"))
@@ -357,7 +356,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
     val panel = GraphPanel(title)
       .withMetric(metric1)
       .withAlert(
-        Alert("a test alert", 55)
+        Alert("a test alert", "", 55)
           .copy(executionErrorState = ExecutionErrorState.KeepState)
           .withCondition(Condition(metric1, GreaterThan(5)))
           .withNotification(Notification("abc"))
