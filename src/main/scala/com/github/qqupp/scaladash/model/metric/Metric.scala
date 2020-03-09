@@ -4,7 +4,7 @@ import com.github.qqupp.scaladash.utils.JsonUtils._
 import io.circe.Json
 import io.circe.literal._
 
-sealed trait Metric {
+sealed trait Metric extends Product with Serializable{
   def rightYAxisMetricName: Option[String]
   def build(refId: String): Json
 }
