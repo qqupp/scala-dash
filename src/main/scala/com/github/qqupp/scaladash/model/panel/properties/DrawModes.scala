@@ -11,7 +11,7 @@ final case class DrawModes(bars: BarsMode, lines: LinesMode, points: PointsMode)
 
 object DrawModes {
 
-  def apply(): DrawModes = properties.DrawModes(
+  val default: DrawModes = properties.DrawModes(
     bars = NoBars,
     lines = Lines(1, NoFill, false),
     points = NoPoints

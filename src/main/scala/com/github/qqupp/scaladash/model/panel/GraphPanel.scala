@@ -14,7 +14,7 @@ import io.circe.syntax._
 
 final case class GraphPanel(title: String,
                             metrics: List[Metric],
-                            drawModes: DrawModes,
+                            visualization: Visualization,
                             yAxisFormat: YAxisFormat,
                             stacked: StackStyle,
                             minimum: YAxisMinimum,
@@ -24,6 +24,11 @@ final case class GraphPanel(title: String,
                             datasource: Option[Datasource],
                             alert: Option[Alert]
                       ) extends Panel {
+
+  def withDrawModes(drawModes: DrawModes): GraphPanel = {
+    val newVisualization = this.visualization.copy(drawModes = drawModes)
+    copy(visualization = newVisualization)
+  }
 
   private val availableRefIds = (65 to 91).map(_.toChar.toString).toList
   private val seriesOverrides: List[Json] = List()
@@ -87,7 +92,7 @@ final case class GraphPanel(title: String,
          "aliasColors": ${aliasColors},
          "seriesOverrides": $seriesOverrides,
          "links": []
-  }""".deepMerge(drawModes.asJson)
+  }""".deepMerge(visualization.drawModes.asJson)
       .addOpt("alert", alert.map(_.build((availableRefIds zip metrics))))
 
   }
@@ -99,7 +104,7 @@ object GraphPanel {
     GraphPanel(
       title = title,
       metrics = List.empty,
-      drawModes = DrawModes(),
+      visualization = Visualization.default,
       yAxisFormat = NoFormat,
       stacked = Unstacked,
       minimum = Auto,

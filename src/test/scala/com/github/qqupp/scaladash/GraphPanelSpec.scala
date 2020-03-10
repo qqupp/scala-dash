@@ -114,7 +114,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
 
   it should "render bars, lines, and points" in {
     forAll { drawModes: DrawModes =>
-      val jsonPanel = GraphPanel(title).copy(drawModes = drawModes).build(panelId)
+      val jsonPanel = GraphPanel(title).withDrawModes(drawModes).build(panelId)
 
       jsonPanel should containKeyValue("bars", drawModes.bars.value)
       jsonPanel should containKeyValue("lines", drawModes.lines.value)
