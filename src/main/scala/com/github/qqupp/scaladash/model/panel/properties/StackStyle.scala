@@ -2,20 +2,15 @@ package com.github.qqupp.scaladash.model.panel.properties
 
 import io.circe.{Encoder, Json}
 
-sealed trait StackStyle
+sealed abstract class StackStyle(val value: Boolean)
 
 object StackStyle {
 
-  case object Stacked extends StackStyle
-  case object Unstacked extends StackStyle
+  case object Stacked extends StackStyle(true)
+  case object Unstacked extends StackStyle(false)
 
   implicit val jsonEncoder: Encoder[StackStyle] =
     stackStyle =>
-      Json.fromBoolean(
-        stackStyle match {
-          case Stacked => true
-          case Unstacked => false
-        }
-      )
+      Json.fromBoolean(stackStyle.value)
 
 }
