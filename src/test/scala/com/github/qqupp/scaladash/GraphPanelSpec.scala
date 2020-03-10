@@ -5,6 +5,7 @@ import com.github.qqupp.scaladash.model.alert._
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
 import com.github.qqupp.scaladash.model.panel._
+import com.github.qqupp.scaladash.model.panel.properties.{DrawModes, StackMode, YAxisFormat, YAxisMinimum}
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.literal._
@@ -30,7 +31,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render json" in {
-    forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, filled: FillStyle, stacked: StackStyle, minimum: YAxisMinimum) =>
+    forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, minimum: YAxisMinimum) =>
 
       val girdJson =
         json"""{
@@ -55,27 +56,11 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
         "avg": false
       }"""
 
-      val tooltipJson =
-        json"""{
-          "value_type": "cumulative",
-          "shared": false
-        }"""
-
-      def seriesOverridesJson[T: Encoder](ts: Option[T]*): Json =
-        ts.collect { case Some(t) =>
-          json"""{
-                  "alias": ${t},
-                  "yaxis": 2
-                  }"""
-        }.asJson
-
 
       val panel =
         GraphPanel(title)
           .withMetrics(List(metric1, metric2))
           .copy(yAxisFormat = yAxis)
-          .copy(filled = filled)
-          .copy(stacked = stacked)
           .copy(minimum = minimum)
           .copy(span = Some(span))
 
@@ -96,18 +81,26 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       //jsonPanel should containKeyValue("fill", "filled") to verify
       jsonPanel should containKeyValue("linewidth", 1)
       jsonPanel should containKeyValue("points", false)
-      jsonPanel should containKeyValue("pointradius", 5)
+      //jsonPanel should containKeyValue("pointradius", 5)
       jsonPanel should containKeyValue("bars", false)
-      jsonPanel should containKeyValue("stack", stacked)
       jsonPanel should containKeyValue("percentage", false)
       jsonPanel should containKeyValue("legend", legendJson)
       jsonPanel should containKeyValue("nullPointMode", "connected")
       jsonPanel should containKeyValue("steppedLine", false)
-      jsonPanel should containKeyValue("tooltip", tooltipJson)
       jsonPanel should containKeyValue("targets", List(metric1.build("A"), metric2.build("B")))
       jsonPanel should containKeyValue("aliasColors", Json.arr()) // to verify list vs obj
-      jsonPanel should containKeyValue("seriesOverrides", seriesOverridesJson(metric1.rightYAxisMetricName, metric2.rightYAxisMetricName))
       jsonPanel should containKeyValue("links", Json.arr())
+    }
+  }
+
+  it should "render stack values" in {
+    forAll { stackStyle: StackMode =>
+      val panel =
+        GraphPanel(title)
+
+      val paneWithStackStyle = panel.copy(visualization = panel.visualization.copy(stackModes = stackStyle))
+
+      paneWithStackStyle.build(1) should containKeyValue("stack", stackStyle.value)
     }
   }
 
@@ -120,27 +113,14 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
     }
   }
 
-  it should "render lines" in {
-    forAll { lines: Boolean =>
-      val jsonPanel = GraphPanel(title).copy(lines = lines).build(panelId)
 
-      jsonPanel should containKeyValue("lines", lines)
-    }
-  }
+  it should "render bars, lines, and points" in {
+    forAll { drawModes: DrawModes =>
+      val jsonPanel = GraphPanel(title).withDrawModes(drawModes).build(panelId)
 
-  it should "render bars" in {
-    forAll { bars: Boolean =>
-      val jsonPanel = GraphPanel(title).copy(bars = bars).build(panelId)
-
-      jsonPanel should containKeyValue("bars", bars)
-    }
-  }
-
-  it should "render points" in {
-    forAll { points: Boolean =>
-      val jsonPanel = GraphPanel(title).copy(points = points).build(panelId)
-
-      jsonPanel should containKeyValue("points", points)
+      jsonPanel should containKeyValue("bars", drawModes.bars.value)
+      jsonPanel should containKeyValue("lines", drawModes.lines.value)
+      jsonPanel should containKeyValue("points", drawModes.points.value)
     }
   }
 

@@ -2,10 +2,9 @@ package com.github.qqupp.scaladash.model.panel
 
 import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
-import com.github.qqupp.scaladash.model.panel.FillStyle.Unfilled
-import com.github.qqupp.scaladash.model.panel.StackStyle.Unstacked
-import com.github.qqupp.scaladash.model.panel.YAxisFormat.Misc.NoFormat
-import com.github.qqupp.scaladash.model.panel.YAxisMinimum.Auto
+import com.github.qqupp.scaladash.model.panel.properties.YAxisFormat.Misc.NoFormat
+import com.github.qqupp.scaladash.model.panel.properties.YAxisMinimum.Auto
+import com.github.qqupp.scaladash.model.panel.properties._
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonUtils._
 import io.circe.Json
@@ -14,21 +13,24 @@ import io.circe.syntax._
 
 final case class GraphPanel(title: String,
                             metrics: List[Metric],
+                            visualization: GraphPanelVisualization,
                             yAxisFormat: YAxisFormat,
-                            filled: FillStyle,
-                            stacked: StackStyle,
                             minimum: YAxisMinimum,
-                            aliasColors: List[AliasColor],
                             span: Option[Int],
                             maximum: String,
                             datasource: Option[Datasource],
-                            lines: Boolean,
-                            bars: Boolean,
-                            points: Boolean,
-                            availableRefIds: List[String],
-                            seriesOverrides: List[Json],
                             alert: Option[Alert]
                       ) extends Panel {
+
+  def withDrawModes(drawModes: DrawModes): GraphPanel = {
+    val newVisualization = this.visualization.copy(drawModes = drawModes)
+    copy(visualization = newVisualization)
+  }
+
+  private val aliasColors: List[AliasColor] = List()
+  private val availableRefIds = (65 to 91).map(_.toChar.toString).toList
+  private val seriesOverrides: List[Json] = List()
+
 
   def withAlert(alert: Alert): GraphPanel =
     this.copy(alert = Some(alert))
@@ -36,15 +38,7 @@ final case class GraphPanel(title: String,
   def withMetric(metric: Metric): GraphPanel = {
     val newMetrics = metrics ++ List(metric)
 
-    val newSeriesOverrides =
-      metric.rightYAxisMetricName.fold(seriesOverrides){ name =>
-        seriesOverrides ++ List(json"""{
-                                         "alias": $name,
-                                         "yaxis": 2
-                                      }""")
-      }
-
-    this.copy(metrics = newMetrics, seriesOverrides = newSeriesOverrides)
+    this.copy(metrics = newMetrics)
   }
 
   def withMetrics(metrics: List[Metric]): GraphPanel =
@@ -76,14 +70,6 @@ final case class GraphPanel(title: String,
                  "threshold1Color": "rgba(216, 200, 27, 0.27)",
                  "threshold2Color": "rgba(234, 112, 112, 0.22)"
                  },
-         "lines": $lines,
-         "fill": $filled,
-         "linewidth": 1,
-         "points": $points,
-         "pointradius": 5,
-         "bars": $bars,
-         "stack": $stacked,
-         "percentage": false,
          "legend": {
             "show": true,
             "values": false,
@@ -93,17 +79,11 @@ final case class GraphPanel(title: String,
             "total": false,
             "avg": false
          },
-         "nullPointMode": "connected",
-         "steppedLine": false,
-         "tooltip": {
-           "value_type": "cumulative",
-           "shared": false
-          },
          "targets": $targetsJ ,
          "aliasColors": ${aliasColors},
          "seriesOverrides": $seriesOverrides,
          "links": []
-  }"""
+  }""".deepMerge(visualization.asJson)
       .addOpt("alert", alert.map(_.build((availableRefIds zip metrics))))
 
   }
@@ -115,19 +95,12 @@ object GraphPanel {
     GraphPanel(
       title = title,
       metrics = List.empty,
+      visualization = GraphPanelVisualization.default,
       yAxisFormat = NoFormat,
-      filled = Unfilled,
-      stacked = Unstacked,
       minimum = Auto,
-      aliasColors = List.empty,
       span = None,
       maximum = "",
       datasource = None,
-      lines = true,
-      bars = false,
-      points = false,
-      availableRefIds = (65 to 91).map(_.toChar.toString).toList,
-      seriesOverrides = List.empty,
       alert = None
     )
 }
