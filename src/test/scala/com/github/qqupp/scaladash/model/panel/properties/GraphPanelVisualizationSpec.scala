@@ -82,4 +82,13 @@ class GraphPanelVisualizationSpec extends FlatSpec with Matchers {
     visualization.asJson should containValueInPath(root.tooltip.value_type, "cumulative")
   }
 
+  it should "produce json with NullValuesMode" in {
+    val customNullValue = NullValueMode.Connected
+    val visualization =
+      GraphPanelVisualization.default
+        .copy(nullValuesMode = customNullValue)
+
+    visualization.asJson should containKeyValue("nullPointMode", "connected")
+  }
+
 }

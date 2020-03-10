@@ -79,7 +79,6 @@ final case class GraphPanel(title: String,
             "total": false,
             "avg": false
          },
-         "nullPointMode": "connected",
          "targets": $targetsJ ,
          "aliasColors": ${aliasColors},
          "seriesOverrides": $seriesOverrides,

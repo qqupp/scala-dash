@@ -15,7 +15,7 @@ object GraphPanelVisualization {
       DrawModes.default,
       HooverTooltip.default,
       StackMode.Unstacked,
-      NullValueMode.NullAsNull
+      NullValueMode.Connected
     )
 
   implicit val jsonEncode: Encoder[GraphPanelVisualization] =
@@ -23,5 +23,6 @@ object GraphPanelVisualization {
       v.drawModes.asJson
         .deepMerge(v.stackModes.asJson)
         .deepMerge(v.hooverTooltip.asJson)
+        .deepMerge(v.nullValuesMode.asJson)
 
 }
