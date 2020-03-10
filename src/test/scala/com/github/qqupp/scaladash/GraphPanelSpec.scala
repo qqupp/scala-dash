@@ -5,7 +5,7 @@ import com.github.qqupp.scaladash.model.alert._
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
 import com.github.qqupp.scaladash.model.panel._
-import com.github.qqupp.scaladash.model.panel.properties.{DrawModes, StackStyle, YAxisFormat, YAxisMinimum}
+import com.github.qqupp.scaladash.model.panel.properties.{DrawModes, StackMode, YAxisFormat, YAxisMinimum}
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.literal._
@@ -31,7 +31,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render json" in {
-    forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, stacked: StackStyle, minimum: YAxisMinimum) =>
+    forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, minimum: YAxisMinimum) =>
 
       val girdJson =
         json"""{
@@ -67,7 +67,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
         GraphPanel(title)
           .withMetrics(List(metric1, metric2))
           .copy(yAxisFormat = yAxis)
-          .copy(stacked = stacked)
           .copy(minimum = minimum)
           .copy(span = Some(span))
 
@@ -90,7 +89,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       jsonPanel should containKeyValue("points", false)
       //jsonPanel should containKeyValue("pointradius", 5)
       jsonPanel should containKeyValue("bars", false)
-      jsonPanel should containKeyValue("stack", stacked)
       jsonPanel should containKeyValue("percentage", false)
       jsonPanel should containKeyValue("legend", legendJson)
       jsonPanel should containKeyValue("nullPointMode", "connected")
@@ -99,6 +97,17 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       jsonPanel should containKeyValue("targets", List(metric1.build("A"), metric2.build("B")))
       jsonPanel should containKeyValue("aliasColors", Json.arr()) // to verify list vs obj
       jsonPanel should containKeyValue("links", Json.arr())
+    }
+  }
+
+  it should "render stack values" in {
+    forAll { stackStyle: StackMode =>
+      val panel =
+        GraphPanel(title)
+
+      val paneWithStackStyle = panel.copy(visualization = panel.visualization.copy(stackModes = stackStyle))
+
+      paneWithStackStyle.build(1) should containKeyValue("stack", stackStyle.value)
     }
   }
 
