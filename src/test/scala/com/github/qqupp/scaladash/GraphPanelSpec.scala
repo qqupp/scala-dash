@@ -5,7 +5,7 @@ import com.github.qqupp.scaladash.model.alert._
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
 import com.github.qqupp.scaladash.model.panel._
-import com.github.qqupp.scaladash.model.panel.properties.{DrawModes, StackMode, YAxisUnit, YAxisValue}
+import com.github.qqupp.scaladash.model.panel.properties.{DrawModes, StackMode, YAxisUnit, AxisValue}
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.literal._
@@ -31,7 +31,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render json" in {
-    forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisUnit, minimum: YAxisValue) =>
+    forAll { (metric1: Metric, metric2: Metric, minimum: AxisValue) =>
 
       val girdJson =
         json"""{
@@ -60,7 +60,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       val panel =
         GraphPanel(title)
           .withMetrics(List(metric1, metric2))
-          .copy(yAxisFormat = yAxis)
           .copy(minimum = minimum)
           .copy(span = Some(span))
 
@@ -74,9 +73,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       jsonPanel should containKeyValue("id", panelId)
       jsonPanel should containKeyValue("datasource", Json.Null)
       jsonPanel should containKeyValue("renderer", "flot")
-      jsonPanel should containKeyValue("x-axis", true)
-      jsonPanel should containKeyValue("y-axis", true)
-      jsonPanel should containKeyValue("y_formats", List(yAxis, yAxis))
       jsonPanel should containKeyValue("grid", girdJson)
       //jsonPanel should containKeyValue("fill", "filled") to verify
       jsonPanel should containKeyValue("linewidth", 1)

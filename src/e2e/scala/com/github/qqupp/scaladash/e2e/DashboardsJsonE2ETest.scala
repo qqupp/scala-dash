@@ -1,5 +1,7 @@
 package com.github.qqupp.scaladash.e2e
 
+import java.io.File
+
 import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.model.panel._
@@ -43,6 +45,7 @@ class DashboardsJsonE2ETest extends FlatSpec with Matchers with ScalaCheckDriven
       val dashboard = Dashboard("GraphPanelRNDTest").withRow(Row().withPanel(removeAlertsFrom(panel)))
       val json = DashboardEnvelope.jsonFor(dashboard)
 
+      saveToFile(json.toString())
       val response = postJsonToLocalGrafana(json)
 
       response.code shouldBe StatusCode.Ok
@@ -58,6 +61,11 @@ class DashboardsJsonE2ETest extends FlatSpec with Matchers with ScalaCheckDriven
 
     implicit val backend = HttpURLConnectionBackend()
     request.send()
+  }
+
+  import java.io.PrintWriter
+  private def saveToFile(s: String) = {
+    new PrintWriter(new File("/tmp/dashboard.json")) { write(s); close }
   }
 
   private def removeAlertsFrom(panel: GraphPanel): Panel = panel.copy(alert = None)
