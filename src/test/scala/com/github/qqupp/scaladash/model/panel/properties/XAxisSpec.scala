@@ -33,7 +33,6 @@ class XAxisSpec extends FlatSpec with Matchers {
     axisJson should containKeyValue("max", 100)
 
     axis.copy(numberOfbuckets = Auto).asJson should containKeyValue("buckets", Json.Null)
-
   }
 
 }
