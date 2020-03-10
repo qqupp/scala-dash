@@ -56,12 +56,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
         "avg": false
       }"""
 
-      val tooltipJson =
-        json"""{
-          "value_type": "cumulative",
-          "shared": false
-        }"""
-
 
       val panel =
         GraphPanel(title)
@@ -93,7 +87,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       jsonPanel should containKeyValue("legend", legendJson)
       jsonPanel should containKeyValue("nullPointMode", "connected")
       jsonPanel should containKeyValue("steppedLine", false)
-      jsonPanel should containKeyValue("tooltip", tooltipJson)
       jsonPanel should containKeyValue("targets", List(metric1.build("A"), metric2.build("B")))
       jsonPanel should containKeyValue("aliasColors", Json.arr()) // to verify list vs obj
       jsonPanel should containKeyValue("links", Json.arr())

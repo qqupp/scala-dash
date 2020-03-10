@@ -2,6 +2,7 @@ package com.github.qqupp.scaladash.model.panel.properties
 
 import io.circe.{Encoder, Json, JsonObject}
 import io.circe.syntax._
+import io.circe.literal._
 
 sealed abstract class StackMode(val value: Boolean, val percent: Boolean)
 
@@ -14,8 +15,13 @@ object StackMode {
 
   implicit val jsonEncoder: Encoder[StackMode] =
     stackMode =>
-      JsonObject(
-        "stack" -> Json.fromBoolean(stackMode.value),
-      ).asJson
+      json"""{
+          "stack": ${stackMode.value},
+          "percentage" : ${stackMode.percent},
+          "tooltip": {
+            "value_type": "individual"
+          }
+        }
+      """
 
 }

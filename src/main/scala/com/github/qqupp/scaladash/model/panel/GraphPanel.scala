@@ -80,10 +80,6 @@ final case class GraphPanel(title: String,
             "avg": false
          },
          "nullPointMode": "connected",
-         "tooltip": {
-           "value_type": "cumulative",
-           "shared": false
-          },
          "targets": $targetsJ ,
          "aliasColors": ${aliasColors},
          "seriesOverrides": $seriesOverrides,
