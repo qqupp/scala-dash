@@ -33,6 +33,7 @@ class YAxisSpec extends FlatSpec with Matchers {
       ).asJson
 
     axysJson should containKeyValue("show", false)
+    axysJson should containKeyValue("format", "tflops")
     axysJson should containKeyValue("min", -3.1234)
     axysJson should containKeyValue("max", 33194.48)
     axysJson should containKeyValue("decimals", 3)

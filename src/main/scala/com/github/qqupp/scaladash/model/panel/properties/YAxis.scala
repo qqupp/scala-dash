@@ -6,14 +6,14 @@ import com.github.qqupp.scaladash.model.panel.properties.YAxisValue.Auto
 import io.circe.Encoder
 import io.circe.generic.semiauto._
 
-final case class YAxis(show: Boolean, unit: YAxisUnit, logBase: YAxisScale, min: YAxisValue, max: YAxisValue, label: String, decimals: Option[Int])
+final case class YAxis(show: Boolean, format: YAxisUnit, logBase: YAxisScale, min: YAxisValue, max: YAxisValue, label: String, decimals: Option[Int])
 
 object YAxis {
 
-  def apply(unit: YAxisUnit = NoFormat, show: Boolean = true): YAxis =
+  def apply(format: YAxisUnit = NoFormat, show: Boolean = true): YAxis =
     YAxis(
       show = show,
-      unit = unit,
+      format = format,
       logBase = Linear,
       min = Auto,
       max = Auto,
