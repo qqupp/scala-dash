@@ -2,5 +2,4 @@
 *.log
 target/
 .idea/
-target/
 dist/
