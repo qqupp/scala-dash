@@ -2,7 +2,6 @@ package com.github.qqupp.scaladash.model.panel
 
 import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
-import com.github.qqupp.scaladash.model.panel.properties.StackMode.Unstacked
 import com.github.qqupp.scaladash.model.panel.properties.YAxisFormat.Misc.NoFormat
 import com.github.qqupp.scaladash.model.panel.properties.YAxisMinimum.Auto
 import com.github.qqupp.scaladash.model.panel.properties._
@@ -71,7 +70,6 @@ final case class GraphPanel(title: String,
                  "threshold1Color": "rgba(216, 200, 27, 0.27)",
                  "threshold2Color": "rgba(234, 112, 112, 0.22)"
                  },
-         "percentage": false,
          "legend": {
             "show": true,
             "values": false,

@@ -7,7 +7,7 @@ sealed abstract class PointsMode(val value: Boolean, val rad: Float){ self =>
   def asJson: Json = Json.fromJsonObject(
     JsonObject(
       "points" -> Json.fromBoolean(value),
-      "pointradius" -> Json.fromFloatOrNull(rad)
+      "pointradius" -> Json.fromFloat(rad).getOrElse(Json.fromInt(0))
     )
   )
 }

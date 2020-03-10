@@ -1,6 +1,8 @@
 package com.github.qqupp.scaladash.model.panel.properties
 
 import com.github.qqupp.scaladash.model.panel.properties.HooverTooltip.{TooltipMode, TooltipSortOrder}
+import io.circe.Encoder
+import io.circe.literal._
 
 final case class HooverTooltip(mode: TooltipMode, sortOrder: TooltipSortOrder)
 
@@ -8,13 +10,23 @@ object HooverTooltip {
 
   val default: HooverTooltip = HooverTooltip(AllSeries, Decreasing)
 
-  sealed trait TooltipMode
-  case object Single extends TooltipMode
-  case object AllSeries extends TooltipMode
+  sealed abstract class TooltipMode(val shared: Boolean)
+  case object Single extends TooltipMode(false)
+  case object AllSeries extends TooltipMode(true)
 
-  sealed trait TooltipSortOrder
-  case object None extends TooltipSortOrder
-  case object Increasing extends TooltipSortOrder
-  case object Decreasing extends TooltipSortOrder
+  sealed abstract class TooltipSortOrder(val sort: Int)
+  case object None extends TooltipSortOrder(0)
+  case object Increasing extends TooltipSortOrder(1)
+  case object Decreasing extends TooltipSortOrder(2)
+
+  implicit val jsonEncoder: Encoder[HooverTooltip] =
+    ht =>
+      json"""{
+               "tooltip": {
+                       "shared": ${ht.mode.shared},
+                       "sort": ${ht.sortOrder.sort}
+                        }
+             }
+          """
 
 }

@@ -22,4 +22,5 @@ object GraphPanelVisualization {
     v =>
       v.drawModes.asJson
         .deepMerge(v.stackModes.asJson)
+        .deepMerge(v.hooverTooltip.asJson)
 }

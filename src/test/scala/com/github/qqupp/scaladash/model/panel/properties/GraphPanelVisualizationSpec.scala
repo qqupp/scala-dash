@@ -6,6 +6,7 @@ import com.github.qqupp.scaladash.model.panel.properties.BarsMode.Bars
 import com.github.qqupp.scaladash.model.panel.properties.FillArea.Fill
 import com.github.qqupp.scaladash.model.panel.properties.FillGradient.{Medium, Slow}
 import com.github.qqupp.scaladash.model.panel.properties.FillStyle.HalfFilled
+import com.github.qqupp.scaladash.model.panel.properties.HooverTooltip.{AllSeries, Decreasing}
 import com.github.qqupp.scaladash.model.panel.properties.LinesMode.Lines
 import com.github.qqupp.scaladash.model.panel.properties.PointsMode.Points
 import com.github.qqupp.scaladash.model.template.Variable.{CustomVariable, QueryVariable}
@@ -57,6 +58,16 @@ class GraphPanelVisualizationSpec extends FlatSpec with Matchers {
 
     visualization.asJson should containKeyValue("points", true)
     visualization.asJson should containKeyValue("pointradius", 7)
+  }
+
+  it should "produce json with HooverTooltip" in {
+    val customToolTip = HooverTooltip(mode = AllSeries, sortOrder = Decreasing)
+    val visualization =
+      GraphPanelVisualization.default
+        .copy(hooverTooltip = customToolTip)
+
+    visualization.asJson should containValueInPath(root.tooltip.shared, true)
+    visualization.asJson should containValueInPath(root.tooltip.sort, 2)
   }
 
 }
