@@ -2,7 +2,6 @@ package com.github.qqupp.scaladash.model.panel
 
 import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
-import com.github.qqupp.scaladash.model.panel.FillStyle.Unfilled
 import com.github.qqupp.scaladash.model.panel.StackStyle.Unstacked
 import com.github.qqupp.scaladash.model.panel.YAxisFormat.Misc.NoFormat
 import com.github.qqupp.scaladash.model.panel.YAxisMinimum.Auto
@@ -16,7 +15,6 @@ final case class GraphPanel(title: String,
                             metrics: List[Metric],
                             drawModes: DrawModes,
                             yAxisFormat: YAxisFormat,
-                            filled: FillStyle,
                             stacked: StackStyle,
                             minimum: YAxisMinimum,
                             aliasColors: List[AliasColor],
@@ -102,7 +100,6 @@ object GraphPanel {
       metrics = List.empty,
       drawModes = DrawModes(),
       yAxisFormat = NoFormat,
-      filled = Unfilled,
       stacked = Unstacked,
       minimum = Auto,
       aliasColors = List.empty,

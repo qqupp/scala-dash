@@ -30,7 +30,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render json" in {
-    forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, filled: FillStyle, stacked: StackStyle, minimum: YAxisMinimum) =>
+    forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, stacked: StackStyle, minimum: YAxisMinimum) =>
 
       val girdJson =
         json"""{
@@ -66,7 +66,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
         GraphPanel(title)
           .withMetrics(List(metric1, metric2))
           .copy(yAxisFormat = yAxis)
-          .copy(filled = filled)
           .copy(stacked = stacked)
           .copy(minimum = minimum)
           .copy(span = Some(span))

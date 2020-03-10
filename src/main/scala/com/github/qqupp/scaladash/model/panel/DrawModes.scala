@@ -2,7 +2,6 @@ package com.github.qqupp.scaladash.model.panel
 
 import com.github.qqupp.scaladash.model.panel.DrawModes.{BarsMode, LinesMode, PointsMode}
 import io.circe.{Encoder, Json, JsonObject}
-import io.circe.syntax._
 
 final case class DrawModes(bars: BarsMode, lines: LinesMode, points: PointsMode)
 
@@ -31,19 +30,19 @@ object DrawModes {
           JsonObject(
             "lines" -> Json.fromBoolean(value),
             "linewidth" -> Json.fromInt(w),
-            "fill" -> Json.fromInt(f.fill),
-            "fillGradient" -> Json.fromInt(f.fillGradient),
+            "fill" -> Json.fromInt(f.fill.value),
+            "fillGradient" -> Json.fromInt(f.fillGradient.value),
             "steppedLine" -> Json.fromBoolean(s)
           )
       }
     }
   }
   case object NoLines extends LinesMode(false)
-  final case class Lines(width: Int, fill: FillLine, staircase: Boolean) extends LinesMode(true)
+  final case class Lines(width: Int, fill: FillArea, staircase: Boolean) extends LinesMode(true)
 
-  sealed abstract class FillLine(val fill: Int, val fillGradient: Int)
-  case object NoFill extends FillLine(0, 0)
-  final case class Fill(override val fill: Int, override val fillGradient: Int) extends FillLine(fill, fillGradient)
+  sealed abstract class FillArea(val fill: FillStyle, val fillGradient: FillGradientStyle)
+  case object NoFill extends FillArea(FillStyle.Unfilled, FillGradientStyle.Slow)
+  final case class Fill(override val fill: FillStyle, override val fillGradient: FillGradientStyle) extends FillArea(fill, fillGradient)
 
   sealed abstract class PointsMode(val value: Boolean){ self =>
     def json: Json = Json.fromJsonObject(
