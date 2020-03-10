@@ -1,6 +1,6 @@
-package com.github.qqupp.scaladash.model.panel
+package com.github.qqupp.scaladash.model.panel.properties
 
-import com.github.qqupp.scaladash.model.panel.LinesMode.{Lines, NoLines}
+import com.github.qqupp.scaladash.model.panel.properties.LinesMode.{Lines, NoLines}
 import io.circe.{Json, JsonObject}
 
 

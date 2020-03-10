@@ -1,6 +1,7 @@
 package com.github.qqupp.scaladash.model.panel
 
 import com.github.qqupp.scaladash.model.metric.Metric
+import com.github.qqupp.scaladash.model.panel.properties.Thresholds
 import io.circe.Json
 import io.circe.literal._
 

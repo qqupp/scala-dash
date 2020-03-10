@@ -1,4 +1,4 @@
-package com.github.qqupp.scaladash.model.panel
+package com.github.qqupp.scaladash.model.panel.properties
 
 import io.circe.{Encoder, Json}
 

@@ -2,9 +2,10 @@ package com.github.qqupp.scaladash.model.panel
 
 import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
-import com.github.qqupp.scaladash.model.panel.StackStyle.Unstacked
-import com.github.qqupp.scaladash.model.panel.YAxisFormat.Misc.NoFormat
-import com.github.qqupp.scaladash.model.panel.YAxisMinimum.Auto
+import com.github.qqupp.scaladash.model.panel.properties.StackStyle.Unstacked
+import com.github.qqupp.scaladash.model.panel.properties.YAxisFormat.Misc.NoFormat
+import com.github.qqupp.scaladash.model.panel.properties.YAxisMinimum.Auto
+import com.github.qqupp.scaladash.model.panel.properties._
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonUtils._
 import io.circe.Json
