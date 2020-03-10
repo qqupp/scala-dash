@@ -5,7 +5,7 @@ import com.github.qqupp.scaladash.model.alert._
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
 import com.github.qqupp.scaladash.model.panel._
-import com.github.qqupp.scaladash.model.panel.properties.{DrawModes, StackMode, YAxisFormat, YAxisMinimum}
+import com.github.qqupp.scaladash.model.panel.properties.{DrawModes, StackMode, YAxisUnit, YAxisValue}
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.literal._
@@ -31,7 +31,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render json" in {
-    forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, minimum: YAxisMinimum) =>
+    forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisUnit, minimum: YAxisValue) =>
 
       val girdJson =
         json"""{

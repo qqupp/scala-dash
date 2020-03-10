@@ -2,8 +2,8 @@ package com.github.qqupp.scaladash.model.panel
 
 import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
-import com.github.qqupp.scaladash.model.panel.properties.YAxisFormat.Misc.NoFormat
-import com.github.qqupp.scaladash.model.panel.properties.YAxisMinimum.Auto
+import com.github.qqupp.scaladash.model.panel.properties.YAxisUnit.Misc.NoFormat
+import com.github.qqupp.scaladash.model.panel.properties.YAxisValue.Auto
 import com.github.qqupp.scaladash.model.panel.properties._
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonUtils._
@@ -14,8 +14,8 @@ import io.circe.syntax._
 final case class GraphPanel(title: String,
                             metrics: List[Metric],
                             visualization: GraphPanelVisualization,
-                            yAxisFormat: YAxisFormat,
-                            minimum: YAxisMinimum,
+                            yAxisFormat: YAxisUnit,
+                            minimum: YAxisValue,
                             span: Option[Int],
                             legend: Legend,
                             maximum: String,
