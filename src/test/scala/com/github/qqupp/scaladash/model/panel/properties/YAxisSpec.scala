@@ -10,7 +10,7 @@ class YAxisSpec extends FlatSpec with Matchers {
   behavior of "a YAxis"
 
   it should "produce json" in {
-    val axysJson = YAxis.default.asJson
+    val axysJson = YAxis().asJson
 
     axysJson should containKeyValue("show", true)
     axysJson should containKeyValue("min", Json.Null)

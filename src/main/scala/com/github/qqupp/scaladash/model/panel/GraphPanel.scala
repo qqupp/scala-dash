@@ -14,6 +14,7 @@ import io.circe.syntax._
 final case class GraphPanel(title: String,
                             metrics: List[Metric],
                             visualization: GraphPanelVisualization,
+                            axes: Axes,
                             yAxisFormat: YAxisUnit,
                             minimum: YAxisValue,
                             span: Option[Int],
@@ -58,9 +59,6 @@ final case class GraphPanel(title: String,
          "id": $panelId,
          "datasource": $datasource,
          "renderer": "flot",
-         "x-axis": true,
-         "y-axis": true,
-         "y_formats": ${List(yAxisFormat, yAxisFormat)},
          "grid": {
                  "leftMax": null,
                  "rightMax": null,
@@ -77,6 +75,7 @@ final case class GraphPanel(title: String,
          "seriesOverrides": $seriesOverrides,
          "links": []
   }""".deepMerge(visualization.asJson)
+      .deepMerge(axes.asJson)
       .addOpt("alert", alert.map(_.build((availableRefIds zip metrics))))
 
   }
@@ -90,6 +89,7 @@ object GraphPanel {
       metrics = List.empty,
       visualization = GraphPanelVisualization.default,
       legend = Legend.default,
+      axes = Axes.default,
       yAxisFormat = NoFormat,
       minimum = Auto,
       span = None,
