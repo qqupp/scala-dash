@@ -14,10 +14,9 @@ import io.circe.syntax._
 
 final case class GraphPanel(title: String,
                             metrics: List[Metric],
-                            visualization: Visualization,
+                            visualization: GraphPanelVisualization,
                             yAxisFormat: YAxisFormat,
                             minimum: YAxisMinimum,
-                            aliasColors: List[AliasColor],
                             span: Option[Int],
                             maximum: String,
                             datasource: Option[Datasource],
@@ -29,6 +28,7 @@ final case class GraphPanel(title: String,
     copy(visualization = newVisualization)
   }
 
+  private val aliasColors: List[AliasColor] = List()
   private val availableRefIds = (65 to 91).map(_.toChar.toString).toList
   private val seriesOverrides: List[Json] = List()
 
@@ -102,10 +102,9 @@ object GraphPanel {
     GraphPanel(
       title = title,
       metrics = List.empty,
-      visualization = Visualization.default,
+      visualization = GraphPanelVisualization.default,
       yAxisFormat = NoFormat,
       minimum = Auto,
-      aliasColors = List.empty,
       span = None,
       maximum = "",
       datasource = None,

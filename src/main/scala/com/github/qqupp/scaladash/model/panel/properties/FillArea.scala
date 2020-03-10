@@ -1,10 +1,10 @@
 package com.github.qqupp.scaladash.model.panel.properties
 
-sealed abstract class FillArea(val fill: FillStyle, val fillGradient: FillGradientStyle)
+sealed abstract class FillArea(val fill: FillStyle, val fillGradient: FillGradient)
 
 case object FillArea {
 
-  case object NoFill extends FillArea(FillStyle.Unfilled, FillGradientStyle.Slow)
-  final case class Fill(override val fill: FillStyle, override val fillGradient: FillGradientStyle) extends FillArea(fill, fillGradient)
+  case object NoFill extends FillArea(FillStyle.Unfilled, FillGradient.Slow)
+  final case class Fill(override val fill: FillStyle, override val fillGradient: FillGradient) extends FillArea(fill, fillGradient)
 
 }

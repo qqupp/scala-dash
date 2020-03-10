@@ -13,7 +13,7 @@ object DrawModes {
 
   val default: DrawModes = properties.DrawModes(
     bars = NoBars,
-    lines = Lines(1, NoFill, false),
+    lines = Lines(1, NoFill, staircase = false),
     points = NoPoints
   )
 
