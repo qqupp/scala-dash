@@ -19,6 +19,8 @@ object DrawModes {
 
   implicit val jsonEncoder: Encoder[DrawModes] =
     dm =>
-      dm.bars.asJson.deepMerge(dm.lines.asJson).deepMerge(dm.points.asJson)
+      dm.bars.asJson
+        .deepMerge(dm.lines.asJson)
+        .deepMerge(dm.points.asJson)
 
 }
