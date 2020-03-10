@@ -2,10 +2,12 @@ package com.github.qqupp.scaladash.model.panel.properties
 
 import org.scalatest.{FlatSpec, Matchers}
 import com.github.qqupp.scaladash.generators.dataArbitraries._
+import com.github.qqupp.scaladash.model.panel.properties.BarsMode.Bars
 import com.github.qqupp.scaladash.model.panel.properties.FillArea.Fill
 import com.github.qqupp.scaladash.model.panel.properties.FillGradient.{Medium, Slow}
 import com.github.qqupp.scaladash.model.panel.properties.FillStyle.HalfFilled
 import com.github.qqupp.scaladash.model.panel.properties.LinesMode.Lines
+import com.github.qqupp.scaladash.model.panel.properties.PointsMode.Points
 import com.github.qqupp.scaladash.model.template.Variable.{CustomVariable, QueryVariable}
 import com.github.qqupp.scaladash.model.{Dashboard, Row}
 import com.github.qqupp.scaladash.model.template.{VariableRefresh, VariableSort}
@@ -36,4 +38,25 @@ class GraphPanelVisualizationSpec extends FlatSpec with Matchers {
     visualization.asJson should containKeyValue("fill", 5)
     visualization.asJson should containKeyValue("fillGradient", 5)
   }
+
+
+  it should "produce json with Bars" in {
+    val customBars = Bars
+    val visualization =
+      GraphPanelVisualization.default
+        .copy(drawModes = DrawModes.default.copy(bars = customBars))
+
+    visualization.asJson should containKeyValue("bars", true)
+  }
+
+  it should "produce json with Points" in {
+    val customPoints = Points(7)
+    val visualization =
+      GraphPanelVisualization.default
+        .copy(drawModes = DrawModes.default.copy(points = customPoints))
+
+    visualization.asJson should containKeyValue("points", true)
+    visualization.asJson should containKeyValue("pointradius", 7)
+  }
+
 }
