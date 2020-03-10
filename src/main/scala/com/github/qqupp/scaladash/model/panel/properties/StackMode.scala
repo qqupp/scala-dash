@@ -4,14 +4,18 @@ import io.circe.{Encoder, Json, JsonObject}
 import io.circe.syntax._
 import io.circe.literal._
 
-sealed abstract class StackMode(val value: Boolean, val percent: Boolean)
+sealed abstract class StackMode(val value: Boolean, val percent: Boolean, val valueType: String)
 
 
 object StackMode {
 
-  case object StackedPercent extends StackMode(true, true)
-  case object Stacked extends StackMode(true, false)
-  case object Unstacked extends StackMode(false, false)
+  sealed abstract class StackedTooltipType(val valueType: String)
+  case object Individual extends StackedTooltipType("individual")
+  case object Cumulative extends StackedTooltipType("cumulative")
+
+  case class StackedPercent(tooltipMode: StackedTooltipType) extends StackMode(true, true, tooltipMode.valueType)
+  case class Stacked(tooltipMode: StackedTooltipType) extends StackMode(true, false, tooltipMode.valueType)
+  case object Unstacked extends StackMode(false, false, "individual")
 
   implicit val jsonEncoder: Encoder[StackMode] =
     stackMode =>
@@ -19,7 +23,7 @@ object StackMode {
           "stack": ${stackMode.value},
           "percentage" : ${stackMode.percent},
           "tooltip": {
-            "value_type": "individual"
+            "value_type": ${stackMode.valueType}
           }
         }
       """

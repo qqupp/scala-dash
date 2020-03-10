@@ -9,7 +9,7 @@ import com.github.qqupp.scaladash.model.panel.properties.FillStyle.HalfFilled
 import com.github.qqupp.scaladash.model.panel.properties.HooverTooltip.{AllSeries, Decreasing}
 import com.github.qqupp.scaladash.model.panel.properties.LinesMode.Lines
 import com.github.qqupp.scaladash.model.panel.properties.PointsMode.Points
-import com.github.qqupp.scaladash.model.panel.properties.StackMode.StackedPercent
+import com.github.qqupp.scaladash.model.panel.properties.StackMode.{Cumulative, StackedPercent}
 import com.github.qqupp.scaladash.model.template.Variable.{CustomVariable, QueryVariable}
 import com.github.qqupp.scaladash.model.{Dashboard, Row}
 import com.github.qqupp.scaladash.model.template.{VariableRefresh, VariableSort}
@@ -72,14 +72,14 @@ class GraphPanelVisualizationSpec extends FlatSpec with Matchers {
   }
 
   it should "produce json with Stacked" in {
-    val customStack = StackedPercent
+    val customStack = StackedPercent(Cumulative)
     val visualization =
       GraphPanelVisualization.default
         .copy(stackModes = customStack)
 
     visualization.asJson should containValueInPath(root.stack, true)
     visualization.asJson should containValueInPath(root.percentage, true)
-    visualization.asJson should containValueInPath(root.tooltip.value_type, "individual")
+    visualization.asJson should containValueInPath(root.tooltip.value_type, "cumulative")
   }
 
 }
