@@ -28,7 +28,6 @@ final case class GraphPanel(title: String,
     copy(visualization = newVisualization)
   }
 
-  private val aliasColors: List[AliasColor] = List()
   private val availableRefIds = (65 to 91).map(_.toChar.toString).toList
   private val seriesOverrides: List[Json] = List()
 
@@ -70,7 +69,6 @@ final case class GraphPanel(title: String,
                  },
          "legend": $legend,
          "targets": $targetsJ ,
-         "aliasColors": ${aliasColors},
          "seriesOverrides": $seriesOverrides,
          "links": []
   }""".deepMerge(visualization.asJson)

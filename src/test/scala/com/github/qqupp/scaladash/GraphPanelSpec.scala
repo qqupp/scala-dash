@@ -84,7 +84,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       jsonPanel should containKeyValue("nullPointMode", "connected")
       jsonPanel should containKeyValue("steppedLine", false)
       jsonPanel should containKeyValue("targets", List(metric1.build("A"), metric2.build("B")))
-      jsonPanel should containKeyValue("aliasColors", Json.arr()) // to verify list vs obj
       jsonPanel should containKeyValue("links", Json.arr())
     }
   }
