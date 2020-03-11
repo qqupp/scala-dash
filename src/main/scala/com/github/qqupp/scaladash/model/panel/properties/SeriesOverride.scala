@@ -10,9 +10,10 @@ final case class SeriesOverride(aliasOrRegex: String, overrides: List[Overridabl
 object SeriesOverride {
 
   sealed abstract class Overridable(val name: String, val value: Json)
-  final case class Bars(v: Boolean) extends Overridable("bars", v.asJson)
-  final case class Lines(v: Boolean) extends Overridable("lines", v.asJson)
-  final case class LinesFill(v: FillStyle) extends Overridable("fill", v.asJson)
+  final case class OverrideBars(v: Boolean) extends Overridable("bars", v.asJson)
+  final case class OverrideLines(v: Boolean) extends Overridable("lines", v.asJson)
+  final case class OverrideLinesFill(v: FillStyle) extends Overridable("fill", v.asJson)
+  final case class OverrideLinesWidth(v: LineWidth) extends Overridable("linewidth", v.asJson)
 
 
   implicit val overridableJsonEncoder: Encoder[Overridable] =
