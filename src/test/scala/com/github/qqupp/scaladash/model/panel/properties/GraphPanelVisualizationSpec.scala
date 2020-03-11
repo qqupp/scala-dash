@@ -7,6 +7,7 @@ import com.github.qqupp.scaladash.model.panel.properties.FillArea.Fill
 import com.github.qqupp.scaladash.model.panel.properties.FillGradient.{Medium, Slow}
 import com.github.qqupp.scaladash.model.panel.properties.FillStyle.HalfFilled
 import com.github.qqupp.scaladash.model.panel.properties.HooverTooltip.{AllSeries, Decreasing}
+import com.github.qqupp.scaladash.model.panel.properties.LineWidth.L3
 import com.github.qqupp.scaladash.model.panel.properties.LinesMode.Lines
 import com.github.qqupp.scaladash.model.panel.properties.PointsMode.Points
 import com.github.qqupp.scaladash.model.panel.properties.StackMode.{Cumulative, StackedPercent}
@@ -29,7 +30,7 @@ class GraphPanelVisualizationSpec extends FlatSpec with Matchers {
   behavior of "a GraphPanelVisualization"
 
   it should "produce json with Lines" in {
-    val customLines = Lines(3, Fill(HalfFilled, Medium), staircase = true)
+    val customLines = Lines(L3, Fill(HalfFilled, Medium), staircase = true)
     val visualization =
       GraphPanelVisualization.default
         .copy(drawModes = DrawModes.default.copy(lines = customLines))

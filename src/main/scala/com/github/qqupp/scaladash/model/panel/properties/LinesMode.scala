@@ -2,6 +2,7 @@ package com.github.qqupp.scaladash.model.panel.properties
 
 import com.github.qqupp.scaladash.model.panel.properties.LinesMode.{Lines, NoLines}
 import io.circe.{Json, JsonObject}
+import io.circe.syntax._
 
 
 sealed abstract class LinesMode(val value: Boolean) { self =>
@@ -12,7 +13,7 @@ sealed abstract class LinesMode(val value: Boolean) { self =>
       case Lines(w, f, s) =>
         JsonObject(
           "lines" -> Json.fromBoolean(value),
-          "linewidth" -> Json.fromInt(w),
+          "linewidth" -> w.asJson,
           "fill" -> Json.fromInt(f.fill.value),
           "fillGradient" -> Json.fromInt(f.fillGradient.value),
           "steppedLine" -> Json.fromBoolean(s)
@@ -24,6 +25,6 @@ sealed abstract class LinesMode(val value: Boolean) { self =>
 object  LinesMode {
 
   case object NoLines extends LinesMode(false)
-  final case class Lines(width: Int, fill: FillArea, staircase: Boolean) extends LinesMode(true)
+  final case class Lines(width: LineWidth, fill: FillArea, staircase: Boolean) extends LinesMode(true)
 
 }
