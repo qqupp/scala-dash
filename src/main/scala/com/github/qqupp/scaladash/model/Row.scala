@@ -35,13 +35,13 @@ final case class Row(height: String, title: Option[String], showTitle: Boolean, 
 
 object Row {
 
-  def apply(): Row =
+  def apply(panels: Panel*): Row =
     Row(
       height = "250px",
       title = None,
       showTitle = false,
       collapse = false,
-      panels = List.empty
+      panels = panels.toList
     )
 
 }
