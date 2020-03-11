@@ -8,30 +8,31 @@ import io.circe.syntax._
 sealed abstract class XAxis(val show: Boolean, val mode: String) { self =>
   def asJson: Json = {
 
-   val baseAttr =
-     List(
+   val baseAttr: Json =
+     Json.fromJsonObject(JsonObject(
        "name" -> Json.Null,
        "values" -> List.empty[Int].asJson,
        "buckets" -> Json.Null,
        "mode" -> Json.fromString(self.mode),
        "show" -> Json.fromBoolean(self.show)
-    )
+    ))
 
-   val attr =
+   val attr: Json = Json.fromJsonObject(
     self match {
       case TimeXAxis(_) =>
-        List()
+        JsonObject()
       case SeriesXAxis(_, seriesKind) =>
-        List("values" -> List(seriesKind.value).asJson)
+        JsonObject("values" -> List(seriesKind.value).asJson)
       case HistogramXAxis(display, buckets, min, max) =>
-        List(
+        JsonObject(
           "buckets" -> buckets.asJson,
           "min" -> min.asJson,
           "max" -> max.asJson
         )
+      }
+   )
 
-    }
-    JsonObject(baseAttr: _*).deepMerge(JsonObject(attr: _*)).asJson
+    baseAttr.deepMerge(attr)
   }
 }
 

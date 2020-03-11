@@ -53,7 +53,9 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
         "max": false,
         "current": false,
         "total": false,
-        "avg": false
+        "avg": false,
+        "hideEmpty": false,
+        "hideZero": false
       }"""
 
 
