@@ -15,10 +15,8 @@ final case class GraphPanel(title: String,
                             metrics: List[Metric],
                             visualization: GraphPanelVisualization,
                             axes: Axes,
-                            minimum: AxisValue,
                             span: Option[Int],
                             legend: Legend,
-                            maximum: String,
                             datasource: Option[Datasource],
                             alert: Option[Alert]
                       ) extends Panel {
@@ -60,7 +58,7 @@ final case class GraphPanel(title: String,
          "grid": {
                  "leftMax": null,
                  "rightMax": null,
-                 "leftMin": $minimum,
+                 "leftMin": null,
                  "rightMin": null,
                  "threshold1": null,
                  "threshold2": null,
@@ -87,9 +85,7 @@ object GraphPanel {
       visualization = GraphPanelVisualization.default,
       legend = Legend.default,
       axes = Axes.default,
-      minimum = Auto,
       span = None,
-      maximum = "",
       datasource = None,
       alert = None
     )

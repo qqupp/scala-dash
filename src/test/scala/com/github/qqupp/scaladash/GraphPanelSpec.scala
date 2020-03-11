@@ -31,13 +31,13 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render json" in {
-    forAll { (metric1: Metric, metric2: Metric, minimum: AxisValue) =>
+    forAll { (metric1: Metric, metric2: Metric) =>
 
       val girdJson =
         json"""{
         "leftMax": null,
         "rightMax": null,
-        "leftMin": $minimum,
+        "leftMin": null,
         "rightMin": null,
         "threshold1": null,
         "threshold2": null,
@@ -62,7 +62,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       val panel =
         GraphPanel(title)
           .withMetrics(List(metric1, metric2))
-          .copy(minimum = minimum)
           .copy(span = Some(span))
 
       val jsonPanel = panel.build(panelId)
@@ -76,10 +75,8 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       jsonPanel should containKeyValue("datasource", Json.Null)
       jsonPanel should containKeyValue("renderer", "flot")
       jsonPanel should containKeyValue("grid", girdJson)
-      //jsonPanel should containKeyValue("fill", "filled") to verify
       jsonPanel should containKeyValue("linewidth", 1)
       jsonPanel should containKeyValue("points", false)
-      //jsonPanel should containKeyValue("pointradius", 5)
       jsonPanel should containKeyValue("bars", false)
       jsonPanel should containKeyValue("percentage", false)
       jsonPanel should containKeyValue("legend", legendJson)
