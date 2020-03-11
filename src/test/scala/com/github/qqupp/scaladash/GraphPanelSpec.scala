@@ -127,8 +127,8 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render with an alert" in {
-      val metric1 = GenericMetric("targ01", None, false)
-      val metric2 = GenericMetric("targ02", None, false)
+      val metric1 = GenericMetric("targ01", false)
+      val metric2 = GenericMetric("targ02", false)
 
       val expectedCondition1Json =
         json"""
@@ -218,8 +218,8 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render with an alert with reducers" in {
-    val metric1 = GenericMetric("targ01", None, false)
-    val metric2 = GenericMetric("targ02", None, false)
+    val metric1 = GenericMetric("targ01", false)
+    val metric2 = GenericMetric("targ02", false)
 
     val expectedReducer1Json =
       json"""{
@@ -260,8 +260,8 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render alerts with notification by id and uid" in {
-    val metric1 = GenericMetric("targ01", None, false)
-    val metric2 = GenericMetric("targ02", None, false)
+    val metric1 = GenericMetric("targ01", false)
+    val metric2 = GenericMetric("targ02", false)
 
     val expectedJson =
       json"""[{
@@ -292,7 +292,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render alerts with a message" in {
-    val metric1 = GenericMetric("targ01", None, false)
+    val metric1 = GenericMetric("targ01", false)
 
     val panel = GraphPanel(title)
       .withMetric(metric1)
@@ -308,7 +308,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render alerts with a specified no data state" in {
-    val metric1 = GenericMetric("targ01", None, false)
+    val metric1 = GenericMetric("targ01", false)
 
     val panel = GraphPanel(title)
       .withMetric(metric1)
@@ -325,7 +325,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render alerts with a specified execution error state" in {
-    val metric1 = GenericMetric("targ01", None, false)
+    val metric1 = GenericMetric("targ01", false)
 
     val panel = GraphPanel(title)
       .withMetric(metric1)

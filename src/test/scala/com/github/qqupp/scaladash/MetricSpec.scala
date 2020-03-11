@@ -49,7 +49,7 @@ class MetricSpec extends FlatSpec with Matchers {
       "hide": true
     }"""
 
-    PrometheusMetric("tar_get", None, Some("metric"), Some(PrometheusMetricFormat.Table), Some(true), Some(3), Some(5), true).build("A") shouldBe expected
+    PrometheusMetric("tar_get", Some("metric"), Some(PrometheusMetricFormat.Table), Some(true), Some(3), Some(5), true).build("A") shouldBe expected
 
   }
 }

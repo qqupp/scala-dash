@@ -74,10 +74,10 @@ class RowSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks
     rowJson should containKeyValue("title", "a test title")
   }
 
-  private val metric1 = GenericMetric("targ01", None, false)
-  private val metric2 = GenericMetric("targ02", None, false)
-  private val metric3 = GenericMetric("targ03", None, false)
-  private val metric4 = GenericMetric("targ04", None, false)
+  private val metric1 = GenericMetric("targ01", false)
+  private val metric2 = GenericMetric("targ02", false)
+  private val metric3 = GenericMetric("targ03", false)
+  private val metric4 = GenericMetric("targ04", false)
 
   private val panel1 = SingleStatPanel("testPanel1").withMetrics(List(metric1, metric2))
   private val panel2 = GraphPanel("testPanel2").withMetrics(List(metric3, metric4))

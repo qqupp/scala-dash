@@ -5,14 +5,12 @@ import io.circe.Json
 import io.circe.literal._
 
 sealed trait Metric extends Product with Serializable{
-  def rightYAxisMetricName: Option[String]
   def build(refId: String): Json
 }
 
 object  Metric {
 
   final case class PrometheusMetric(expr: String,
-                                    rightYAxisMetricName: Option[String],
                                     legendFormat: Option[String],
                                     format: Option[PrometheusMetricFormat],
                                     instant: Option[Boolean],
@@ -41,7 +39,7 @@ object  Metric {
   }
 
 
-  final case class GenericMetric(target: String, rightYAxisMetricName: Option[String], hide: Boolean) extends Metric {
+  final case class GenericMetric(target: String, hide: Boolean) extends Metric {
 
     def build(refId: String): Json = {
 
@@ -58,8 +56,8 @@ object  Metric {
 
   }
 
-  def prometheusMetric(expression: String): Metric = PrometheusMetric(expression, None, None, None, None, None, None, false)
+  def prometheusMetric(expression: String): Metric = PrometheusMetric(expression, None, None, None, None, None, false)
 
-  def genericMetric(target: String): Metric = GenericMetric(target, None, false)
+  def genericMetric(target: String): Metric = GenericMetric(target, false)
 
 }

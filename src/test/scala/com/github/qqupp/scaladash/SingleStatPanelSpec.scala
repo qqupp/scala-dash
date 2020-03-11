@@ -86,8 +86,8 @@ class SingleStatPanelSpec extends FlatSpec with Matchers {
 
   }
 
-  private val metric1 = GenericMetric("targ01", None, false)
-  private val metric2 = GenericMetric("targ02", None, false)
+  private val metric1 = GenericMetric("targ01", false)
+  private val metric2 = GenericMetric("targ02", false)
 
   private val panelId: Int = 10
   private val title: String = "Test Panel"

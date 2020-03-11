@@ -15,8 +15,8 @@ final case class GraphPanel(title: String,
                             metrics: List[Metric],
                             visualization: GraphPanelVisualization,
                             axes: Axes,
-                            span: Option[Int],
                             legend: Legend,
+                            span: Option[Int],
                             datasource: Option[Datasource],
                             alert: Option[Alert]
                       ) extends Panel {
