@@ -5,7 +5,7 @@ import com.github.qqupp.scaladash.model.alert._
 import com.github.qqupp.scaladash.model.metric.Metric
 import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
 import com.github.qqupp.scaladash.model.panel._
-import com.github.qqupp.scaladash.model.panel.properties.{DrawModes, StackMode, YAxisFormat, YAxisMinimum}
+import com.github.qqupp.scaladash.model.panel.properties.{DrawModes, StackMode, YAxisUnit, AxisValue}
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.literal._
@@ -31,7 +31,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render json" in {
-    forAll { (metric1: Metric, metric2: Metric, yAxis: YAxisFormat, minimum: YAxisMinimum) =>
+    forAll { (metric1: Metric, metric2: Metric, minimum: AxisValue) =>
 
       val girdJson =
         json"""{
@@ -60,7 +60,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       val panel =
         GraphPanel(title)
           .withMetrics(List(metric1, metric2))
-          .copy(yAxisFormat = yAxis)
           .copy(minimum = minimum)
           .copy(span = Some(span))
 
@@ -74,9 +73,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       jsonPanel should containKeyValue("id", panelId)
       jsonPanel should containKeyValue("datasource", Json.Null)
       jsonPanel should containKeyValue("renderer", "flot")
-      jsonPanel should containKeyValue("x-axis", true)
-      jsonPanel should containKeyValue("y-axis", true)
-      jsonPanel should containKeyValue("y_formats", List(yAxis, yAxis))
       jsonPanel should containKeyValue("grid", girdJson)
       //jsonPanel should containKeyValue("fill", "filled") to verify
       jsonPanel should containKeyValue("linewidth", 1)
@@ -88,7 +84,6 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       jsonPanel should containKeyValue("nullPointMode", "connected")
       jsonPanel should containKeyValue("steppedLine", false)
       jsonPanel should containKeyValue("targets", List(metric1.build("A"), metric2.build("B")))
-      jsonPanel should containKeyValue("aliasColors", Json.arr()) // to verify list vs obj
       jsonPanel should containKeyValue("links", Json.arr())
     }
   }

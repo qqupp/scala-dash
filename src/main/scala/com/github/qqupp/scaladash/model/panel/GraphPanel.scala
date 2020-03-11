@@ -2,8 +2,8 @@ package com.github.qqupp.scaladash.model.panel
 
 import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
-import com.github.qqupp.scaladash.model.panel.properties.YAxisFormat.Misc.NoFormat
-import com.github.qqupp.scaladash.model.panel.properties.YAxisMinimum.Auto
+import com.github.qqupp.scaladash.model.panel.properties.YAxisUnit.Misc.NoFormat
+import com.github.qqupp.scaladash.model.panel.properties.AxisValue.Auto
 import com.github.qqupp.scaladash.model.panel.properties._
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonUtils._
@@ -14,9 +14,10 @@ import io.circe.syntax._
 final case class GraphPanel(title: String,
                             metrics: List[Metric],
                             visualization: GraphPanelVisualization,
-                            yAxisFormat: YAxisFormat,
-                            minimum: YAxisMinimum,
+                            axes: Axes,
+                            minimum: AxisValue,
                             span: Option[Int],
+                            legend: Legend,
                             maximum: String,
                             datasource: Option[Datasource],
                             alert: Option[Alert]
@@ -27,7 +28,6 @@ final case class GraphPanel(title: String,
     copy(visualization = newVisualization)
   }
 
-  private val aliasColors: List[AliasColor] = List()
   private val availableRefIds = (65 to 91).map(_.toChar.toString).toList
   private val seriesOverrides: List[Json] = List()
 
@@ -57,9 +57,6 @@ final case class GraphPanel(title: String,
          "id": $panelId,
          "datasource": $datasource,
          "renderer": "flot",
-         "x-axis": true,
-         "y-axis": true,
-         "y_formats": ${List(yAxisFormat, yAxisFormat)},
          "grid": {
                  "leftMax": null,
                  "rightMax": null,
@@ -70,20 +67,12 @@ final case class GraphPanel(title: String,
                  "threshold1Color": "rgba(216, 200, 27, 0.27)",
                  "threshold2Color": "rgba(234, 112, 112, 0.22)"
                  },
-         "legend": {
-            "show": true,
-            "values": false,
-            "min": false,
-            "max": false,
-            "current": false,
-            "total": false,
-            "avg": false
-         },
+         "legend": $legend,
          "targets": $targetsJ ,
-         "aliasColors": ${aliasColors},
          "seriesOverrides": $seriesOverrides,
          "links": []
   }""".deepMerge(visualization.asJson)
+      .deepMerge(axes.asJson)
       .addOpt("alert", alert.map(_.build((availableRefIds zip metrics))))
 
   }
@@ -96,7 +85,8 @@ object GraphPanel {
       title = title,
       metrics = List.empty,
       visualization = GraphPanelVisualization.default,
-      yAxisFormat = NoFormat,
+      legend = Legend.default,
+      axes = Axes.default,
       minimum = Auto,
       span = None,
       maximum = "",
