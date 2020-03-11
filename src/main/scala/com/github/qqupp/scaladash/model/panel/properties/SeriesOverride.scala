@@ -14,6 +14,7 @@ object SeriesOverride {
   final case class OverrideLines(v: Boolean) extends Overridable("lines", v.asJson)
   final case class OverrideLinesFill(v: FillStyle) extends Overridable("fill", v.asJson)
   final case class OverrideLinesWidth(v: LineWidth) extends Overridable("linewidth", v.asJson)
+  final case class OverridePointMode(v: NullValueMode) extends Overridable("nullPointMode", v.asJson)
 
 
   implicit val overridableJsonEncoder: Encoder[Overridable] =
@@ -22,8 +23,9 @@ object SeriesOverride {
   implicit val jsonEncoder: Encoder[SeriesOverride] =
     so =>
       so.overrides.foldLeft(
-      Json.fromJsonObject(
-        JsonObject("alias" -> Json.fromString(so.aliasOrRegex)))
+        Json.fromJsonObject(
+          JsonObject("alias" -> Json.fromString(so.aliasOrRegex))
+        )
       )( (json, overridable) => json.deepMerge(overridable.asJson))
 }
 
