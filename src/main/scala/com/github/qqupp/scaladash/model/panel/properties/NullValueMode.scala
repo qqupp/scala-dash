@@ -1,7 +1,6 @@
 package com.github.qqupp.scaladash.model.panel.properties
 
-import io.circe.{Encoder, Json, JsonObject}
-import io.circe.syntax._
+import io.circe.{Encoder, Json}
 
 sealed abstract class NullValueMode(val nullPointMode: String)
 

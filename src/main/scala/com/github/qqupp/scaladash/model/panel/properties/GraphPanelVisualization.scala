@@ -25,11 +25,13 @@ object GraphPanelVisualization {
     v =>
       Json
         .fromJsonObject(
-          JsonObject("seriesOverrides" -> v.seriesOverrides.asJson)
+          JsonObject(
+            "seriesOverrides" -> v.seriesOverrides.asJson,
+            "nullPointMode" -> v.nullValuesMode.asJson
+          )
         )
         .deepMerge(v.drawModes.asJson)
         .deepMerge(v.stackModes.asJson)
         .deepMerge(v.hooverTooltip.asJson)
-        .deepMerge(JsonObject("nullPointMode" -> v.nullValuesMode.asJson).asJson)
 
 }
