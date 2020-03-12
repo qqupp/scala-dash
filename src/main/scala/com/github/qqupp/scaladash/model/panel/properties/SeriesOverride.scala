@@ -18,6 +18,8 @@ object SeriesOverride {
   final case class OverrideSpaceLength(v: Int) extends Overridable("spaceLength", v.asJson)
   final case class OverridePoints(v: PointsMode) extends Overridable("-", v.asJson)
   final case class OverrideStackMode(v: StackMode) extends Overridable("-", v.asJson)
+  final case class OverrideLegend(v: Boolean) extends Overridable("legend", v.asJson)
+  final case class OverrideHideTooltip(v: Boolean) extends Overridable("hideTooltip", v.asJson)
 
 
   implicit val overridableJsonEncoder: Encoder[Overridable] =
