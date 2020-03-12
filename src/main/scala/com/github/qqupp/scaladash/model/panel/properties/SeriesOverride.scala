@@ -21,6 +21,10 @@ object SeriesOverride {
   final case class OverrideLegend(v: Boolean) extends Overridable("legend", v.asJson)
   final case class OverrideHideTooltip(v: Boolean) extends Overridable("hideTooltip", v.asJson)
   final case class OverrideColor(v: Color) extends Overridable("color", v.asJson)
+  case object OverrideRightYAxis extends Overridable("yaxis", Json.fromInt(2))
+  case object OverrideLeftYAxis extends Overridable("yaxis", Json.fromInt(1))
+  case object OverrideTransformConstant extends Overridable("transform", Json.fromString("constant"))
+  case object OverrideTransformNegativeY extends Overridable("transform", Json.fromString("negative-Y"))
 
   implicit val overridableJsonEncoder: Encoder[Overridable] =
     o =>
