@@ -15,6 +15,10 @@ object SeriesOverride {
   final case class OverrideLinesFill(v: FillStyle) extends Overridable("fill", v.asJson)
   final case class OverrideLinesWidth(v: LineWidth) extends Overridable("linewidth", v.asJson)
   final case class OverridePointMode(v: NullValueMode) extends Overridable("nullPointMode", v.asJson)
+  final case class OverrideStaricaseLine(v: Boolean) extends Overridable("steppedLine", v.asJson)
+  final case class OverrideDashes(v: Boolean) extends Overridable("dashes", v.asJson)
+  final case class OverrideDashesLength(v: Int) extends Overridable("dashLength", v.asJson)
+  final case class OverrideSpaceLength(v: Int) extends Overridable("spaceLength", v.asJson)
 
 
   implicit val overridableJsonEncoder: Encoder[Overridable] =
