@@ -7,9 +7,10 @@ import com.github.qqupp.scaladash.model.panel.properties.FillArea.Fill
 import com.github.qqupp.scaladash.model.panel.properties.FillGradient.{Medium, Slow}
 import com.github.qqupp.scaladash.model.panel.properties.FillStyle.HalfFilled
 import com.github.qqupp.scaladash.model.panel.properties.HooverTooltip.{AllSeries, Decreasing}
-import com.github.qqupp.scaladash.model.panel.properties.LineWidth.L3
+import com.github.qqupp.scaladash.model.panel.properties.LineWidth.{L3, L6}
 import com.github.qqupp.scaladash.model.panel.properties.LinesMode.Lines
 import com.github.qqupp.scaladash.model.panel.properties.PointsMode.Points
+import com.github.qqupp.scaladash.model.panel.properties.SeriesOverride._
 import com.github.qqupp.scaladash.model.panel.properties.StackMode.{Cumulative, StackedPercent}
 import com.github.qqupp.scaladash.model.template.Variable.{CustomVariable, QueryVariable}
 import com.github.qqupp.scaladash.model.{Dashboard, Row}
@@ -17,7 +18,7 @@ import com.github.qqupp.scaladash.model.template.{VariableRefresh, VariableSort}
 import com.github.qqupp.scaladash.model.time.Duration._
 import com.github.qqupp.scaladash.model.time.TimeRange
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
-import io.circe.Json
+import io.circe.{Json, JsonObject}
 import io.circe.literal._
 import io.circe.optics.JsonPath._
 import org.scalatest.{FlatSpec, Matchers}
@@ -90,6 +91,32 @@ class GraphPanelVisualizationSpec extends FlatSpec with Matchers {
         .copy(nullValuesMode = customNullValue)
 
     visualization.asJson should containKeyValue("nullPointMode", "connected")
+  }
+
+  it should "produce json with SeriesOverride" in {
+    val customSeries = List(
+      SeriesOverride("/serverA[0-5]/i", List(OverrideLines(false), OverrideLinesWidth(L6))),
+      SeriesOverride("serverB", List(OverridePointMode(NullValueMode.Connected)))
+    )
+
+    val visualization =
+      GraphPanelVisualization.default
+        .copy(seriesOverrides = customSeries)
+
+    val expectedSeries1 =
+      json"""{
+        "alias" : "/serverA[0-5]/i",
+        "lines" : false,
+        "linewidth" : 6
+      }"""
+
+    val expectedSeries2 =
+      json"""{
+        "alias" : "serverB",
+        "nullPointMode" : "connected"
+      }"""
+
+    visualization.asJson should containKeyValue("seriesOverrides", List(expectedSeries1, expectedSeries2))
   }
 
 }

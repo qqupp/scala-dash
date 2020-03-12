@@ -20,12 +20,13 @@ object SeriesOverride {
   implicit val overridableJsonEncoder: Encoder[Overridable] =
     o => Json.fromJsonObject(JsonObject(o.name -> o.value))
 
-  implicit val jsonEncoder: Encoder[SeriesOverride] =
+  implicit val seriesOverrideJsonEncoder: Encoder[SeriesOverride] =
     so =>
       so.overrides.foldLeft(
         Json.fromJsonObject(
           JsonObject("alias" -> Json.fromString(so.aliasOrRegex))
         )
       )( (json, overridable) => json.deepMerge(overridable.asJson))
+
 }
 
