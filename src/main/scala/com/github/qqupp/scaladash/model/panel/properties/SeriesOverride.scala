@@ -20,7 +20,7 @@ object SeriesOverride {
   final case class OverrideStackMode(v: StackMode) extends Overridable("-", v.asJson)
   final case class OverrideLegend(v: Boolean) extends Overridable("legend", v.asJson)
   final case class OverrideHideTooltip(v: Boolean) extends Overridable("hideTooltip", v.asJson)
-
+  final case class OverrideColor(v: Color) extends Overridable("color", v.asJson)
 
   implicit val overridableJsonEncoder: Encoder[Overridable] =
     o =>
