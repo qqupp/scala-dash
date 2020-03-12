@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash.model.panel.properties
 
-import io.circe.{Json, JsonObject}
+import io.circe.{Encoder, Json, JsonObject}
 
 
 sealed abstract class PointsMode(val value: Boolean, val rad: Float){ self =>
@@ -16,5 +16,8 @@ case object PointsMode {
 
   case object NoPoints extends PointsMode(false, 0F)
   final case class Points(radius: Float) extends PointsMode(true, radius)
+
+  implicit val jsonEncoder: Encoder[PointsMode] =
+    pm => pm.asJson
 
 }

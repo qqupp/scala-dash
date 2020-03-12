@@ -95,7 +95,7 @@ class GraphPanelVisualizationSpec extends FlatSpec with Matchers {
 
   it should "produce json with SeriesOverride" in {
     val customSeries = List(
-      SeriesOverride("/serverA[0-5]/i", List(OverrideLines(false), OverrideLinesWidth(L6))),
+      SeriesOverride("/serverA[0-5]/i", List(OverrideLines(Lines(L6, FillArea.NoFill, false)))),
       SeriesOverride("serverB", List(OverridePointMode(NullValueMode.Connected)))
     )
 
@@ -106,8 +106,11 @@ class GraphPanelVisualizationSpec extends FlatSpec with Matchers {
     val expectedSeries1 =
       json"""{
         "alias" : "/serverA[0-5]/i",
-        "lines" : false,
-        "linewidth" : 6
+        "lines" : true,
+        "linewidth" : 6,
+        "fill" : 0,
+        "fillGradient" : 1,
+        "steppedLine" : false
       }"""
 
     val expectedSeries2 =

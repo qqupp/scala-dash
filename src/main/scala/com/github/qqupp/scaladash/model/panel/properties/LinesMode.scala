@@ -1,7 +1,7 @@
 package com.github.qqupp.scaladash.model.panel.properties
 
 import com.github.qqupp.scaladash.model.panel.properties.LinesMode.{Lines, NoLines}
-import io.circe.{Json, JsonObject}
+import io.circe.{Encoder, Json, JsonObject}
 import io.circe.syntax._
 
 
@@ -27,4 +27,7 @@ object  LinesMode {
   case object NoLines extends LinesMode(false)
   final case class Lines(width: LineWidth, fill: FillArea, staircase: Boolean) extends LinesMode(true)
 
+  implicit val jsonEncoder: Encoder[LinesMode] =
+    lm => lm.asJson
+  
 }
