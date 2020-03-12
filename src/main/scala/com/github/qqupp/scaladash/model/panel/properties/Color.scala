@@ -8,6 +8,8 @@ sealed abstract class Color(val value: String) { self =>
 
 object Color {
 
+  final case class UnsafeCustom(r: Int, g: Int, b: Int) extends Color(s"rgb($r, $g, $b)")
+
   case object red0 extends Color("rgb(128,0,0)")
   case object red1 extends Color("rgb(139,0,0)")
   case object red2 extends Color("rgb(165,42,42)")
