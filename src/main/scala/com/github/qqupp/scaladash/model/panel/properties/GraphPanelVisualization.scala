@@ -30,6 +30,6 @@ object GraphPanelVisualization {
         .deepMerge(v.drawModes.asJson)
         .deepMerge(v.stackModes.asJson)
         .deepMerge(v.hooverTooltip.asJson)
-        .deepMerge(v.nullValuesMode.asJson)
+        .deepMerge(JsonObject("nullPointMode" -> v.nullValuesMode.asJson).asJson)
 
 }

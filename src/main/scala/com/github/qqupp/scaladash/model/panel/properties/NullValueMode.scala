@@ -12,6 +12,6 @@ object NullValueMode {
   case object Connected extends NullValueMode("connected")
 
  implicit val jsonEncoder: Encoder[NullValueMode] =
-   nvm => JsonObject("nullPointMode" -> Json.fromString(nvm.nullPointMode)).asJson
+   nvm => Json.fromString(nvm.nullPointMode)
 
 }
