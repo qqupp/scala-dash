@@ -1,7 +1,7 @@
 package com.github.qqupp.scaladash.model.panel
 
 import com.github.qqupp.scaladash.model.alert.Alert
-import com.github.qqupp.scaladash.model.metric.Metric
+import com.github.qqupp.scaladash.model.query.Query
 import com.github.qqupp.scaladash.model.panel.properties._
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonUtils._
@@ -10,7 +10,7 @@ import io.circe.literal._
 import io.circe.syntax._
 
 final case class GraphPanel(title: String,
-                            metrics: List[Metric],
+                            queries: List[Query],
                             visualization: GraphPanelVisualization,
                             axes: Axes,
                             legend: Legend,
@@ -29,17 +29,17 @@ final case class GraphPanel(title: String,
   def withAlert(alert: Alert): GraphPanel =
     this.copy(alert = Some(alert))
 
-  def withMetric(metric: Metric): GraphPanel = {
-    val newMetrics = metrics ++ List(metric)
+  def withQuery(query: Query): GraphPanel = {
+    val newQueries = queries ++ List(query)
 
-    this.copy(metrics = newMetrics)
+    this.copy(queries = newQueries)
   }
 
-  def withMetrics(metrics: List[Metric]): GraphPanel =
-    metrics.foldLeft(this)((acc, m) => acc.withMetric(m))
+  def withQueries(queries: List[Query]): GraphPanel =
+    queries.foldLeft(this)((acc, m) => acc.withQuery(m))
 
   def build(panelId: Int, span: Int = 12): Json = {
-    val targetsJ: Json = (availableRefIds zip metrics).map{ case (id, metric) => metric.build(id) }.asJson
+    val targetsJ: Json = (availableRefIds zip queries).map{ case (id, q) => q.build(id) }.asJson
 
       json"""
        {
@@ -66,7 +66,7 @@ final case class GraphPanel(title: String,
          "links": []
   }""".deepMerge(visualization.asJson)
       .deepMerge(axes.asJson)
-      .addOpt("alert", alert.map(_.build((availableRefIds zip metrics))))
+      .addOpt("alert", alert.map(_.build((availableRefIds zip queries))))
 
   }
 }
@@ -76,7 +76,7 @@ object GraphPanel {
   def apply(title: String): GraphPanel =
     GraphPanel(
       title = title,
-      metrics = List.empty,
+      queries = List.empty,
       visualization = GraphPanelVisualization.default,
       legend = Legend.default,
       axes = Axes.default,

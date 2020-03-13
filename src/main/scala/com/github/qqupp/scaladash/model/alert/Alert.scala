@@ -1,7 +1,7 @@
 package com.github.qqupp.scaladash.model.alert
 
 import com.github.qqupp.scaladash.model.alert.OperatorType._
-import com.github.qqupp.scaladash.model.metric.Metric
+import com.github.qqupp.scaladash.model.query.Query
 import com.github.qqupp.scaladash.utils.JsonUtils._
 import io.circe.Json
 import io.circe.literal._
@@ -29,9 +29,9 @@ final case class Alert(name: String,
   private def opCondition(condition: Condition, opT: OperatorType): Alert =
     withCondition(condition.copy(operatorType = opT))
 
-  def build(metrics: List[(String, Metric)]): Json = {
+  def build(panelIdAndQueries: List[(String, Query)]): Json = {
 
-    val conditionsJ: Json = conditions.map(_.build(metrics)).asJson
+    val conditionsJ: Json = conditions.map(_.build(panelIdAndQueries)).asJson
     val executionErrorStateJ: Json = executionErrorState.asJson
     val frequencySecondsJ: Json = Json.fromString(frequencySeconds.toString + "s")
 

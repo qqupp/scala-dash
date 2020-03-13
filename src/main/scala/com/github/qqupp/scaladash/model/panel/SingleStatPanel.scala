@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash.model.panel
 
-import com.github.qqupp.scaladash.model.metric.Metric
+import com.github.qqupp.scaladash.model.query.Query
 import com.github.qqupp.scaladash.model.panel.properties.Thresholds
 import io.circe.Json
 import io.circe.literal._
@@ -10,24 +10,24 @@ final case class SingleStatPanel(title: String,
                                  postfix: String,
                                  thresholds: Thresholds,
                                  invertThresholdOrder: Boolean,
-                                 metrics: List[Metric],
+                                 queries: List[Query],
                                  availableRefIds: List[String],
                                  span: Option[Int],
                                 ) extends Panel {
 
-  def withMetric(metric: Metric): SingleStatPanel = {
-    val newMetrics = metrics ++ List(metric)
-    this.copy(metrics = newMetrics)
+  def withQuery(query: Query): SingleStatPanel = {
+    val newQueries = queries ++ List(query)
+    this.copy(queries = newQueries)
   }
 
-  def withMetrics(metrics: List[Metric]): SingleStatPanel =
-    metrics.foldLeft(this)((acc, m) => acc.withMetric(m))
+  def withQueries(queries: List[Query]): SingleStatPanel =
+    queries.foldLeft(this)((acc, m) => acc.withQuery(m))
 
 
   def build(panelId: Int, spans: Int): Json = {
     val colors = List("rgba(225, 40, 40, 0.59)", "rgba(245, 150, 40, 0.73)", "rgba(71, 212, 59, 0.4)")
     val colorsJson = if (invertThresholdOrder) colors.reverse else colors
-    val targetJson = (availableRefIds zip metrics).map { case (id, metric) => metric.build(id) }
+    val targetJson = (availableRefIds zip queries).map { case (id, metric) => metric.build(id) }
 
     json"""{
              "title": $title,
@@ -73,7 +73,7 @@ object SingleStatPanel {
       thresholds = Thresholds(0, 50, 200),
       invertThresholdOrder = false,
       availableRefIds = (65 to 91).map(_.toChar.toString).toList,
-      metrics = List.empty,
+      queries = List.empty,
       span = None
     )
 }

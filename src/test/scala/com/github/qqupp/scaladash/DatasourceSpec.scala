@@ -5,6 +5,7 @@ import com.github.qqupp.scaladash.model.source.Datasource.Graphite
 import io.circe.literal._
 import io.circe.syntax._
 import org.scalatest.{FlatSpec, Matchers}
+
 class DatasourceSpec extends FlatSpec with Matchers {
 
   behavior of "Datasource"

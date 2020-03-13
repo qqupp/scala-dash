@@ -1,16 +1,16 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.model.metric.{Metric, PrometheusMetricFormat}
-import com.github.qqupp.scaladash.model.metric.Metric.PrometheusMetric
+import com.github.qqupp.scaladash.model.query.{Query, PrometheusQueryFormat}
+import com.github.qqupp.scaladash.model.query.Query.PrometheusQuery
 import io.circe._
 import io.circe.literal._
 import org.scalatest.{FlatSpec, Matchers}
 
-class MetricSpec extends FlatSpec with Matchers {
+class QuerySpec extends FlatSpec with Matchers {
 
-  behavior of "Metric"
+  behavior of "Query"
 
-  it should "Render json for generic metric" in {
+  it should "Render json for generic query" in {
     val target: String = "someTarget"
 
     val expected: Json =
@@ -20,11 +20,11 @@ class MetricSpec extends FlatSpec with Matchers {
             "target": $target
         }"""
 
-    Metric.genericMetric(target).build("A") shouldBe expected
+    Query.genericQuery(target).build("A") shouldBe expected
   }
 
 
-  it should "Render json  prometheus metric" in {
+  it should "Render json  prometheus query" in {
     val target: String = "someTarget"
 
     val expected: Json =
@@ -34,7 +34,7 @@ class MetricSpec extends FlatSpec with Matchers {
             "expr": $target
         }"""
 
-    Metric.prometheusMetric(target).build("A") shouldBe expected
+    Query.prometheusQuery(target).build("A") shouldBe expected
   }
 
   it should "Render complex json" in {
@@ -49,7 +49,7 @@ class MetricSpec extends FlatSpec with Matchers {
       "hide": true
     }"""
 
-    PrometheusMetric("tar_get", Some("metric"), Some(PrometheusMetricFormat.Table), Some(true), Some(3), Some(5), true).build("A") shouldBe expected
+    PrometheusQuery("tar_get", Some("metric"), Some(PrometheusQueryFormat.Table), Some(true), Some(3), Some(5), true).build("A") shouldBe expected
 
   }
 }

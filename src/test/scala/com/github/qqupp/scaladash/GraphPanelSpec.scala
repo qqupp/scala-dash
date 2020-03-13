@@ -2,8 +2,8 @@ package com.github.qqupp.scaladash
 
 import com.github.qqupp.scaladash.model.alert.Evaluator.{GreaterThan, LessThan}
 import com.github.qqupp.scaladash.model.alert._
-import com.github.qqupp.scaladash.model.metric.Metric
-import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
+import com.github.qqupp.scaladash.model.query.Query
+import com.github.qqupp.scaladash.model.query.Query.GenericQuery
 import com.github.qqupp.scaladash.model.panel._
 import com.github.qqupp.scaladash.model.panel.properties.{DrawModes, StackMode, YAxisUnit, AxisValue}
 import com.github.qqupp.scaladash.model.source.Datasource
@@ -20,10 +20,10 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
 
   behavior of "a Panel"
 
-  it should "add a prometheus metric" in {
+  it should "add a prometheus query" in {
     val panel =
       GraphPanel("test_panel")
-        .withMetric(Metric.prometheusMetric("tar_get"))
+        .withQuery(Query.prometheusQuery("tar_get"))
 
     val expected: Json = json"""[{"refId": "A", "expr": "tar_get"}]"""
 
@@ -31,7 +31,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render json" in {
-    forAll { (metric1: Metric, metric2: Metric) =>
+    forAll { (q1: Query, q2: Query) =>
 
       val girdJson =
         json"""{
@@ -61,7 +61,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
 
       val panel =
         GraphPanel(title)
-          .withMetrics(List(metric1, metric2))
+          .withQueries(List(q1, q2))
           .copy(span = Some(span))
 
       val jsonPanel = panel.build(panelId)
@@ -82,7 +82,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
       jsonPanel should containKeyValue("legend", legendJson)
       jsonPanel should containKeyValue("nullPointMode", "connected")
       jsonPanel should containKeyValue("steppedLine", false)
-      jsonPanel should containKeyValue("targets", List(metric1.build("A"), metric2.build("B")))
+      jsonPanel should containKeyValue("targets", List(q1.build("A"), q2.build("B")))
       jsonPanel should containKeyValue("links", Json.arr())
     }
   }
@@ -119,16 +119,16 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render with target refids" in {
-    forAll { (metric: Metric, metrics: List[Metric]) =>
-      val jsonPanel = GraphPanel(title).withMetrics(metric :: metrics).build(panelId)
+    forAll { (q: Query, qf: List[Query]) =>
+      val jsonPanel = GraphPanel(title).withQueries(q :: qf).build(panelId)
 
-      jsonPanel should containKeyValue("targets", (metric :: metrics).zipWithIndex.map { case (m, i) => m.build((i + 65).toChar.toString) })
+      jsonPanel should containKeyValue("targets", (q :: qf).zipWithIndex.map { case (m, i) => m.build((i + 65).toChar.toString) })
     }
   }
 
   it should "render with an alert" in {
-      val metric1 = GenericMetric("targ01", false)
-      val metric2 = GenericMetric("targ02", false)
+      val q1 = GenericQuery("targ01", false)
+      val q2 = GenericQuery("targ02", false)
 
       val expectedCondition1Json =
         json"""
@@ -146,7 +146,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
                          "datasourceId": 3,
                          "model": {
                          "refId": "A",
-                         "target": ${metric1.target}
+                         "target": ${q1.target}
                        },
                          "params": ["A", "5m", "now"]
                        }
@@ -176,7 +176,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
                           "datasourceId": 1,
                           "model": {
                           "refId": "B",
-                          "target": ${metric2.target}
+                          "target": ${q2.target}
                         },
                           "params": ["B", "5m", "now"]
                         }
@@ -191,16 +191,16 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
             """
 
       val panel = GraphPanel(title)
-        .withMetric(metric1)
-        .withMetric(metric2)
+        .withQuery(q1)
+        .withQuery(q2)
         .withAlert(
           Alert("a test alert", "", 55)
             .withCondition(
-              Condition(metric1, GreaterThan(0))
+              Condition(q1, GreaterThan(0))
                 .copy(datasourceId = 3)
             )
             .orCondition(
-              Condition(metric2, LessThan(2.54321))
+              Condition(q2, LessThan(2.54321))
             )
         )
 
@@ -218,8 +218,8 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render with an alert with reducers" in {
-    val metric1 = GenericMetric("targ01", false)
-    val metric2 = GenericMetric("targ02", false)
+    val query1 = GenericQuery("targ01", false)
+    val query2 = GenericQuery("targ02", false)
 
     val expectedReducer1Json =
       json"""{
@@ -237,16 +237,16 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
             """
 
     val panel = GraphPanel(title)
-      .withMetric(metric1)
-      .withMetric(metric2)
+      .withQuery(query1)
+      .withQuery(query2)
       .withAlert(
         Alert("a test alert", "", 55)
           .withCondition(
-            Condition(metric1, GreaterThan(0))
+            Condition(query1, GreaterThan(0))
               .copy(reducer = Reducer.Average)
           )
           .withCondition(
-            Condition(metric2, LessThan(3))
+            Condition(query2, LessThan(3))
               .copy(operatorType = OperatorType.Or)
               .copy(reducer = Reducer.Min)
           )
@@ -260,8 +260,8 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render alerts with notification by id and uid" in {
-    val metric1 = GenericMetric("targ01", false)
-    val metric2 = GenericMetric("targ02", false)
+    val query1 = GenericQuery("targ01", false)
+    val query2 = GenericQuery("targ02", false)
 
     val expectedJson =
       json"""[{
@@ -276,11 +276,11 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
             """
 
     val panel = GraphPanel(title)
-      .withMetric(metric1)
-      .withMetric(metric2)
+      .withQuery(query1)
+      .withQuery(query2)
       .withAlert(
         Alert("a test alert", "", 55)
-          .withCondition(Condition(metric1, GreaterThan(5)))
+          .withCondition(Condition(query1, GreaterThan(5)))
           .withNotification(Notification(1))
           .withNotification(Notification(2))
           .withNotification(Notification("abc"))
@@ -292,13 +292,13 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render alerts with a message" in {
-    val metric1 = GenericMetric("targ01", false)
+    val query1 = GenericQuery("targ01", false)
 
     val panel = GraphPanel(title)
-      .withMetric(metric1)
+      .withQuery(query1)
       .withAlert(
         Alert("a test alert","This is a test message",  55)
-          .withCondition(Condition(metric1, GreaterThan(5)))
+          .withCondition(Condition(query1, GreaterThan(5)))
           .withNotification(Notification("abc"))
       )
 
@@ -308,14 +308,14 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render alerts with a specified no data state" in {
-    val metric1 = GenericMetric("targ01", false)
+    val query1 = GenericQuery("targ01", false)
 
     val panel = GraphPanel(title)
-      .withMetric(metric1)
+      .withQuery(query1)
       .withAlert(
         Alert("a test alert", "", 55)
           .copy(noDataState = NoDataState.Alerting)
-          .withCondition(Condition(metric1, GreaterThan(5)))
+          .withCondition(Condition(query1, GreaterThan(5)))
           .withNotification(Notification("abc"))
       )
 
@@ -325,14 +325,14 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
   }
 
   it should "render alerts with a specified execution error state" in {
-    val metric1 = GenericMetric("targ01", false)
+    val query = GenericQuery("targ01", false)
 
     val panel = GraphPanel(title)
-      .withMetric(metric1)
+      .withQuery(query)
       .withAlert(
         Alert("a test alert", "", 55)
           .copy(executionErrorState = ExecutionErrorState.KeepState)
-          .withCondition(Condition(metric1, GreaterThan(5)))
+          .withCondition(Condition(query, GreaterThan(5)))
           .withNotification(Notification("abc"))
       )
 

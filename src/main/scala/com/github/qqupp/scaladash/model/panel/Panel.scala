@@ -1,13 +1,13 @@
 package com.github.qqupp.scaladash.model.panel
 
-import com.github.qqupp.scaladash.model.metric.Metric
+import com.github.qqupp.scaladash.model.query.Query
 import io.circe.Json
 
 abstract class Panel {
 
-  def withMetric(metric: Metric): Panel
+  def withQuery(query: Query): Panel
 
-  def withMetrics(metrics: List[Metric]): Panel
+  def withQueries(queries: List[Query]): Panel
 
   def build(panelId: Int, span: Int): Json
 

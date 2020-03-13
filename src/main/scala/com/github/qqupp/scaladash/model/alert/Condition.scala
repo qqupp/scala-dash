@@ -1,18 +1,18 @@
 package com.github.qqupp.scaladash.model.alert
 
-import com.github.qqupp.scaladash.model.metric.Metric
+import com.github.qqupp.scaladash.model.query.Query
 import com.github.qqupp.scaladash.model.time.Duration
 import com.github.qqupp.scaladash.model.time.Duration.Minutes
 import io.circe.Json
 import io.circe.literal._
 
-final case class Condition(reducer: Reducer, metric: Metric, evaluator: Evaluator, duration: Duration,  operatorType: OperatorType, datasourceId: Int) {
+final case class Condition(reducer: Reducer, query: Query, evaluator: Evaluator, duration: Duration, operatorType: OperatorType, datasourceId: Int) {
 
-  def build(toBuildMetrics: List[(String, Metric)]): Json = {
-    val matchingMetric = toBuildMetrics.find{ case (_, candidateMetric)  => candidateMetric == metric}
+  def build(toBuildQueries: List[(String, Query)]): Json = {
+    val matchingQuery = toBuildQueries.find{ case (_, candidateQuery)  => candidateQuery == query}
 
-    val metricRefId = matchingMetric.fold("notFound"){ case (id, _) => id }
-    val metricJson = matchingMetric.fold(json"{}"){ case (id, metricf) => metric.build(id)}
+    val queryRefId = matchingQuery.fold("notFound"){ case (id, _) => id }
+    val queryJson = matchingQuery.fold(json"{}"){ case (id, _) => query.build(id)}
 
     json"""{
       "evaluator": ${evaluator}
@@ -23,8 +23,8 @@ final case class Condition(reducer: Reducer, metric: Metric, evaluator: Evaluato
       ,
       "query": {
         "datasourceId": $datasourceId,
-        "model": $metricJson,
-        "params": [${s"${metricRefId}"}, $duration, "now"]
+        "model": $queryJson,
+        "params": [${s"${queryRefId}"}, $duration, "now"]
       }
       ,
       "reducer": {
@@ -39,9 +39,9 @@ final case class Condition(reducer: Reducer, metric: Metric, evaluator: Evaluato
 
 object Condition {
 
-  def apply(metric: Metric, evaluator: Evaluator): Condition =
+  def apply(query: Query, evaluator: Evaluator): Condition =
     Condition(
-      metric = metric,
+      query = query,
       evaluator = evaluator,
       duration = Minutes(5),
       operatorType = OperatorType.And,

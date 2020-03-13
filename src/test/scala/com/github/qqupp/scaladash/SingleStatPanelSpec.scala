@@ -1,6 +1,6 @@
 package com.github.qqupp.scaladash
 
-import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
+import com.github.qqupp.scaladash.model.query.Query.GenericQuery
 import com.github.qqupp.scaladash.model.panel.SingleStatPanel
 import com.github.qqupp.scaladash.model.panel.properties.Thresholds
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
@@ -41,8 +41,8 @@ class SingleStatPanelSpec extends FlatSpec with Matchers {
         .copy(postfix = postfix)
         .copy(thresholds =Thresholds(thresholdLower, thresholdMid, thresholdUpper))
         .copy(invertThresholdOrder=false)
-        .withMetric(metric1)
-        .withMetric(metric2)
+        .withQuery(query1)
+        .withQuery(query2)
 
     val panelJson = panel.build(panelId, span)
 
@@ -55,7 +55,7 @@ class SingleStatPanelSpec extends FlatSpec with Matchers {
     panelJson should containKeyValue("links", Json.arr())
     panelJson should containKeyValue("maxDataPoints", 100)
     panelJson should containKeyValue("interval", Json.Null)
-    panelJson should containKeyValue("targets", List(metric1.build("A"), metric2.build("B")))
+    panelJson should containKeyValue("targets", List(query1.build("A"), query2.build("B")))
     panelJson should containKeyValue("cacheTimeout", Json.Null)
     panelJson should containKeyValue("format", "none")
     panelJson should containKeyValue("prefix", prefix)
@@ -86,8 +86,8 @@ class SingleStatPanelSpec extends FlatSpec with Matchers {
 
   }
 
-  private val metric1 = GenericMetric("targ01", false)
-  private val metric2 = GenericMetric("targ02", false)
+  private val query1 = GenericQuery("targ01", false)
+  private val query2 = GenericQuery("targ02", false)
 
   private val panelId: Int = 10
   private val title: String = "Test Panel"

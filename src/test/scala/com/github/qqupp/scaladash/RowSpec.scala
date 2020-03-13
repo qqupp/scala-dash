@@ -1,7 +1,7 @@
 package com.github.qqupp.scaladash
 
 import com.github.qqupp.scaladash.model.Row
-import com.github.qqupp.scaladash.model.metric.Metric.GenericMetric
+import com.github.qqupp.scaladash.model.query.Query.GenericQuery
 import com.github.qqupp.scaladash.model.panel.{GraphPanel, SingleStatPanel}
 import com.github.qqupp.scaladash.utils.JsonTestUtils._
 import io.circe.Json
@@ -74,12 +74,12 @@ class RowSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropertyChecks
     rowJson should containKeyValue("title", "a test title")
   }
 
-  private val metric1 = GenericMetric("targ01", false)
-  private val metric2 = GenericMetric("targ02", false)
-  private val metric3 = GenericMetric("targ03", false)
-  private val metric4 = GenericMetric("targ04", false)
+  private val query1 = GenericQuery("targ01", false)
+  private val query2 = GenericQuery("targ02", false)
+  private val query3 = GenericQuery("targ03", false)
+  private val query4 = GenericQuery("targ04", false)
 
-  private val panel1 = SingleStatPanel("testPanel1").withMetrics(List(metric1, metric2))
-  private val panel2 = GraphPanel("testPanel2").withMetrics(List(metric3, metric4))
+  private val panel1 = SingleStatPanel("testPanel1").withQueries(List(query3, query3))
+  private val panel2 = GraphPanel("testPanel2").withQueries(List(query3, query4))
 
 }
