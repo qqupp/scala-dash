@@ -103,7 +103,7 @@ class GraphPanelSpec extends FlatSpec with Matchers with ScalaCheckDrivenPropert
 
       val panelJson = GraphPanel(title).copy(datasource = Some(datasource)).build(panelId)
 
-      panelJson should containKeyValue("datasource", datasource)
+      panelJson should containKeyValue("datasource", datasource.datasourceName)
     }
   }
 

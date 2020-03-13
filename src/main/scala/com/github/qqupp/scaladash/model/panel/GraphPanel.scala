@@ -2,8 +2,6 @@ package com.github.qqupp.scaladash.model.panel
 
 import com.github.qqupp.scaladash.model.alert.Alert
 import com.github.qqupp.scaladash.model.metric.Metric
-import com.github.qqupp.scaladash.model.panel.properties.YAxisUnit.Misc.NoFormat
-import com.github.qqupp.scaladash.model.panel.properties.AxisValue.Auto
 import com.github.qqupp.scaladash.model.panel.properties._
 import com.github.qqupp.scaladash.model.source.Datasource
 import com.github.qqupp.scaladash.utils.JsonUtils._
@@ -51,7 +49,7 @@ final case class GraphPanel(title: String,
          "editable": true,
          "type": "graph",
          "id": $panelId,
-         "datasource": $datasource,
+         "datasource": ${datasource.map(_.datasourceName)},
          "renderer": "flot",
          "grid": {
                  "leftMax": null,
