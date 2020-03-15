@@ -1,0 +1,2060 @@
+{
+  "annotations": {
+    "enable": false,
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "ꇹ몊桦될妶쯢횾㺠縜켾省䷐嶑⭀ꢦ싣겒뼪㛝흎ခڽ쩤坸ᣭ닚利閴擪늈츱㧅〥遺㚌縦櫔灧ပ䂨䉌㔛빚칐ꗨ뽥㜤鸿숼㐋㘘גَ︧쟬",
+      "editable": true,
+      "error": false,
+      "fill": 1,
+      "grid": {
+        "leftMax": null,
+        "leftMin": null,
+        "rightMax": null,
+        "rightMin": null
+      },
+      "gridPos": {
+        "h": 7,
+        "w": -2482845104,
+        "x": 0,
+        "y": 0
+      },
+      "id": 11,
+      "legend": {
+        "avg": true,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": false,
+        "max": true,
+        "min": false,
+        "show": false,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "connected",
+      "percentage": false,
+      "pointradius": -4.2568613e-37,
+      "points": true,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "惯聑浗县㵕둳㲐풸㓜ᨆ㇙憠論螁麻욓撄瓑腛ฎ⋡乤辐ꑎ⋤ଇ펯ꋡ뷦懁廅䦤",
+          "bars": false,
+          "color": "rgb(163, 82, 204)",
+          "dashLength": 1,
+          "dashes": true,
+          "fill": 5,
+          "fillGradient": 0,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": true,
+          "linewidth": 9,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -2147483648,
+          "stack": false,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "傉赺ㅞֲꝬ撇䨄芁Ὴ巓ｻ檝㰛뎬겗䪢妥წㅫ瑕Б끿荝䓍潭㣪軾쪸납ἰ鳒᪀ᥧ駎ඹ⎪캳䁰糅涕⮒淀뱂磤뎨욭ẫꅫ鹩渑ੴ귌쬦兔:",
+          "bars": true,
+          "color": "rgb(224, 47, 68)",
+          "dashLength": 0,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 0,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": true,
+          "linewidth": 7,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 134917336,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "츍⻚竮᫊ꗐꈤ≕뺟鎩㿤燌䥳탁鉶蓻᥵浐ᛴ仧址ᨐ䤯㍂䜟킋⇕劑ꕍ㬟ꖬ滻旃⑫힇ℴ芔研㳎᭥մ奎뤀⠭⾗랓䠂氞웺՞휔ﯣ⃺꘭퀵ፂ遙큘ᛈѬ镴㪌勝㽛テﵳ",
+          "fill": 0,
+          "fillGradient": 1,
+          "lines": true,
+          "linewidth": 7,
+          "percentage": false,
+          "spaceLength": -1203404468,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "꿠㼲ꏱ㽵조ꄡ䳙믬꾔憫‘磳꿱㱪↾雞噇隘挢㟬ÿ睁︮㊠꘷ᱶ勵﵉觛냽଒꯾䥱⹳핤詵멯ỷ鐡⮏蚽勊É웩嬘榋捌썣ꀇ煂ʊݟ誼쿧ꄆ觖ﻧ몹캂ᜦ囸쐞䓰俯ὠ䬤╼ලדѷ",
+          "bars": true,
+          "color": "rgb(202, 149, 229)",
+          "dashLength": 2147483647,
+          "dashes": true,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": false,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -1474166967,
+          "stack": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "胴㻠ꥣ쬟ḩ퉀篳纶巅ꨳ픫",
+          "dashLength": -1736537218,
+          "dashes": false,
+          "percentage": false,
+          "stack": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "鳮膼栄需伸⺎ꔁ匵㣧喘뫜똹튳燊柕㕲墢౺᭖귋迁㪡勜졼㚶ш⌟䩱얮Ȯࢧ≝㾑ꄧ塀嬸",
+          "bars": true,
+          "color": "rgb(255, 203, 125)",
+          "dashLength": 0,
+          "dashes": true,
+          "fill": 10,
+          "fillGradient": 0,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": false,
+          "linewidth": 9,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": -857126360000000,
+          "points": true,
+          "spaceLength": -1,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "懲鷒㓦䧤쾧樧༬",
+          "bars": false,
+          "color": "rgb(255, 152, 48)",
+          "dashLength": -90641520,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": false,
+          "linewidth": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 2147483647,
+          "stack": false,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "䴹焊令䑵▬虛ㆽᏙ罞펒傔툎⩬䬭ꍥᶐⷙ쁥⾌꺜잋杸䌾帕䞹헆㚨᭎㓣췠盇嶏쮶급㟥쨭ᾅṙﻐ넗䈛¾ບ鱜棜洹謔᯾꣆䇓߻ﰬ鳅乕ᱎ䈨冺笃䩵晈꒤봚肭䋏ഋề쇦",
+          "dashLength": -1,
+          "dashes": false,
+          "hideTooltip": false,
+          "legend": true,
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 1758707963,
+          "stack": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "꣯峥䏣眤਍珔곉싔쳴龼笓鲨뉗襇怫둏ꤸ࿦⟍㈗濓诽苂躽䢒ⱂ䯜뻆㼈༟뭜֎浕᫙⸵ꙵ许羁麞췼掛㫍䶽",
+          "bars": false,
+          "color": "rgb(115, 191, 105)",
+          "dashLength": -12127366,
+          "dashes": false,
+          "fill": 10,
+          "fillGradient": 10,
+          "legend": true,
+          "lines": true,
+          "linewidth": 1,
+          "percentage": true,
+          "pointradius": -7.664684e+30,
+          "points": true,
+          "spaceLength": -2147483648,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "曭᷃鼮㴨싅ᷨ΢雲去߼䱽쀷齉鷋⑱",
+          "color": "rgb(250, 100, 0)",
+          "dashLength": 0,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 5,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": true,
+          "linewidth": 6,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": -5.666713e-11,
+          "points": true,
+          "spaceLength": -900562432,
+          "stack": false,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "껐卻须뭿嚺풟덴굙⢵쯔卥喝೹᫼⧍㟺勁蝶歫芉⠣韼ȕ瑙햏䏿䷄텷뫺ᇽₗᠹ峙㠘㇨䂑抯⟀沬퇿뒖",
+          "bars": true,
+          "color": "rgb(55, 135, 45)",
+          "dashLength": -523575052,
+          "dashes": true,
+          "fill": 5,
+          "fillGradient": 10,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": -5.2033463e+29,
+          "points": true,
+          "spaceLength": 0,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "ంꢕﱴ䔈硦ਂ鍂ɬꃂ瘏ᬔ⧠戽⤇㐸宨宁鹟⢲茙㠢턒넠ꮺ빉浽缺䝛䤅頧瑈ꆋ뻔ƈ⻲疡귚퀙嘆픶퉬⎍蘡颯鱕︜䨶쓬괃癑ఱ㦧嚩ū匂搫ˋ䊳誶䎗譱ﷶ",
+          "bars": true,
+          "color": "rgb(184, 119, 217)",
+          "dashLength": 2147483647,
+          "dashes": true,
+          "fill": 10,
+          "fillGradient": 0,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": true,
+          "linewidth": 6,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -2147483648,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "ﻳ걩ꄮ媷௾陸蔹絛풻棨᐀슭滰灇㽑⵸巑絃",
+          "bars": true,
+          "color": "rgb(150, 217, 141)",
+          "dashLength": 0,
+          "fill": 5,
+          "fillGradient": 5,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": true,
+          "linewidth": 9,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -155449163,
+          "stack": false,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "臸寻䳆䦦랓",
+          "bars": false,
+          "color": "rgb(224, 47, 68)",
+          "dashLength": -1,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": true,
+          "linewidth": 9,
+          "nullPointMode": "null",
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 2147483647,
+          "steppedLine": true,
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "숵抹毵舓曈綌铑탲淤㥡ﲶ⌜ᦒD変깙蒸ଲَ؅唢ᱛ㩃裸铏⩦尧죡ʣ⹲ꖗ㓡臢賀ᭉ㰧탥䚠涒銺熈誤芆瑆햨検甑䝌⛖∵愩堦翀ᓮꡞ͘款ጛ竸귦㩠앁臓꘡윻儡퇯ꭞ핈놩䯏愺냜䖜紀煖㾗䐚䱸猿삦ࣀ㧏",
+          "bars": false,
+          "color": "rgb(143, 59, 184)",
+          "dashLength": 2147483647,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": true,
+          "linewidth": 6,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 17982089600000000,
+          "points": true,
+          "spaceLength": 0,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "濖끁ꮏ⭱잙丆홢䜳薺න虧ⱛ憡䎐ῶ뮡⣞䢸띾砟㎲ℾ纍ᒶ볺䘤跞ࡍ",
+          "bars": true,
+          "color": "rgb(255, 248, 153)",
+          "dashLength": -2147483648,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": false,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -2147483648,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "呚镧爕吓ퟶ埤됾혚焂㿖牆惫砝殗ￆ㧀ୁ럴ﴗ骾锄Ʝ⫒౾ݑꡈ遇㲯ﴸ㹱乾㬩ঌ⿱釃冘녦卾멻֊ꗬᨴ儥",
+          "color": "rgb(143, 59, 184)",
+          "dashLength": -1,
+          "legend": true,
+          "spaceLength": -2147483648,
+          "yaxis": 2
+        },
+        {
+          "alias": "좟絯஭邂㿺箉挣崷毘ꤦᶚӚ됽卯늏糠٭꽷䎖ᐑ悬㶃꫕⫑⟁梑뗍䳉뙤鷊鮭皠ﱪⷿ驛扡増卐퉜闰轵褜ৰ뜵⚍趣됀谟䬠ឫႿ퇜旌猷ᴨ糂䅮蟎依쇟閴厘ꊦ〿䞱ҳ黐ᇐ燱첔㒐ꭎ班꼸鏲柡뾰兪",
+          "bars": false,
+          "color": "rgb(192, 216, 255)",
+          "dashLength": -2147483648,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": false,
+          "linewidth": 4,
+          "nullPointMode": "null as zero",
+          "percentage": true,
+          "pointradius": -0.021803474,
+          "points": true,
+          "spaceLength": 827340015,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "멪侯ᚋȕ鈯禈녛땯",
+          "bars": true,
+          "color": "rgb(86, 166, 75)",
+          "dashLength": 1505995475,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 10,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": true,
+          "linewidth": 6,
+          "nullPointMode": "connected",
+          "percentage": true,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -1378785652,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "윞워꾤꿹ꏹ柢관䣊暩륤毽塓ኲ增힩巛᭧湟闏땂᪩転锟⟽䙡⁉坴Ḥ㏕废묧㖻팄๿䧪戇¯㤲댌嚆樢逽쟤쌎镦ﻱ쬆컑䕱",
+          "bars": true,
+          "dashLength": -40125468,
+          "dashes": true,
+          "hideTooltip": true,
+          "lines": false,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "stack": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "嚚條䄓⎿Ⓨ戝೥㿬줬䈄鋣뚎鐐叓㶨뼠绐殲䟳⟊沫躟냜⸏捹睴푒鯍ᓛ˰雿垴颟瞕殞汅钪岠챆밙䤇ᐫ즦ḛﴒ輽론鄿灺㴥",
+          "bars": true,
+          "color": "rgb(50, 116, 217)",
+          "dashLength": -2147483648,
+          "dashes": true,
+          "fill": 10,
+          "fillGradient": 5,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": true,
+          "linewidth": 4,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5.8606406e-34,
+          "points": true,
+          "spaceLength": 1,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "",
+          "bars": true,
+          "color": "rgb(255, 248, 153)",
+          "dashLength": -2147483648,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": true,
+          "linewidth": 10,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": -9.537575e-12,
+          "points": true,
+          "spaceLength": 1268607116,
+          "stack": false,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "冗䘓듍",
+          "color": "rgb(200, 242, 194)",
+          "dashes": false,
+          "fill": 10,
+          "fillGradient": 10,
+          "legend": true,
+          "lines": false,
+          "linewidth": 6,
+          "percentage": false,
+          "stack": false,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "甊ﶾ洱⬢薎뛫ᚌ䗭娦̉颙",
+          "bars": true,
+          "color": "rgb(255, 179, 87)",
+          "dashes": true,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": false,
+          "nullPointMode": "null as zero",
+          "percentage": true,
+          "pointradius": 3.0964627e-28,
+          "points": true,
+          "spaceLength": 1,
+          "stack": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "郳䬵草⥬孏䯰ﱺ哂잯솲ửጥꖉ⽍ᄻ",
+          "bars": true,
+          "color": "rgb(1888752589, -1, -1)",
+          "dashLength": 2095645724,
+          "dashes": false,
+          "fill": 5,
+          "fillGradient": 5,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": false,
+          "linewidth": 7,
+          "nullPointMode": "connected",
+          "percentage": true,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 0,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "╞ﰘ酷訑䱀㙜㴍瑚諚á℞쫑钩䲖縮਒῞권붥䳌ⴳ悸颿䁾䋥巁䳟恬㇦渊푵趡玁ﭟ㻫댚땈ꖮぼ僢貌ሽ䧇ඊ桨꤫羿扁슛ꊟ⩍અﮧ學뫈",
+          "bars": false,
+          "color": "rgb(2147483647, 972434658, 1544677232)",
+          "dashLength": -1,
+          "dashes": false,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": false,
+          "percentage": false,
+          "spaceLength": -268768303,
+          "stack": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "殺㛫쫞엦୵ℱ惸퇡욜ꥪᘯ",
+          "bars": false,
+          "color": "rgb(86, 166, 75)",
+          "dashLength": 0,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": true,
+          "linewidth": 5,
+          "nullPointMode": "connected",
+          "percentage": true,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 2070519671,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "ʂf頃붙♃懨ᘇ괵≭鵛펟롣㿜䎅臙ᾙ桬宽ꟼ京뺴㎅鍸⋵ڞߋꉑ왲䕥רּ낼힋캬﨑࠶㴭횓鑚Ἐ淪꽶ﮙᘋﻍ핻챒",
+          "color": "rgb(255, 248, 153)",
+          "dashLength": -688502511,
+          "dashes": true,
+          "legend": true,
+          "lines": false,
+          "percentage": false,
+          "stack": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "祻ኝ略듷恊峨ከꏩěᔘ⠮爦ᶉ䢢䔬룵䁠₰鱈㩯ᆚ躈燵搆⛔塴쵫呍똚❍᮰☊甿軕竁챊潳尧Ԩ枏껞쫬㑥糁睃铌垢оᜠ곓但␖倅攑댠῿抑쎺췻땬诌媮贒๥ܱꍵ猸甼",
+          "bars": false,
+          "color": "rgb(255, 115, 131)",
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 9.702586e+27,
+          "points": true,
+          "spaceLength": 576666213,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "篵ᯫᾋ࿣备낐埨췶쯁㙐䇠欵잯濼஘袝",
+          "bars": false,
+          "color": "rgb(255, 120, 10)",
+          "dashLength": 2147483647,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 10,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": false,
+          "linewidth": 7,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": -2.064275e-25,
+          "points": true,
+          "spaceLength": -1001734317,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "헪춋㘨℃码ꑢ㎉텝ᣗ㫸霔瀩謑Ừ硢ኽꕤ퐼壉댴铜ꅞ엷鍪膢ٶᒊ쥗ௗ楝亂閆ᣩ㗚Ṫ–纘镎㲑鲌๗첫毙ﾵ㭉䘣",
+          "bars": false,
+          "dashLength": 0,
+          "lines": false,
+          "pointradius": 3.1099612e-27,
+          "points": true,
+          "spaceLength": -467309675,
+          "yaxis": 1
+        },
+        {
+          "alias": "뢒嗌涡䬜蚇ᐋ䑰쵄疍墼㨤ফ흺ﺾ⅛჉胁꒤捊䫜ᅜ顗遻",
+          "bars": false,
+          "color": "rgb(255, 120, 10)",
+          "dashLength": 63558814,
+          "dashes": true,
+          "fill": 10,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": false,
+          "linewidth": 5,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": -1.9418985e-19,
+          "points": true,
+          "spaceLength": 423144140,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "ྂ䵙͢ᕼ뉊랕晢쓷ṥꝇⱎﲯἍ꥕䎸媘π阁韢糢덡ꁊ⬽鐣ા鰂ᇝ墠Ꝧ嬇뱐肸广摂첅嫔䔴דּ촞礊⵭㘺㠁争몬ꭸ覅᪸휾ٛ躺岶렘鵑ಏㇻ鵚펍㉭䳬컹蒱ꯞ헍爪愭",
+          "bars": false,
+          "color": "rgb(150, 217, 141)",
+          "dashes": false,
+          "hideTooltip": true,
+          "nullPointMode": "null",
+          "percentage": false,
+          "stack": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "⟊뙄㏼Ბ냽蠼ⓛ闳䆅礆㯇鎓ꁵ",
+          "bars": true,
+          "color": "rgb(184, 119, 217)",
+          "dashLength": 0,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": true,
+          "linewidth": 8,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "֟濶ᬘﮪ랴ᢁ䊷쑷善囮谂᠒ᨩ绡憾탢Ϫ☊㔔籆삲瑳쩲焄襹怔齎晨᰾㏸馝僕簕씋ﰏ电皛譊ღ⧷ￜ頯鹼燝裔噈깤ﳾ비᦮φ뺮ၕ鬯筦ዬ哤뽭ɒܨم贐ᮕ",
+          "bars": true,
+          "color": "rgb(50, 116, 217)",
+          "dashLength": -2147483648,
+          "dashes": true,
+          "hideTooltip": false,
+          "legend": false,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 2147483647,
+          "stack": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "斊郒ꊮ枠ﺉ㈿櫜撑⾦ڸ㭅른䠬ꎬᴌ꺼轺㟢经웈敊㐄墭釐ꉀ튵孃і팰ꯜ擪ს詈囉쾢䦫৓퇰샅㟱顕ꌍ玏錅軣뷙미罥즏ᕼ秶ằ审❣骐袏眛ᒨ꟝뇏",
+          "dashLength": -2147483648,
+          "hideTooltip": true,
+          "nullPointMode": "null",
+          "percentage": true,
+          "pointradius": 0,
+          "points": false,
+          "stack": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "ṫ憳◒棹贃姕햯꽗ᴲ怷▎隘錔",
+          "bars": true,
+          "color": "rgb(163, 82, 204)",
+          "dashLength": 1164605198,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -2147483648,
+          "stack": false,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "윈䟀笝ᲁ縧௹縒頻뎆脩床紒쎠搢⦕萅ᐿ爱䠏윞묃ꬡꚘ㺳ѽ⾭靏덿ⵔ咥洝치ຌ랍垴⚘禓⮢쮨◸ঝ뻵髬㳼Ꙇٲ媹⫻箄䒹〫⯨ỢᎸ",
+          "bars": true,
+          "color": "rgb(255, 203, 125)",
+          "dashLength": 1056313667,
+          "dashes": true,
+          "hideTooltip": true,
+          "legend": false,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 449812248,
+          "stack": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "⼉诨䅬伭⡓嗝߭췒깹䬠ﳠ樳✠틪熱☃꫑抢麜鷒㼠揜ᚕ䘐䦳",
+          "bars": true,
+          "color": "rgb(222, 182, 242)",
+          "dashLength": 1,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": false,
+          "linewidth": 9,
+          "spaceLength": -696086180,
+          "steppedLine": true,
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "紣ꪲ丈ﵢ폃࿆嗘砘䲪殧업揣紑㿷ⅵ⠹䰃裡逽輜䖗䖳쥺籾컾贄戹᳸㏪祐홃桵ﺰ潵ᔠ䢒૥",
+          "dashes": true
+        },
+        {
+          "alias": "⊍걁ﴒ⤧眚ꝡ窮뫗뭭藀蒛㡲ꬕ㮽趑膐韶噐瓆죀㾪䆛Ⲍ쨰惙ԏ◍砌鏗ᛦ㍗㦴喒ﳈ豮㠗装ㄨ掆獡舖ড়Ԉ鍨묍꒟瀠熘ꌟ߆",
+          "bars": true,
+          "color": "rgb(255, 120, 10)",
+          "dashLength": 1977321090,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 0.0003298655,
+          "points": true,
+          "spaceLength": 0,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "䩒脅闁⾳榖琷咅㤑⤕븀祂쉯쯢텠퉦茘鶧玲㰗꨽䷏頑ꃦ䒿螦倠뇲慸ᶜ苮ன‘ⴂ尤㮺킏䗈̭ܬꠕ壳䧷퓹峁᧱顏",
+          "bars": false,
+          "dashLength": 87117648,
+          "percentage": false,
+          "spaceLength": -2021391669,
+          "stack": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "䝝楮웖줊ᡘ컣渦",
+          "spaceLength": 0
+        },
+        {
+          "alias": "筫㝄ឰ캡絝훎鱢而찯혈瞴눮鉚팼㓶帥偉㈭董ꐥ煮殜䯣쉰젘冨쌏此鼲扏葇칭ዸ栋玶黜ᨚ㛠ﰹ蹖韊ꅻ릨곢䯙쯷юጴ牭Ṷ灲负๼ꎣ퉔퐘㱿஧㒗᪵炯ꇚ䏮畔斫蔓‪䧓ᆁ䲇鍺轆",
+          "bars": false,
+          "color": "rgb(250, 100, 0)",
+          "dashLength": 777274428,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "lines": false,
+          "linewidth": 7,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -871101902,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "瞖娀",
+          "bars": true,
+          "color": "rgb(224, 180, 0)",
+          "dashLength": 0,
+          "dashes": false,
+          "hideTooltip": false,
+          "legend": false,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 3.0042278e-9,
+          "points": true,
+          "spaceLength": -489852172,
+          "stack": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "鑁뎶缴ᆐ轕ㄈ홊ᨄᶨ洆곣돔扦㱎키봮ꣿ㣎钬權铈뾇価訦流﩮꺲룫禽穉澏贗쭺䁢킯Ṯ祥瘆肢緭豿᰼뺞郅䣈፡咅扪蜇ꝺ",
+          "bars": false,
+          "color": "rgb(184, 119, 217)",
+          "dashLength": 1,
+          "fill": 0,
+          "fillGradient": 0,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": true,
+          "linewidth": 8,
+          "nullPointMode": "null as zero",
+          "percentage": true,
+          "spaceLength": -2147483648,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "ֽﱔ娈㇯泻ᵯ뢃쫻",
+          "bars": true,
+          "dashLength": 0,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": false,
+          "linewidth": 8,
+          "nullPointMode": "null",
+          "percentage": true,
+          "pointradius": 4.7590028e+35,
+          "points": true,
+          "spaceLength": 668848607,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "徎᳃屄孷ᥡ縉うꜢධ껚ኛ㌤Ն聝㧒뢨꭪솏ﾑ仔慮腂馇⽏啌柑떞",
+          "bars": true,
+          "color": "rgb(55, 135, 45)",
+          "dashLength": -2025470873,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 5,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": false,
+          "linewidth": 8,
+          "nullPointMode": "connected",
+          "percentage": true,
+          "pointradius": -2.354051e+25,
+          "points": true,
+          "spaceLength": -383853344,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "悥걋羰⁯懪橷聆㌶冕쒼됏䩨쭘魚眼⃈䤴熆鐷䴎빸칉릫㱗荷譛꧆跠≣諲ꏒ童᫁샇ᣦ唞㫝燽욉뙂㍐ዪ椲虡㳱톩둡焟₁⥏山",
+          "bars": true,
+          "color": "rgb(255, 179, 87)",
+          "dashLength": -2147483648,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": true,
+          "linewidth": 5,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -1,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "ᎈㇱ懞ਲㅊ◒ⴵ瑙᤿ߤ髝ꥵᑖ掔籣༝橕濄鳺薊뚿騰鐝୔䆩餙䯞六ꁑ㹥ꈵ位큒嬵",
+          "bars": false,
+          "color": "rgb(55, 135, 45)",
+          "dashes": true,
+          "hideTooltip": false,
+          "percentage": true,
+          "spaceLength": -1149900956,
+          "stack": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "䗛ệ膥矄듄쀐渄녏ሕ沧ㆌ艶⪪峫ᲃ㤱獎ﲒ띰釂ᑚ킄棱얉⛬㞖暫孟虍䊶履소쌔訒챳斾襻䝯샕鰽⵫ᒛ푼䯔ⲥ⅊䪡繃턹ί﯄⛒䚡킔Г 袅⋨߀沨턴谛肝鿯걨끾䭠㟒죹",
+          "bars": false,
+          "color": "rgb(255, 248, 153)",
+          "dashLength": -335513273,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "lines": true,
+          "linewidth": 10,
+          "nullPointMode": "connected",
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 1,
+          "steppedLine": false,
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "ዠ嚮甴䢺鱤޳븛⛴빔䲧䀬轓⩠嗣椝惖ᠶꖌÙ惹翈싛⹈픓릅᩠訆ﯖ滍뙼ㇶ㧙늧ବ飓䎕ᴛ 奺춠刺ꚣ⤌硂ꚏ樧َ䞋璜灣篟ᏽ˖䵓䎍ⵛꊣ잫陗쌬畳⮱렵슋ⳡ־ᢔ判疹꿟ᶼ￴᷹䢮ᢱ",
+          "bars": true,
+          "color": "rgb(224, 180, 0)",
+          "dashLength": 0,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": false,
+          "linewidth": 7,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 2147483647,
+          "stack": false,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "⚒ộ纞㭃獦",
+          "bars": true,
+          "color": "rgb(115, 191, 105)",
+          "dashLength": 2147483647,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": false,
+          "linewidth": 3,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 1,
+          "stack": false,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "쫘黈ର婪杸Ṏ鋷ಊづ꺩筝큿쎮쌸頎ଡ죝ර违ᛍ챌뀸▯걈욫戛앲㥭ဠધ敾层ﶵ넷ૢꥼ㞱",
+          "bars": true,
+          "color": "rgb(242, 204, 12)",
+          "dashLength": -686101583,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": true,
+          "linewidth": 10,
+          "nullPointMode": "null",
+          "percentage": true,
+          "pointradius": 415683830000000000000,
+          "points": true,
+          "spaceLength": -2147483648,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "鴌쯰",
+          "bars": false,
+          "color": "rgb(202, 149, 229)",
+          "dashLength": -1501168655,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": true,
+          "linewidth": 6,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 0,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "粶뷨뎄ꃵ뇽ﱕضꮓࠤ厔斊䕈鎹춌ꌱ瘾䉿ǐ䠡ꢽ鴭坽㷇闒㏎밵鴣츝᧭쓵㺞ㆌ賺䨫霷裥謠䜬춼춭江셝傉瘍ﻫ揪痹뉁ፏ뼢ꮺ펌悱㮸",
+          "bars": true,
+          "color": "rgb(255, 203, 125)",
+          "dashLength": -832583475,
+          "dashes": false,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": false,
+          "nullPointMode": "connected",
+          "percentage": true,
+          "pointradius": 66311560000000000000,
+          "points": true,
+          "spaceLength": -2147483648,
+          "stack": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "ꅬ뎀帺锸윇捤뒇癰顋禎ᒃ価훫凗ﯰ֌",
+          "legend": true,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "spaceLength": 2147483647,
+          "stack": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "constant"
+        },
+        {
+          "alias": "볣쯏鵟鏿幺갩틘읍惑䩤",
+          "bars": false,
+          "color": "rgb(224, 180, 0)",
+          "dashLength": -1,
+          "dashes": false,
+          "hideTooltip": false,
+          "legend": true,
+          "nullPointMode": "null",
+          "percentage": true,
+          "pointradius": 639432520000,
+          "points": true,
+          "spaceLength": 0,
+          "stack": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "鐡쩀뻪䈠᪫嘟Ꙣ芀濆",
+          "bars": true,
+          "color": "rgb(242, 73, 92)",
+          "dashLength": 1095461255,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": true,
+          "linewidth": 6,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": -339.37274,
+          "points": true,
+          "spaceLength": 1,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "몿㩰쇨죅䳼閏Ღ꺯먍",
+          "bars": true,
+          "color": "rgb(250, 100, 0)",
+          "dashLength": -2147483648,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": false,
+          "linewidth": 4,
+          "nullPointMode": "null",
+          "percentage": true,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 1814655573,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "譎伎嚪㦠멏몫鎗沣닱欞랠╶餚갎⪂陓岐栖첶鏝ይ倀ꪸ콎෠Ṣ㊏⠯茥풩㏩길୓꟡폄ꮋ뮗㮙ᷢ偄ꇣ鹋ⴧ鼒傏ꩊ磊줄ត赿瀚㭨텡Ἤꄶ㘢럵赌䣬世簖읽ᑑᇑ곺맕毰ᗩ纥Ⱉ⌙䅼",
+          "bars": true,
+          "dashLength": 1856085508,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": true,
+          "linewidth": 7,
+          "nullPointMode": "connected",
+          "percentage": true,
+          "spaceLength": -2147483648,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "yaxis": 2
+        },
+        {
+          "alias": "庨櫣䝀⡍쌆Ꚍຓ鲶埁镼뀼㈋蒚祴쀓炈↏﵋젌Ꭶࡤ⤠속쾘읭㥋੉鎴⽒䛏⭖粵鵩⺺㟲☿䔰볅๞䢳웕繉癷牔嚝銍蜶렊㚋ꝁᓬ浈攮㊪琝ᇛ⃷軝ꐨ缚ᶑ螊慥伝꜎怲邜䦎ा䘉퟇",
+          "bars": true,
+          "color": "rgb(50, 116, 217)",
+          "dashLength": 0,
+          "fill": 0,
+          "fillGradient": 5,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": true,
+          "linewidth": 7,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": -1.5807345e+23,
+          "points": true,
+          "spaceLength": -1434858258,
+          "stack": false,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "ᱨ꜁",
+          "color": "rgb(224, 180, 0)",
+          "dashes": false,
+          "percentage": false,
+          "stack": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "yaxis": 1
+        },
+        {
+          "alias": "ਂ᪟碪ꊾ뻰㘴㏩ꀒ䤭뇓娄솙瀣퍶Ԋ䏊\t﫵쪅儛링믯#譙㋔泎瞐",
+          "bars": false,
+          "dashLength": 2147483647,
+          "dashes": false,
+          "fill": 10,
+          "fillGradient": 5,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": true,
+          "linewidth": 3,
+          "nullPointMode": "null as zero",
+          "percentage": true,
+          "pointradius": 0.000002549378,
+          "points": true,
+          "spaceLength": -2047618069,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "綁祔疠Ἢノ⳥ᑃꄬ⣯ጌ藑棳島켉ፉꞷŚⲏၴ㿪⡔䟛​捼⪴춂嚀᥹굷闃㘋펯庠蠛ꩯ捁⬱셠閥톄㒦뙍ꃴ俒츃죥漫Ｎ똹ꏷ懚凟쵵庮䚣ѝᗕ覺碖캹蛢䓛틫淁洍⵭㏁ᝦ뜝⳱즪癳ዽ漺劤ᱫ먃傀캖䮡",
+          "bars": false,
+          "color": "rgb(192, 216, 255)",
+          "dashLength": -1,
+          "dashes": true,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": false,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -630602931,
+          "stack": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "Ꮊ䂺",
+          "bars": true,
+          "color": "rgb(255, 115, 131)",
+          "dashes": true,
+          "fill": 10,
+          "fillGradient": 10,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 3.6763206e-23,
+          "points": true,
+          "spaceLength": 1,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "䗉᫻䘟逺熇翽鉔琴囇㻇↓치嵨쪾［⨓牓咳聦뻤轆䤟쥞乱铑ꌛ牟嘡鯉뻟빧痬",
+          "bars": true,
+          "color": "rgb(202, 149, 229)",
+          "dashLength": -2147483648,
+          "dashes": false,
+          "fill": 10,
+          "fillGradient": 0,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": true,
+          "linewidth": 8,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 1.0069234e-15,
+          "points": true,
+          "spaceLength": -2147483648,
+          "stack": false,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "ꓤ籘戻赕뀭贳É㸘䔼ᅚ⚈䒠挌ᐜ㸏ǯ꬧",
+          "bars": false,
+          "color": "rgb(-1, 1216095998, 1274230759)",
+          "dashLength": -1,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": false,
+          "linewidth": 7,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -1102273161,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "闡靏ⷻ瀰斉쬖켨纑哞꼷胙ꂯ汱滂˦ᵑ垐ꩫ镌萇沗෼Ꝁ쑍틱熿ㆫ䆕챊풷㍑佡ꆟ铧⠲缷솔ꠟ❽ن갞婔溷䲨꧈鞞䋩䖉ᐘⷛ䞠鳕쁋ﲊ꺐喈췀璽ᒹ့镧풴㈎툀騲",
+          "bars": false,
+          "color": "rgb(87, 148, 242)",
+          "dashLength": -858627600,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": true,
+          "linewidth": 2,
+          "percentage": false,
+          "pointradius": 0.0002816305,
+          "points": true,
+          "spaceLength": -1,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "䊬葽齕餘ᕛ㲫栐쟔먠欬ﻀ㇫脐⋛禞眑ឮꈽ굧䄬鼷塇᪊翨펥㞑㟹浡仁멏᥷罶汴쒢熁沔ᩳũﰞ臤䐼᎘䍾唚陟쁝뻁㧤䓠昺㘵싢ꙥힳꑷ蜝塭",
+          "bars": true,
+          "color": "rgb(87, 148, 242)",
+          "dashLength": 1,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": false,
+          "linewidth": 0,
+          "nullPointMode": "null as zero",
+          "percentage": true,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -1383266381,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "હ쫗慊ؾ戣胧턤吹̈猖绸ᑘ䈔殮挖ꇟ䷔㱄汢쒧뙄ꏺ㞤㷕ꧯ섪㛬椙왷Ȕ䱃ྛШ镜䕏⢭䋁䃄灚訦瞪ញ塌㫮䱅㇧뇖꧈崐茍넢ߖ蝟ᶕ誘嫥訬ᰰ㚏➵ཙᝑ콭쮝晱鎏",
+          "bars": true,
+          "color": "rgb(55, 135, 45)",
+          "dashLength": 1234815697,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": true,
+          "linewidth": 0,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 1,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        },
+        {
+          "alias": "꛼䕉㊩㸈訣겺䠵碇뼱扠휫႘萃鸎",
+          "hideTooltip": false,
+          "transform": "constant"
+        },
+        {
+          "alias": "閠듞급赋謰ﴕ⻆ᆩ鎿⯟⭤ᐡ빧戁때䈌똤蟼膸鶠显꧇⡸ꀺ噃⦔ꜰ듹뛁᭼༅學ธ鬸⇼衔뿩濟砻銐‱ῆ꜅㷞犪ǽﱨ攔鹿짓袰ᢗ鑦謨ቼ烄蔹㗳籉ோ曃住",
+          "bars": false,
+          "color": "rgb(150, 217, 141)",
+          "dashLength": -863167166,
+          "fill": 0,
+          "fillGradient": 0,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": false,
+          "linewidth": 3,
+          "nullPointMode": "null",
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -1,
+          "steppedLine": false,
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "폋硷虅Ⱅ埁险퉺럙濑䠶㹑齪뼈㐞瑗鉑ࡰ⨴밫ℛ輠ῲ㫘䎙濩훆迦桾꼌룥ᇨ八稉Ӥೊ킢䒠咕脈䙍띺Ⴖꈈ㙩戺늿秂ᮓ棥፹䫷ꞗ荶ê苹즀サ됐䂣첗ຆ襏␛ꑒ䧖㒦䍠橖嵂©䍛喃㯵",
+          "bars": true,
+          "color": "rgb(250, 100, 0)",
+          "dashLength": -2147483648,
+          "dashes": true,
+          "hideTooltip": false,
+          "legend": false,
+          "lines": false,
+          "nullPointMode": "null",
+          "percentage": true,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 2147483647,
+          "stack": true,
+          "tooltip": {
+            "value_type": "cumulative"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "풁ꭉ罗ꀤ",
+          "color": "rgb(255, 203, 125)",
+          "dashLength": -2147483648,
+          "dashes": true,
+          "hideTooltip": false,
+          "legend": false,
+          "nullPointMode": "null",
+          "pointradius": -1.0846057e-38,
+          "points": true,
+          "spaceLength": 1,
+          "transform": "constant",
+          "yaxis": 1
+        },
+        {
+          "alias": "뻦⣓贤暴䱷兴ㅼ᭒쾯괠覗昕鶃펕㐨⏺૷⹂䆖䬬苵♕珍净ࡧ擪ག힊残뾘ⶰ⑹塏嘁퍒縨ො诼룩롤娊ꂘ龸隈튵䌸튻薗聒昪፸㿳飥䆸쏌駖坨ꦩ럭썉㮐芕套⽎꿾ᴊ蔲爎\u0000ﰰ線现훹ʚ흈㮏卨",
+          "bars": false,
+          "color": "rgb(86, 166, 75)",
+          "dashLength": 0,
+          "dashes": true,
+          "fill": 10,
+          "fillGradient": 5,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": true,
+          "linewidth": 8,
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 0.000052031235,
+          "points": true,
+          "spaceLength": 1450344118,
+          "stack": false,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "㡒⫟⑨雕泄㑝믥縧⼒圼분㣗ꤸ꒤벻㲜쫋陝詇㤺颕꾰嘴럴앹꼓얺鞞䞫㴧Ԫᣛ竖ᗞﾩ塉㾱굝訃믟ﻃ♳咡轔Ό퓹靫顐帎㓒嗃愦ᕬ㱵焯拰胒㐳鎦ӊ吙灬똾",
+          "bars": false,
+          "dashLength": 0,
+          "dashes": false,
+          "fill": 5,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "lines": true,
+          "linewidth": 6,
+          "nullPointMode": "null",
+          "percentage": true,
+          "pointradius": 2.7004986e-22,
+          "points": true,
+          "spaceLength": -340175691,
+          "stack": true,
+          "steppedLine": true,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "㛞⟛䞒皪摪ꁢꭙ氮灝",
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "중俧탾⦼䋻ܫ⢟ೋ彲䔶鬭ᚰ돯쒀蓊썱㶛䇎㣁梠쪰筳㯗Р䏹봒鉬뽛通Ⲟ胊㜦褔壜便䱜髢퇮ꩃ䷘ﱙ墥᫅虉ᑸ䫮继䱧⢂缣賴␈馎꠴ḅ蠃빛娧ꌆꁽ",
+          "bars": false,
+          "color": "rgb(242, 73, 92)",
+          "dashLength": 1,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 10,
+          "legend": false,
+          "lines": true,
+          "linewidth": 4,
+          "nullPointMode": "null",
+          "percentage": true,
+          "pointradius": -9.646717e-35,
+          "points": true,
+          "stack": true,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "constant"
+        },
+        {
+          "alias": "㚜랏澲蔠槫ဍ痚祍琲蹦핅ᢹ᣽ີᮎ㮥⠛쒋ើ⽷숀鈬ｃ杹䥸蛁贼刐ယ㋮㺔忟㌸侼糀Ҝ⒙ែ씯胚鰺老๴楔淗탱鑑禛뿏ᖅ恆쒀䉰㤖",
+          "color": "rgb(224, 47, 68)",
+          "hideTooltip": false,
+          "legend": true,
+          "spaceLength": 323132216,
+          "transform": "constant",
+          "yaxis": 2
+        },
+        {
+          "alias": "簪䞼汴纅፺떊挓︯䤹승㊬㱍蹽凡䢪쉸县㩄怳时⮟ㄶ근빼䕬㍙﹢嚢ř꙰䵹Ẃ百솟ാ⧸䩶ឨ蚢䝚낔ꄉﭝដ뢩㌂ﶝ粪ﮌ얥箹蚭ꑂ䭺Ŋ冴놺斞밲뢀᠄詩ῧ軔⅌ᰝ和㵨뷲꾚ꫂᾀN"
+        },
+        {
+          "alias": "ꡥ⎼䝨鍇櫢⢧ᆿ뺘쀊㠖⍚醛苚낕밁Ƒ矋Ḥ聾۵쁌袆౨ᔞ煶淨襄癦഍ǁ",
+          "bars": true,
+          "color": "rgb(87, 148, 242)",
+          "dashLength": -2114868920,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": true,
+          "lines": false,
+          "linewidth": 0,
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": -369122702,
+          "stack": false,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "奎仹ኚļ羢霳㳚ᰔ⪵낀뤿듐Ł唚㯶ꕌ凁㽺멣㩷ᠹ鰲ἂ镙膿䁄",
+          "bars": false,
+          "color": "rgb(31, 96, 196)",
+          "dashLength": 2147483647,
+          "dashes": false,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": false,
+          "legend": true,
+          "lines": true,
+          "linewidth": 7,
+          "nullPointMode": "connected",
+          "pointradius": -5.484357e-33,
+          "points": true,
+          "spaceLength": 2147483647,
+          "steppedLine": true,
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "鈲䍇ᶛ㰰שּ젃葡錫",
+          "bars": true,
+          "color": "rgb(200, 242, 194)",
+          "dashLength": -2147483648,
+          "hideTooltip": false,
+          "legend": false,
+          "nullPointMode": "null as zero",
+          "percentage": false,
+          "pointradius": 0,
+          "points": false,
+          "spaceLength": 2147483647,
+          "stack": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 2
+        },
+        {
+          "alias": "枏鿷勉ϑ숄瘛䚟탬厍減ﳂ벦跦磇㼡佐춥㹞혊\u0005녤팾娋숡ላ娟╃핵趭皰ꇶ槵ꃰຒ橤䛳ૡ䫴垟톘⬰轏Ŕ빍⇛鸔벪㎏苉뺺挐褏῵촚᧷ꂁ鿧䏲뽐鐒㓺ꓘ℺䋰쇛쇖箋앹鬹ⓖᙎ⏟ࠕ屢퇌簮쩿잌鑘臢釘禨",
+          "dashLength": 1118567935,
+          "dashes": true,
+          "fill": 0,
+          "fillGradient": 1,
+          "hideTooltip": true,
+          "legend": false,
+          "lines": true,
+          "linewidth": 9,
+          "percentage": false,
+          "pointradius": -1.4162682e-15,
+          "points": true,
+          "spaceLength": -1457224521,
+          "stack": false,
+          "steppedLine": false,
+          "tooltip": {
+            "value_type": "individual"
+          },
+          "transform": "negative-Y",
+          "yaxis": 1
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "⧐쨢䆤驦玍全싍㖘폿ࠄꪘ嬙両籂ܳ壆۸地ᆂ雏퓤쮽扷本퐆ᗟ⚭ය쑠鐮暟껝㱪릒꞊﨡﫾圣鿈潻鿶䪛꫏ሁ杇쮽᝗㫴殑뤽襉ࣛ줛蜱ዢ굀쏙ఈ헻ᒿݾလ㳟늟鑜輂漵ಛ㛼礹楀瀮ᮟ磓颴搥஗䌰ઓ",
+          "format": "table",
+          "hide": true,
+          "instant": true,
+          "interval": 668938471,
+          "intervalFactor": 776527338,
+          "legendFormat": "謀퇹˓蹩㔮䓕ꁖ笪ά骀纭忠▖푕믭ઇ羡䓭켒큫姡筳毼ⱈ沦꧋秥帍鳁鷓꩎禘蕦輦龜뙷츕וּ",
+          "refId": "A"
+        },
+        {
+          "hide": true,
+          "refId": "B",
+          "target": "軇ѩ霬쏷퓡䴮簩⥊⢃隣鯃⏚Ꮖȡ䟍삄霶求잤싾ᘋǞᥕⲫ︢躲맱腷ꉥἽ怑ꥑ綾ࣩ䤦愓緳㞎䶺⡠픷呁곀"
+        },
+        {
+          "expr": "ំ㖡뒂뜅滪爭㹎듗飜펓큾Ḻ䔔ꄔ䲟피옞鮁ꬎ⃈鲜럇眳፽ﺍ䏒峝켛곉嚬๲꒔ௐ엨灒焹뾲ힹ蹂豇䁿仌䪏燬믹䏱ꙧ䓚鴾仠⏻䯖䠙䤇罖培⻅㻏ၣ鍙릪罘窿꣯တﶆᆀᗈ炻멱",
+          "format": "heatmap",
+          "hide": true,
+          "instant": false,
+          "interval": 1308607906,
+          "intervalFactor": 152248046,
+          "legendFormat": "㛆܎딓肭ⳟ㴑⨂彄罖䱀充짅꣆㰔ꧡ욾詒쥙괖伕䫂헿硣범 꾕ꁘ㗟磾ꂆ뿥拥溻鿨感ﾛ⑀ﺢ㥈䳦誷离豈砻዆끉면啷礮鄌曒擹俤僳䱤뙹袺ꨳ냨糆෌َἂ㻠᤹ꭳ⮵奥妩䥯肑گ⟊豎๛䡂躭",
+          "refId": "C"
+        },
+        {
+          "hide": true,
+          "refId": "D",
+          "target": "ẁᬐﵷ漹离槒顟⽱䋫烀铜"
+        },
+        {
+          "hide": true,
+          "refId": "E",
+          "target": "᪗ﲠ㢯⛟ᩮ݌妢ᩱ濅퓦根랑樊꣇齉驗룋ቂ䬣撪㓫嫱䤐櫎밗ⷃҽᡎ俦䐮解䵓폍捽㝈⑲짤蟃瓝檵誮㙜꽥笒9쮷Ⴗ근䙈铡蚇䒽Ო桛祀ΐ졊압ꮻ퀃㶧也⌎⃽ᔷ躐톛討牸춸ꤘ뷋꺼蜄┖洞⸣䝽輁쾜૷຺옔㹝"
+        },
+        {
+          "expr": "❅憋毫‹倩ꀾ㌦๝낽ກ䃬犭說際屟硴᪻幙൓麨샋㠻읚™搛띩ꦙᒵᲧ驩뼀䟈鈥䑉엠ꙴ用큚ꔲ岇ှᲂ疚덠᎖롋꾞倭늱ಢ貋읂ᛤ챴",
+          "format": "time_series",
+          "hide": true,
+          "instant": false,
+          "interval": 1331368987,
+          "intervalFactor": 1895887713,
+          "legendFormat": "ᖝ僎枼褾⣁꺊⓪嶻錿ᨛ㣉兘苊涻嗙l㚞戊䔔灼⿠⩥ᐆ橩䅎폃שּׂ霪慪䆐둃廍矊뻂쭵棈淪㳕㑫풌뙟䯬쀍黦ꆕ꣟ꕎᚒ࿩㌒闼嵭ꎮ넽翱땓⇅⬳놫춗叹￴ⓘ腋쩲恕龟钶鳎蔃箫ꡋ콿ჾ毩",
+          "refId": "F"
+        },
+        {
+          "refId": "G",
+          "target": "擔떑ⲵ鱇ﭫꅐﾈ襻虭㳉剷匯᱈ڥꙀᲛ俋ｘ내ꏶ抅᧝⛩಩씃礀ἰ瑇쟢ܚꅐ搼㨩﷽꾧쥁䎔ꀅܖ䴃쭊ࣾꁩ볗犜场ꘅ"
+        },
+        {
+          "hide": true,
+          "refId": "H",
+          "target": "⏒॥뚪ꋴƵ⊟ꦠ䋹㞎𥳐왾㥘顱ጯࣤ卐ﮓ몁痈⑭"
+        },
+        {
+          "expr": "䲹ᢿ칦⍺痁띩鰖䵺⹅⽩虎ฤ읚ృ플腖餄謅쬗㟉ꐷឞ哯Ⴝ諸創ᙀ᝻䘱룵﬌〦츸℩뎠骇鸂肖隚쎰￮䈅⤏棔㥎ꅷ≯꜡蓁䰙鯗ⶾ譢价⎗㣫篰햶蒡သქ뢭ℍ",
+          "format": "heatmap",
+          "instant": true,
+          "interval": -1609989929,
+          "intervalFactor": -129064084,
+          "legendFormat": "䰴ᓓ⡝蠺浞鸡᳁②䄁쑗쥫집臶먧〙歴᠝崯헁螯￺췸쀦බ൅䐁郶⬍ꯊ蒚摉郂籾芞存硈胖㱸䟧첵辣╼ꖚ㐦",
+          "refId": "I"
+        },
+        {
+          "expr": "췔磕㟊뀞ꕦᬟ悁捑窵夕ꄕⴇΡ䢝惚侓黣ᅄ㑆螅ٍ챃賤뫃䍾扅蓟衉敕㳧娦脻惀냽浒",
+          "format": "time_series",
+          "hide": true,
+          "intervalFactor": 181975294,
+          "refId": "J"
+        },
+        {
+          "refId": "K",
+          "target": "ꤽ⁔攅햶輏䐯ᘚ纪췞➱繍駩淠똠붽볅຃웚廚ඛ੘☞ꀪ鰡㻬͒北깿䤙㢏꼋ᙂ솽ሙꪈ쭸Ñ버邇Į뒄Ŗ䋖멭㺿䦢q鰱对槒넓η"
+        },
+        {
+          "refId": "L",
+          "target": "垗鞹沗賋槡첰돞䜔癣胙ꝃ䟋诅踮ꚞ㻏㦑覟➮儷踎呕旎㙋쩺ຽ餐᐀➙噻ԝꅰᾒ∔쬨ת挱쭺⡗伄罶⨡룧厠涿쮡滩圅횿㻓漟〩튗롡鯹鱾糆ꋴ폟歨Ỏ꾄"
+        },
+        {
+          "expr": "ꇝᗡད㽪鈃ሊᩙ䙽ﱸ蕧㳅䬦랰加諔喞箙缻ᦂ썋ዩ튧䚳ၿ׷웨㱣䭫ڳ㾡ᜀ煠︛⸀⺟ꯒ樭撉君띗꫉䵯鏀횈惛෽鳉",
+          "format": "heatmap",
+          "hide": true,
+          "instant": false,
+          "interval": -1398303029,
+          "legendFormat": "썎튀䉜㷼᭦줲䯁嶢略渟ṿ捧㦆馮滥嘟⇈ឱ",
+          "refId": "M"
+        },
+        {
+          "hide": true,
+          "refId": "N",
+          "target": "ꧡ똊ꭓ었ㄞ␮䢃鴋㞹杴㠤駣ꫬ쑑ꈟᗇ鎥⧇ꮄኲ䚀睦꼙䰐傗䧾俨豘砟䢺觑ᤀﬕ蜜"
+        },
+        {
+          "hide": true,
+          "refId": "O",
+          "target": "扇唟٥秠캺䜌ﻂ뎻ꔤ煢諻ய忰툐᫵鐷뷗"
+        },
+        {
+          "hide": true,
+          "refId": "P",
+          "target": "֍씸"
+        },
+        {
+          "expr": "넂颙鄇顼곈꣰즵낻⿁ꠇ綋盦䕊도弥䅺",
+          "format": "table",
+          "instant": false,
+          "interval": 1,
+          "intervalFactor": 1531483879,
+          "legendFormat": "豁㋯쏞ᅸꩵ표ꋟ쉎琿铹蓚⛀Ｊ힨⮗㦔鏾Ꮚ즱뇜险頮ᷠ癸鐹쾭貱⫺捻歋ໆᐌ蠟橞뻈",
+          "refId": "Q"
+        },
+        {
+          "refId": "R",
+          "target": "虤"
+        },
+        {
+          "hide": true,
+          "refId": "S",
+          "target": "悇⊭牡섬Ꞿ薣띶쫣驩꣯鉰ⓣ轖䦀春Ⲟㆨ끮ҡ䤧ﰾࡽ⡉鼹鷭⺵⮐밭硜傫༲腦ᛯ釂⪞퉫袔筌碜禘䵧ヵ躾⌤䏚䡫㞁쐫㊸ᒄ垄办ꎃﮝ裕葒䓮鎎到㜜"
+        },
+        {
+          "expr": "뺠闾絭䷞㷶規ᐤ⯜뇛럎鱸᥄괉ⴈᷙ૴黠횙发♲䜼猋섮팠壳崇틘퉠‡湿䍅ﯝ뱉䊳德칧쳼仭ꢢ쓂㰺晎ㄆ䷫湙謯믯瞯ᙰ礆徲煎燖ᇎ⎇́扔꬜鴕䀧㝰筬㢦ዞⶖⲀ轊㟆",
+          "hide": true,
+          "instant": true,
+          "interval": -1302360050,
+          "intervalFactor": -1513777262,
+          "legendFormat": "灖‫ಢ⼧ᷯ極耺ಕՖ盎ᩁ⯮縱琺簶㐾䣜䪦얨靫貢财ꭦ癬뽧辀Ꝟ㯃˃卍鼛谀룎濯殙㝢엌㥑﷿䥞溦㋻廅뱜ᣬ鸚雘펴㘋Ⲑ샳锗畄슱蓒剼㎐鋯貇",
+          "refId": "T"
+        },
+        {
+          "refId": "U",
+          "target": "絹铤煬摺뿉믒즲鎢疺֥ႝ컦䚏ﰓ樍㖄娠踶吪촊黆"
+        },
+        {
+          "expr": "ݭ믤䑦ᑋꕑ䳙⍫楁佖嶟ё㬏螼眾ㅠඹ徇䩜໣ᇿ䑑㸢ӽፚ뭕녓ᦌ悓□Ꮏܛ➒육剖⼎ヺ㉁跶ꎵ箻ᵕ阶鹣ἦ褍ᩡ몵뭏⤥퐓꒿ᯈ￞㧳䣜苿㍱훒긋ﵦ㆝ﮬ匥㬗׉抷䓼灉韁穽햸鰎짊貗㣧힭",
+          "format": "heatmap",
+          "instant": false,
+          "legendFormat": "嘉錺송ᇶꁡʩ⑘罠쫎Ш志㊘❒咝㺰긫肯줁橘඀紿렂퍤터鷱탢⡶靐桀⍰즖ꈓ൴硶᰿蝒铰矁靼馃笸붅▋煼ʗ੕ἓ窖ဠנּ맻眥秭ဃ鼺䣹ﱕ榜",
+          "refId": "V"
+        },
+        {
+          "expr": "⏀㚶馧앻縛ﳃ鑣ׂ隿暖୅閲丸昱홉掫慫坲ߙᖆ悜腬嗣쭾院畇튣맿㢍㵹띪㷧畓ᐕⶀ嬆㳂唃ዊ枟쎞푥ទ꿭꺼壍犱⠻뱼綴齾䘐磦邇ꭶ㓾㭽⣃⻽㕗",
+          "format": "table",
+          "hide": true,
+          "instant": false,
+          "interval": 1209985120,
+          "intervalFactor": 851052070,
+          "legendFormat": "疆㻴炸푉䡰ᴱ஼髗⅜쥽䋡睛꩹ޅ鏤㚦芘魽틜밵涄窺钰Ⰷ旃惎즢脠ᵦ吆቞蕷嫧㈬翁ĵ镇ᄃý࠿葏괃",
+          "refId": "W"
+        },
+        {
+          "refId": "X",
+          "target": "ģ簃Ӳ遶៼発ʅ袗⎀ॅ鍇ꜞニ衂鏤⓽仵о览鍅찗烅鳓枿塇ꏃ蟫럅⛒䮀승佺씽淐㙕냃ꄲซᬶ앙谏﷡琳᳤筸튟˹砤"
+        },
+        {
+          "hide": true,
+          "refId": "Y",
+          "target": "䣓덭턽ꯚ讍繢⥽豜ࠀ벒趭魑≘祪贁茁ꜹĔ뽫∌뭡泲锖㗗烧쭎헾毋䥽㏀鎎囕㤦짾㿐㏔녟褈칊ąꝭ墹嚢쯩水ᚨ쟝Ƌ⭛톈⹠㙈탂䯺遜㔲䦴ᛆ䙢憅ﴂ攴ꑰ"
+        },
+        {
+          "hide": true,
+          "refId": "Z",
+          "target": "훳ᘵ帪럅萑瓼최셲ࣉᦩ薥럞姁㌈ቂ떖➤蟲榑埦浯벏縣䆼쐇䆸ꁟ꿇k锶㐑銨뫞๝籉풿ꦍ絽ߔḡ麹鱷䐬邓棔ﰿ붧쫽똏⨔畂ⴶ땝኉䛅늃﮵梡Ⲳ㗽쁂謥ᚘ㌪焼슒뵻递"
+        },
+        {
+          "expr": "琅뗁⾢艷춣ꮍ凅紽ꪋ䖱枆⍊껐㗘⌳鞖벁਄蟓៙⌫雷ﴽ켃駰ﳥ뱳䯸趉᳃ᄥ마ﻵ蜎㪠葖⻋粗㧕᭧榸慄뛉櫃뿱䋗莀궙ۛ脴",
+          "instant": true,
+          "interval": 1735231002,
+          "intervalFactor": -380411762,
+          "legendFormat": "五呮숸",
+          "refId": "["
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "ᑇ渰ꖫ紥큛ᗎね䔺ø⁚㦼✄ᬵ潫ҷ䖇䍴郭鋲Ⴭ琊侦ㅺ꿘玼贃ᡔ沈觤᱀௸䠢㓒瓌গ皹ⶱ눢ि㭋ꋵ쫿췐须珚궗੟琸泬X䵭缲锑떬鴟갘䐼㑋⿻虬韬㇚摈{୰曞邤弃꾔ಚͶ⇃ၗ",
+      "tooltip": {
+        "shared": false,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": -2.732546092915331e+127,
+        "max": 0,
+        "min": null,
+        "mode": "histogram",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": -1,
+          "format": "mamp",
+          "label": "役⾊媈财膻딲牏ꤲ\b橵弗䳱䟪৏᥅퓨᚝柿찍媞昕퉤㍵놊Ꞟ稴㉊糒螺ُ뱷뜸춫ꇀ෠煜ᵜ扼묒팆뻎뼅ꎥẩ䧊ᇵኡഗԣᝈ",
+          "logBase": 1,
+          "max": null,
+          "min": 0,
+          "show": true
+        },
+        {
+          "decimals": -194729324,
+          "format": "litre",
+          "label": "㏞끶䶾拆鶓⪏猩ԧ⟂Ὅ㸘䐁ޔ㹶멯ﶈԘ럍╤弍묎離䃀굊綤辰δ摈잛荆뷢僻ᑊଂᾋ퓩䀌㋽뵈๩鍼鄏",
+          "logBase": 2,
+          "max": 0,
+          "min": 5.973103985508484e+295,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {
+    "collapse": false,
+    "enable": true,
+    "notice": false,
+    "now": true,
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "status": "Stable",
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ],
+    "type": "timepicker"
+  },
+  "timezone": "browser",
+  "title": "GraphPanelRNDTest",
+  "uid": "R32cB1uZz",
+  "version": 10
+}
