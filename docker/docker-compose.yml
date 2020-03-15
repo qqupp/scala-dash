@@ -1,6 +1,17 @@
 version: '3'
 services:
-  grafana:
+
+  grafana6:
     image: grafana/grafana:6.4.5
     ports:
-      - "3000:3000"
+      - "3006:3000"
+
+  grafana5:
+    image: grafana/grafana:5.4.0
+    ports:
+      - "3005:3000"
+
+  grafana4:
+    image: grafana/grafana:4.5.0
+    ports:
+      - "3004:3000"
