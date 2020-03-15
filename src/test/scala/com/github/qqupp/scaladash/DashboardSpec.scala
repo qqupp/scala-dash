@@ -27,18 +27,18 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
       val dashboardJson = dashboard.build
 
       dashboardJson should containKeyValue("title", title)
-      dashboardJson should containKeyValue("originalTitle", title)
-      dashboardJson should containKeyValue("tags", Json.arr())
       dashboardJson should containKeyValue("style", "dark")
+      dashboardJson should not( containKeyValue("originalTitle", title))
+      dashboardJson should containKeyValue("tags", Json.arr())
       dashboardJson should containKeyValue("timezone", "browser")
       dashboardJson should containKeyValue("editable", true)
-      dashboardJson should containKeyValue("hideControls", false)
-      dashboardJson should containKeyValue("sharedCrosshair", false)
-      dashboardJson should containKeyValue("rows", List(row1.build(1), row2.build(2)))
+      dashboardJson should not( containKeyValue("hideControls", false))
+      dashboardJson should not( containKeyValue("sharedCrosshair", false))
+      dashboardJson should not( containKeyValue("rows", List(row1.build(1), row2.build(2))))
+      dashboardJson should containKeyValue("panels", List(row1.build(1), row2.build(2)))
       dashboardJson should containValueInPath(root.nav.index(0), navJson)
       dashboardJson should containKeyValue("refresh", "10s")
       dashboardJson should containKeyValue("version", 6)
-      dashboardJson should containKeyValue("hideAllLegends", false)
       dashboardJson should containKeyValue("time",
         json"""{
                  "from": "now-15m",
@@ -60,7 +60,7 @@ class DashboardSpec extends FlatSpec  with Matchers with ScalaCheckDrivenPropert
   it should "render with custom time range" in {
     val dashboard =
       Dashboard(title)
-       .withTimeRange(TimeRange.RelativeFromTo(Days(2), Hours(1)))
+       .withTime(TimeRange.RelativeFromTo(Days(2), Hours(1)))
 
     val dashboardJson = dashboard.build
 

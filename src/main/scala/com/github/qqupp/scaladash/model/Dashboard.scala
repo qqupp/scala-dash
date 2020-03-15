@@ -2,29 +2,30 @@ package com.github.qqupp.scaladash.model
 
 import com.github.qqupp.scaladash.model.template.Variable
 import com.github.qqupp.scaladash.model.time.Duration._
-import com.github.qqupp.scaladash.model.time.{Duration, TimeRange}
-import io.circe.Json
+import com.github.qqupp.scaladash.model.time.{Duration, TimePicker, TimeRange}
+import io.circe.{Json, JsonObject}
 import io.circe.literal._
+import io.circe.syntax._
 
 final case class Dashboard(title: String,
                            rows: List[Row],
                            variables: List[Variable],
-                           timeRange: TimeRange,
-                           timeOptions: List[Duration],
-                           refreshIntervals: List[Duration],
+                           timePicker: TimePicker,
+                           time: TimeRange,
+
                            tags: List[String]) {
 
   def withVariable(variable: Variable): Dashboard =
     copy(variables = variables ++ List(variable))
 
   def withNavRefreshIntervals(values: List[Duration]): Dashboard =
-    copy(refreshIntervals = values)
+    copy(timePicker = timePicker.copy(refreshIntervals = values))
 
   def withNavTimeOptions(values: List[Duration]): Dashboard =
-    copy(timeOptions = values)
+    copy(timePicker = timePicker.copy(timeOptions = values))
 
-  def withTimeRange(range: TimeRange): Dashboard =
-    copy(timeRange = range)
+  def withTime(time: TimeRange): Dashboard =
+    copy(time = time)
 
   def withRow(row: Row): Dashboard =
     copy( rows = rows ++ List(row))
@@ -35,42 +36,29 @@ final case class Dashboard(title: String,
   def build: Json = {
     val rowsJson = rows.zipWithIndex.map{ case (r, idx) => r.build(idx + 1) }
 
-    val templatingJson = variables
-
-    json"""{
-                      "title": $title,
-                      "originalTitle": $title,
-                      "tags": $tags,
-                      "style": "dark",
-                      "timezone": "browser",
-                      "editable": true,
-                      "hideControls": false,
-                      "sharedCrosshair": false,
-                      "rows": $rowsJson,
-                      "nav": [
-                          {
-                              "type": "timepicker",
-                              "enable": true,
-                              "status": "Stable",
-                              "time_options": $timeOptions,
-                              "refresh_intervals": $refreshIntervals,
-                              "now": true,
-                              "collapse": false,
-                              "notice": false
-                          }
-                      ],
-                      "time": $timeRange,
-                      "templating": {
-                          "list": $templatingJson
-                      },
-                      "annotations": {
-                          "list": [],
-                          "enable": false
-                      },
-                      "refresh": "10s",
-                      "version": 6,
-                      "hideAllLegends": false
-          }"""
+    Json.fromJsonObject(
+      JsonObject(
+        "title" -> title.asJson,
+        "tags" -> tags.asJson,
+        "style" ->  "dark".asJson,
+        "timezone" -> "browser".asJson,
+        "editable" -> Json.True,
+        "hideControls" -> Json.False,
+        "graphTooltip" -> Json.fromInt(1),
+        "panels" -> Json.arr(),
+        "time" -> time.asJson,
+        "timepicker" -> timePicker.asJson,
+        "templating" -> json"""{
+                                 "list": $variables
+                               }""",
+        "annotations" -> json"""{
+                                  "list": []
+                                }""",
+        "refresh" -> "10s".asJson,
+        "schemaVersion" -> Json.fromInt(17),
+        "links" -> Json.arr()
+      )
+    )
   }
 
 }
@@ -82,9 +70,8 @@ object Dashboard {
       title = title,
       rows = List.empty,
       variables = List.empty,
-      timeRange = TimeRange.RelativeLast(Minutes(15)),
-      timeOptions =  List(Minutes(5), Minutes(15), Hours(1), Hours(6), Hours(12), Hours(24), Days(2), Days(7), Days(30)),
-      refreshIntervals = List(Seconds(5), Seconds(10), Seconds(30), Minutes(1), Minutes(5), Minutes(15), Minutes(30), Hours(1), Hours(2), Days(1)),
+      time = TimeRange.RelativeLast(Minutes(15)),
+      timePicker = TimePicker.default,
       tags = List()
   )
 

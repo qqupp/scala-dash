@@ -25,7 +25,7 @@ object JsonTestUtils {
             MatchResult(
               matches = true,
               msg.matchTrue,
-              msg.notMatchTrue
+              msg.notMatchTrue(key)
             )
           else
             MatchResult(
@@ -46,7 +46,7 @@ object JsonTestUtils {
           MatchResult(false, msg.decodeFail(jsonPath.toString, json), msg.notDecodeFail)
         case Some(decodeJson) =>
           if (decodeJson == expectedJson)
-            MatchResult(true, msg.matchTrue, msg.notMatchTrue)
+            MatchResult(true, msg.matchTrue, msg.notMatchTrue(jsonPath.toString))
           else
             MatchResult(false,
               msg.matchFalse(decodeJson, jsonPath.toString, expectedJson, json),
@@ -68,7 +68,7 @@ private object msg {
 
   def matchTrue = "Improve this B message"
 
-  def notMatchTrue = "Improve this C message"
+  def notMatchTrue(s: String) = s"found key $s"
 
   def matchFalse(foundJson: Json, path: String, expectedJson: Json, mainJson: Json): String =
     s"""Found $foundJson value when going down to path "$path" but expected $expectedJson value
