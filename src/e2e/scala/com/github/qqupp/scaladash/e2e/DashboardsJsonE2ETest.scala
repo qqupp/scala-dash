@@ -54,7 +54,7 @@ class DashboardsJsonE2ETest extends FlatSpec with Matchers with ScalaCheckDriven
 
   private def postJsonToLocalGrafana(json: Json): Identity[Response[Either[String, String]]] = {
     val request =
-      basicRequest.post(uri"http://localhost:3000/api/dashboards/db")
+      basicRequest.post(uri"http://localhost:3006/api/dashboards/db")
         .header("Content-Type", "application/json")
         .header("Authorization", "Basic YWRtaW46YWRtaW4=")
         .body(json.toString)

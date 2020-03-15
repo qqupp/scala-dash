@@ -11,7 +11,7 @@ services:
     ports:
       - "3005:3000"
 
-  grafana4:
-    image: grafana/grafana:4.5.0
-    ports:
-      - "3004:3000"
+#  grafana4:
+#    image: grafana/grafana:4.5.0
+#    ports:
+#      - "3004:3000"
